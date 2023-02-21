@@ -1,5 +1,33 @@
-## DATABASE USER FOR MARIADB
+# 1. DATABASE USER FOR MARIADB!
+- Create a bash script for that.
 
+---
+
+# 2. Create tables / models / factories.
+- Players
+- Teams
+
+1. Create the migrations:
+    - php artisan make:migration create_players_table --create=players
+    - php artisan make:migration create_teams_table --create=teams
+2. Edit migration files with the function "up()"
+3. Do the migration:
+    - php artisan migrate
+4. Create the models:
+    - php artisan make:model Player
+    - php artisan make:model Team
+5. Create the factories:
+    - php artisan make:factory PlayerFactory
+    - php artisan make:factory TeamFactory
+6. Fill the definition function with faker.
+   (MUST CHECK THE DOCUMENTATION OF IT TO CHECK WHAT OPTIONS I HAVE.)
+
+---
+
+# 3. Create controllers for each of the main menu option (Each main menu option corresponds to a model!)
+- TODO: Describe it.
+
+# 4. FRONT END!
 ## HEADER
 - With a banner of football or something.
 
@@ -16,17 +44,76 @@
             · budget (double)
             · Two buttons:
                 - "Add new team"
-                - "Cancel"
+                - "Cancel" -> Brings back to the Manage teams menu option.
     - Data table with the all the teams, each line has the following:
         · Name
-        · Trainer
+        · Coach
         · Team category
         · Actions (Buttons)
-            - Edit
+            - Edit:
+                - Form with:
+                    · id (disabled, autoincrement) -> In the edit form must contain the
+                                                      ID of the team which we are editing.
+                    · name (string, unique)
+                    · coach (string)
+                    · category (string)
+                    · budget (double)
+                    · Two buttons:
+                        - "Update" / "Modify"
+                        - "Cancel" -> Brings back to the Manage teams menu option.
+                - "Subscribe player" button which will redirect to the "Enroll player" view.
+                - Data table under the form with all the subscribed players of the
+                  team and the number of displayed players:
+                    · Player name
+                    · Button to "unsubscribe"
             - Delete:
-                ()
-- Manage players
+                (Must redirect to a confirmation page. If the team has players,
+                the action won't let the deletion, and in either case will inform
+                the user about the outcome and the cause of it ...)
+
+    - FROM "edit team" -> Enroll player:
+        Data table with the followings:
+            · First name
+            · Last name
+            · Team subscribed to
+            · Button to subscribe:
+                (If the user is already subscribed to a team, then ask for confirmation to
+                unsubscribe from that team and subscribe to the requested new one.
+                MUST MAKE SURE THAT ALL THE OPERATIONS ARE DONE IN THE CHAIN!!!)
+
+---
+
+- Manage players:
+    - "Add player" button, which will redirect to the "Add player" view form.
+            · id (disabled, autoincrement)
+            · first name (string)
+            · last name (string)
+            · date of birth (integer)
+            · salary (double)
+            · "Add player" button
+            · "Cancel" button, which will redirect to the "Manage players"
+    - Data table with all the players and the number of players displayed:
+        · first name
+        · last name
+        · date of birth
+        · "Edit" button -> redirect to the "Edit player" view form.
+        · "Delete" button -> Confirmation page:
+                                (If the player belongs to a team, the action
+                                should not be allowed, as he must be removed
+                                from the team before he can be deleted.
+                                Warn the user about the outcome and its cause.)
+    - FROM "Edit player" button -> "Add player form":
+        · id (disabled, autoincrement)
+        · first name (string)
+        · last name (string)
+        · date of birth (integer)
+        · salary (double)
+        · "Update / Modify player" button
+        · "Cancel" button, which will redirect to the "Manage players"
 
 ## FOOTER
 - copyright
 - some made up sponsors (use icons or something...)
+
+
+

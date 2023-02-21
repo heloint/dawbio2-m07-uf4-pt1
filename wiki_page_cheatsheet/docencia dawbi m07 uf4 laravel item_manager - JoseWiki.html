@@ -1,0 +1,1981 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" dir="ltr" lang="es"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>docencia:dawbi:m07:uf4:laravel:item_manager - JoseWiki</title>
+<meta name="generator" content="DokuWiki">
+<meta name="robots" content="index,follow">
+<meta name="keywords" content="docencia,dawbi,m07,uf4,laravel,item manager">
+<link rel="search" type="application/opensearchdescription+xml" href="https://docencia.proven.cat/jmoreno/wiki/lib/exe/opensearch.php" title="JoseWiki">
+<link rel="start" href="https://docencia.proven.cat/jmoreno/wiki/">
+<link rel="contents" href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;do=index" title="Índice">
+<link rel="manifest" href="https://docencia.proven.cat/jmoreno/wiki/lib/exe/manifest.php">
+<link rel="alternate" type="application/rss+xml" title="Cambios recientes" href="https://docencia.proven.cat/jmoreno/wiki/feed.php">
+<link rel="alternate" type="application/rss+xml" title="Espacio de nombres actual" href="https://docencia.proven.cat/jmoreno/wiki/feed.php?mode=list&amp;ns=docencia:dawbi:m07:uf4:laravel">
+<link rel="alternate" type="text/html" title="HTML sencillo" href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_xhtml&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager">
+<link rel="alternate" type="text/plain" title="Etiquetado Wiki" href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_raw&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager">
+<link rel="canonical" href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager">
+<link rel="stylesheet" href="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/css.css">
+<!--[if gte IE 9]><!-->
+<script>/*<![CDATA[*/var NS='docencia:dawbi:m07:uf4:laravel';var SIG=" --- \/\/[[nomail@proven.cat|Alumne]] 2023\/02\/21 19:25\/\/";var JSINFO = {"plugins":{"vshare":{"youtube":"youtube\\.com\/.*[&?]v=([a-z0-9_\\-]+)","vimeo":"vimeo\\.com\\\/(\\d+)","slideshare":"slideshare.*id=(\\d+)","dailymotion":"dailymotion\\.com\/video\/([a-z0-9]+)","archiveorg":"archive\\.org\/(?:embed|details)\/([a-zA-Z0-9_\\-]+)","soundcloud":"soundcloud\\.com\/([\\w-]+\/[\\w-]+)","niconico":"nicovideo\\.jp\/watch\/(sm[0-9]+)","bitchute":"bitchute\\.com\\\/video\\\/([a-zA-Z0-9_\\-]+)","coub":"coub\\.com\\\/view\\\/([a-zA-Z0-9_\\-]+)","odysee":"odysee\\.com\/\\$\/(?:embed|download)\/([-%_?=\/a-zA-Z0-9]+)","youku":"v\\.youku\\.com\/v_show\/id_([0-9A-Za-z=]+)\\.html","bilibili":"bilibili\\.com\\\/video\\\/(BV[0-9A-Za-z]+)","msoffice":"(?:office\\.com.*[&?]videoid=([a-z0-9\\-]+))","msstream":"microsoftstream\\.com\\\/video\\\/([a-f0-9\\-]{36})"}},"id":"docencia:dawbi:m07:uf4:laravel:item_manager","namespace":"docencia:dawbi:m07:uf4:laravel","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};
+/*!]]>*/</script>
+<script src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/jquery.php" defer="defer"></script>
+<script src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/js.php" defer="defer"></script>
+<!--<![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="shortcut icon" href="https://docencia.proven.cat/jmoreno/wiki/lib/tpl/monobook/static/3rd/dokuwiki/favicon.ico">
+<link rel="apple-touch-icon" href="https://docencia.proven.cat/jmoreno/wiki/lib/tpl/monobook/static/3rd/dokuwiki/apple-touch-icon.png">
+<script type="text/javascript" charset="utf-8" src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/user.js"></script>
+<!--[if lte IE 8]><link rel="stylesheet" media="all" type="text/css" href="/jmoreno/wiki/lib/tpl/monobook/static/css/screen_iehacks.css" /><![endif]-->
+<!--[if lt IE 5.5000]><link rel="stylesheet" media="all" type="text/css" href="/jmoreno/wiki/lib/tpl/monobook/static/3rd/monobook/IE50Fixes.css" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" media="all" type="text/css" href="/jmoreno/wiki/lib/tpl/monobook/static/3rd/monobook/IE55Fixes.css" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" media="all" type="text/css" href="/jmoreno/wiki/lib/tpl/monobook/static/3rd/monobook/IE60Fixes.css" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" media="all" type="text/css" href="/jmoreno/wiki/lib/tpl/monobook/static/3rd/monobook/IE70Fixes.css" /><![endif]-->
+<!--[if lt IE 7]><script type="text/javascript" charset="utf-8" src="/jmoreno/wiki/lib/tpl/monobook/static/3rd/wikipedia/IEFixes.js"></script><meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+</head>
+<body class="mediawiki ns-0 ltr" cz-shortcut-listen="true">
+<div id="globalWrapper">
+
+  <div id="column-content">
+    <div id="content">
+      <a name="top" id="top"></a>
+      <a name="dokuwiki__top" id="dokuwiki__top"></a>
+      <div id="bodyContent">
+        <div class="dokuwiki">
+          <!-- start main content area -->
+          
+          <div id="siteNotice" class="noprint">
+
+<p>
+Apunts i materials per als cicles formatius de formació professional de la família d'Informàtica i comunicacions.
+</p>
+
+<p>
+José Moreno. Institut Provençana. L'Hospitalet de Llobregat (Barcelona). Spain.
+</p>
+
+          </div>
+
+          <div class="catlinks noprint"><p>
+            <span class="bchead">Estás aquí: </span><span class="home"><bdi><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=start" class="wikilink1" title="start" data-wiki-id="start">start</a></bdi></span> » <bdi><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:start" class="wikilink1" title="docencia:start" data-wiki-id="docencia:start">docencia</a></bdi> » <bdi><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:start" class="wikilink1" title="docencia:dawbi:start" data-wiki-id="docencia:dawbi:start">dawbi</a></bdi> » <bdi><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:start" class="wikilink1" title="docencia:dawbi:m07:start" data-wiki-id="docencia:dawbi:m07:start">m07</a></bdi> » <bdi><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:start" class="wikilink1" title="docencia:dawbi:m07:uf4:start" data-wiki-id="docencia:dawbi:m07:uf4:start">uf4</a></bdi> » <bdi><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel" class="wikilink1" title="docencia:dawbi:m07:uf4:laravel" data-wiki-id="docencia:dawbi:m07:uf4:laravel">laravel</a></bdi> » <bdi><span class="curid"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager" class="wikilink1" title="docencia:dawbi:m07:uf4:laravel:item_manager" data-wiki-id="docencia:dawbi:m07:uf4:laravel:item_manager">item_manager</a></span></bdi>
+          </p></div>
+
+          <!-- start rendered wiki content -->
+          <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle open" style="cursor: pointer;"><strong><span>−</span></strong>Tabla de Contenidos</h3>
+<div style="" aria-expanded="true">
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#item_manager_desenvolupat_amb_laravel">Item Manager desenvolupat amb Laravel</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#vistes_amb_blade">Vistes amb Blade</a></div></li>
+<li class="level2"><div class="li"><a href="#sistema_de_navegacio_de_l_aplicacio">Sistema de navegació de l'aplicació</a></div></li>
+<li class="level2"><div class="li"><a href="#controladors">Controladors</a></div></li>
+<li class="level2"><div class="li"><a href="#gestio_de_recursos_amb_elixir">Gestió de recursos amb Elixir</a></div></li>
+<li class="level2"><div class="li"><a href="#model_de_dades_amb_eloquent">Model de dades amb Eloquent</a></div></li>
+<li class="level2"><div class="li"><a href="#model_amb_relacions_1-n_amb_eloquent">Model amb relacions 1-n amb Eloquent</a></div></li>
+<li class="level2"><div class="li"><a href="#poblar_la_base_de_dades_amb_dades_de_prova_seed">Poblar la base de dades amb dades de prova (seed)</a></div></li>
+<li class="level2"><div class="li"><a href="#formularis_i_enviament_de_dades">Formularis i enviament de dades</a></div></li>
+<li class="level2"><div class="li"><a href="#formularis_d_edicio">Formularis d'edició</a></div></li>
+<li class="level2"><div class="li"><a href="#validacio_de_dades">Validació de dades</a></div></li>
+<li class="level2"><div class="li"><a href="#autenticacio_d_usuaris">Autenticació d'usuaris</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="item_manager_desenvolupat_amb_laravel">Item Manager desenvolupat amb Laravel</h1>
+<div class="level1">
+
+<p>
+Anem a desenvolupar pas a pas una aplicació per a la gestió de 'items' amb Laravel.
+</p>
+
+<p>
+Creem el projecte:
+</p>
+<pre class="code">laravel new items
+cd items</pre>
+
+<p>
+Verifiquem que funciona:
+</p>
+<pre class="code">php artisan serve</pre>
+
+<p>
+i obrim a un navegador la url
+</p>
+<pre class="code">http://localhost:8000</pre>
+
+<p>
+El codi de control és a 'app/Http/', directori que conté:
+</p>
+<ul>
+<li class="level1"><div class="li"> Controllers: controladors de la lògica de l'aplicació</div>
+</li>
+<li class="level1"><div class="li"> Middleware: controladors de filtre, per exemple, per a autenticació</div>
+</li>
+</ul>
+
+<p>
+El directori 'app/Providers' conté els serveis de dades.
+</p>
+
+<p>
+El directori 'resources/views' conté les vistes de l'aplicació. Es creen amb el llenguatge <strong>Blade</strong>.
+ La ruta per defecte a les vistes per a tota l'aplicació és aquesta. Si 
+creem un subdirectori per posar-hi una vista, per exemple, 
+'resources/views/customers/list.blade.php', ens referirem a ella al codi
+ amb la notació 'customers.list'.
+</p>
+
+<p>
+El directori 'routes' conté les definicions de l'encaminament entre les 
+diferents vistes i controladors segons les peticions dels clients. És a 
+dir, realitza el mapeig de url a controladors@mètodes o a vistes.
+</p>
+
+<p>
+L'estructura de directories d'un projecte Laravel és la següent:
+<a href="https://laravel.com/docs/10.x/structure#the-models-directory" class="urlextern" target="_blank" title="https://laravel.com/docs/10.x/structure#the-models-directory" rel="ugc nofollow noopener">https://laravel.com/docs/10.x/structure#the-models-directory</a>
+</p>
+
+<p>
+Per modificar l'encaminament o afegir noves rutes, editem el fitxer 'routes/web.php'.
+</p>
+
+<p>
+El següent codi defineix una ruta per a la petició 'get' a la url arrel 
+de l'aplicació '/'. La resposta ve donada per la funció anònima, la qual
+ retorna la vista definida al fitxer 
+'resources/views/welcome.blade.php'.
+</p>
+<pre class="code php">Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'welcome'</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+o utilitzant una <em>Facade</em>:
+</p>
+<pre class="code php">Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">return</span> View<span class="sy0">::</span><span class="me2">make</span><span class="br0">(</span><span class="st_h">'welcome'</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+La funció de resposta pot retornar directament un string, però és més net delegar les respostes a les vistes.
+</p>
+<pre class="code php">Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">return</span> <span class="st0">"Hello!"</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+La solució més elegant, no obstant, és encaminar les peticions a un 
+mètode d'un controlador, el qual farà les peticions als proveïdors de 
+servei de dades i passarà la informació de resposta a les vistes, 
+d'acord amb el patró MVC.
+</p>
+<pre class="code php">Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/'</span><span class="sy0">,</span> <span class="st_h">'ItemController@list'</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+O per a Laravel versió 8 o posterior:
+</p>
+<pre class="code php">Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/'</span><span class="sy0">,</span> <span class="br0">[</span>ItemController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'list'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Les peticions que es poden enrutar inclouen:
+</p>
+<ul>
+<li class="level1"><div class="li"> get</div>
+</li>
+<li class="level1"><div class="li"> post</div>
+</li>
+<li class="level1"><div class="li"> put</div>
+</li>
+<li class="level1"><div class="li"> delete</div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit2" id="vistes_amb_blade">Vistes amb Blade</h2>
+<div class="level2">
+
+<p>
+Blade permet estructurar les vistes per compartir plantilles entre elles.
+</p>
+
+<p>
+Definim la plantilla general de les vistes de la nostra aplicació:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=5" title="Descargar trozo de código fuente" class="mediafile mf_php">layout.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">&lt;!</span>DOCTYPE html<span class="sy0">&gt;</span>
+<span class="sy0">&lt;</span>html lang<span class="sy0">=</span><span class="st0">"{{ config('app.locale') }}"</span><span class="sy0">&gt;</span>
+<span class="sy0">&lt;</span>head<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>meta charset<span class="sy0">=</span><span class="st0">"UTF-8"</span><span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>meta name<span class="sy0">=</span><span class="st0">"viewport"</span> content<span class="sy0">=</span><span class="st0">"width=device-width, initial-scale=1.0"</span><span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>meta http<span class="sy0">-</span>equiv<span class="sy0">=</span><span class="st0">"X-UA-Compatible"</span> content<span class="sy0">=</span><span class="st0">"ie=edge"</span><span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>title<span class="sy0">&gt;@</span><span class="kw1">yield</span><span class="br0">(</span><span class="st_h">'title'</span><span class="br0">)</span><span class="sy0">&lt;/</span>title<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span><a target="_blank" href="http://www.php.net/link"><span class="kw3">link</span></a> rel<span class="sy0">=</span><span class="st0">"stylesheet"</span> href<span class="sy0">=</span><span class="st0">"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"</span> integrity<span class="sy0">=</span><span class="st0">"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"</span> crossorigin<span class="sy0">=</span><span class="st0">"anonymous"</span><span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span><a target="_blank" href="http://www.php.net/link"><span class="kw3">link</span></a> rel<span class="sy0">=</span><span class="st0">"stylesheet"</span> type<span class="sy0">=</span><span class="st0">"text/css"</span> href<span class="sy0">=</span><span class="st0">"/css/styles.css"</span><span class="sy0">&gt;</span> 
+<span class="sy0">&lt;/</span>head<span class="sy0">&gt;</span>
+<span class="sy0">&lt;</span>body<span class="sy0">&gt;</span>
+    <span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'topmenu'</span><span class="br0">)</span>
+    <span class="sy0">@</span><span class="kw1">include</span><span class="br0">(</span><span class="st_h">'menubar'</span><span class="br0">)</span>
+    <span class="sy0">@</span>show
+&nbsp;
+    <span class="sy0">&lt;</span>div <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"container"</span><span class="sy0">&gt;</span>
+        <span class="sy0">@</span><span class="kw1">yield</span><span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+&nbsp;
+    <span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'footer'</span><span class="br0">)</span>
+    Application by ProvenSoft<span class="sy0">.</span>
+    <span class="sy0">@</span>show
+&nbsp;
+<span class="sy0">&lt;/</span>body<span class="sy0">&gt;</span>
+<span class="sy0">&lt;/</span>html<span class="sy0">&gt;</span></pre>
+</dd></dl>
+
+<p>
+La directiva @section defineix una secció de la plantilla amb un nom. 
+Amb @show fem que es mostri. Amb @include podem incloure una altra 
+plantilla. @yield mostra el contingut de la secció, tal com és generat 
+per la plantilla que estén la general.
+</p>
+
+<p>
+La plantilla general contindrà una barra superior de menús, una secció de contingut i una secció de peu inferior.
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=6" title="Descargar trozo de código fuente" class="mediafile mf_php">menubar.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">&lt;</span>nav<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>ul<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>li<span class="sy0">&gt;&lt;</span>a href<span class="sy0">=</span><span class="st0">"/home"</span><span class="sy0">&gt;</span>Home<span class="sy0">&lt;/</span>a<span class="sy0">&gt;&lt;/</span>li<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>li<span class="sy0">&gt;&lt;</span>a href<span class="sy0">=</span><span class="st0">"/items"</span><span class="sy0">&gt;</span>Items<span class="sy0">&lt;/</span>a<span class="sy0">&gt;&lt;/</span>li<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;/</span>ul<span class="sy0">&gt;</span>
+<span class="sy0">&lt;/</span>nav<span class="sy0">&gt;</span></pre>
+</dd></dl>
+
+<p>
+Afegim una vista que extengui la plantilla general, afegint, per 
+exemple, un nou enllaç al menú superior i també el contingut de la 
+secció 'content'.
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=7" title="Descargar trozo de código fuente" class="mediafile mf_php">welcome.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'topmenu'</span><span class="br0">)</span>
+    <span class="sy0">@</span>parent
+    <span class="sy0">&lt;</span>a href<span class="sy0">=</span><span class="st0">"http://www.google.es"</span><span class="sy0">&gt;</span>Google<span class="sy0">&lt;/</span>a<span class="sy0">&gt;</span>
+<span class="sy0">@</span>endsection
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+<span class="sy0">&lt;</span>h2<span class="sy0">&gt;</span>Welcome to Item manager applicacion<span class="sy0">&lt;/</span>h2<span class="sy0">&gt;</span>
+<span class="sy0">&lt;</span>p<span class="sy0">&gt;</span>An applicacion made with Laravel framework<span class="sy0">&lt;/</span>p<span class="sy0">&gt;</span>
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+<p>
+I apliquem una senzilla plantilla css per formatar mínimament les pàgines.
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=8" title="Descargar trozo de código fuente" class="mediafile mf_css">styles.css</a></dt>
+<dd><pre class="code css">nav ul <span class="br0">{</span>
+    <span class="kw1">list-style-type</span><span class="sy0">:</span> <span class="kw2">none</span><span class="sy0">;</span>
+    <span class="kw1">margin</span><span class="sy0">:</span> <span class="nu0">0</span><span class="sy0">;</span>
+    <span class="kw1">padding</span><span class="sy0">:</span> <span class="nu0">0</span><span class="sy0">;</span>
+    <span class="kw1">overflow</span><span class="sy0">:</span> <span class="kw2">hidden</span><span class="sy0">;</span>
+    <span class="kw1">background-color</span><span class="sy0">:</span> <span class="re0">#6297c0</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+nav li <span class="br0">{</span>
+    <span class="kw1">float</span><span class="sy0">:</span> <span class="kw2">left</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+nav li a <span class="br0">{</span>
+    <span class="kw1">display</span><span class="sy0">:</span> <span class="kw2">block</span><span class="sy0">;</span>
+    <span class="kw1">color</span><span class="sy0">:</span> <span class="kw4">white</span><span class="sy0">;</span>
+    <span class="kw1">text-align</span><span class="sy0">:</span> <span class="kw2">center</span><span class="sy0">;</span>
+    <span class="kw1">padding</span><span class="sy0">:</span> <span class="re3">14px</span> <span class="re3">16px</span><span class="sy0">;</span>
+    <span class="kw1">text-decoration</span><span class="sy0">:</span> <span class="kw2">none</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+nav li a<span class="sy0">:</span><span class="kw5">hover</span> <span class="br0">{</span>
+    <span class="kw1">background-color</span><span class="sy0">:</span> <span class="re0">#111</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">table</span> <span class="br0">{</span>
+    <span class="kw1">border-collapse</span><span class="sy0">:</span> <span class="kw2">collapse</span><span class="sy0">;</span>
+<span class="br0">}</span>
+<span class="kw2">table</span> th<span class="sy0">,</span> tr<span class="sy0">,</span> td <span class="br0">{</span>
+   <span class="kw1">border</span><span class="sy0">:</span> <span class="kw2">solid</span> <span class="kw2">thin</span> <span class="kw4">blue</span><span class="sy0">;</span>
+<span class="br0">}</span>
+<span class="kw2">table</span> th <span class="br0">{</span>
+    <span class="kw1">background-color</span><span class="sy0">:</span> <span class="kw4">lightgray</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+form fieldset <span class="br0">{</span>
+    <span class="kw1">display</span><span class="sy0">:</span> <span class="kw2">block</span><span class="sy0">;</span>
+    <span class="kw1">margin</span><span class="sy0">:</span> <span class="re3">2em</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+form div <span class="br0">{</span>
+    <span class="kw1">display</span><span class="sy0">:</span> <span class="kw2">block</span><span class="sy0">;</span>
+<span class="br0">}</span>
+form label <span class="br0">{</span>
+    <span class="kw1">float</span><span class="sy0">:</span> <span class="kw2">left</span><span class="sy0">;</span>
+    <span class="kw1">clear</span><span class="sy0">:</span> <span class="kw2">left</span><span class="sy0">;</span>
+    <span class="kw1">min-width</span><span class="sy0">:</span> <span class="re3">5em</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+form input <span class="br0">{</span>
+    <span class="kw1">float</span><span class="sy0">:</span> <span class="kw2">left</span><span class="sy0">;</span>
+    <span class="kw1">clear</span><span class="sy0">:</span> <span class="kw2">right</span><span class="sy0">;</span>
+    <span class="kw1">min-width</span><span class="sy0">:</span> <span class="re3">5em</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">table</span> a <span class="br0">{</span>
+    <span class="kw1">text-decoration</span><span class="sy0">:</span> <span class="kw2">none</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="kw2">table</span> a<span class="sy0">:</span><span class="kw5">hover</span> <span class="br0">{</span>
+    <span class="kw1">color</span><span class="sy0">:</span><span class="kw4">brown</span><span class="sy0">;</span>
+<span class="br0">}</span>
+&nbsp;
+<span class="re1">.alert</span> <span class="br0">{</span>
+    <span class="kw1">background-color</span><span class="sy0">:</span> <span class="re0">#58d4ce</span><span class="sy0">;</span>
+    <span class="kw1">color</span><span class="sy0">:</span> <span class="kw4">yellow</span><span class="sy0">;</span>
+    <span class="kw1">float</span><span class="sy0">:</span> <span class="kw2">left</span><span class="sy0">;</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+</div>
+
+<h2 class="sectionedit3" id="sistema_de_navegacio_de_l_aplicacio">Sistema de navegació de l'aplicació</h2>
+<div class="level2">
+
+<p>
+Definim una pàgina principal per a la gestió de items:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=9" title="Descargar trozo de código fuente" class="mediafile mf_php">item/index.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+<span class="sy0">&lt;</span>h2<span class="sy0">&gt;</span>Item page<span class="sy0">&lt;/</span>h2<span class="sy0">&gt;</span>
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+<p>
+Definim el sistema de rutes següent:
+</p>
+<pre class="code php">Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'welcome'</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/home'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'welcome'</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.index'</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Ara podem afegir una ruta per fer el llistat de items:
+</p>
+<pre class="code php">Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items/list'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="re0">$items</span> <span class="sy0">=</span> <span class="br0">[</span><span class="st_h">'Item1'</span><span class="sy0">,</span> <span class="st_h">'Item2'</span><span class="sy0">,</span> <span class="st_h">'Item3'</span><span class="br0">]</span><span class="sy0">;</span>
+    <span class="co1">//$items = [];  //to test for empty list.</span>
+    <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.list'</span><span class="sy0">,</span> <a target="_blank" href="http://www.php.net/compact"><span class="kw3">compact</span></a><span class="br0">(</span><span class="st_h">'items'</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+El pas de dades a la vista es fa amb el mètode compact() i el nom de la variable.
+</p>
+
+<p>
+Altres alternatives equivalents són:
+</p>
+<pre class="code php">  <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.list'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">with</span><span class="br0">(</span><span class="st_h">'items'</span><span class="sy0">,</span> <span class="re0">$items</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.list'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">withItems</span><span class="br0">(</span><span class="re0">$items</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+I afegim la vista 
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=13" title="Descargar trozo de código fuente" class="mediafile mf_php">item/list.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">if</span><span class="br0">(</span><a target="_blank" href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">(</span><span class="re0">$items</span><span class="br0">)</span><span class="br0">)</span>
+    <span class="sy0">&lt;</span>p<span class="sy0">&gt;</span>There are no items<span class="sy0">!&lt;/</span>p<span class="sy0">&gt;</span>
+<span class="sy0">@</span><span class="kw1">else</span>
+<span class="sy0">&lt;</span>ul<span class="sy0">&gt;</span>
+    <span class="sy0">@</span><span class="kw1">foreach</span><span class="br0">(</span><span class="re0">$items</span> <span class="kw1">as</span> <span class="re0">$item</span><span class="br0">)</span>
+        <span class="sy0">&lt;</span>li<span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span> <span class="re0">$item</span> <span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>li<span class="sy0">&gt;</span>
+    <span class="sy0">@</span><span class="kw1">endforeach</span>
+    <span class="sy0">&lt;/</span>ul<span class="sy0">&gt;</span>    
+<span class="sy0">@</span><span class="kw1">endif</span>
+&nbsp;
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+</div>
+
+<h2 class="sectionedit4" id="controladors">Controladors</h2>
+<div class="level2">
+
+<p>
+Substituim les rutes a la gestió de items per aquestes:
+</p>
+<pre class="code php"><span class="co1">//per a laravel versió &lt; 8</span>
+Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items'</span><span class="sy0">,</span> <span class="st_h">'ItemController@index'</span><span class="br0">)</span><span class="sy0">;</span>
+Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items/list'</span><span class="sy0">,</span> <span class="st_h">'ItemController@list'</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="co1">//per a laravel versió 8</span>
+Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items'</span><span class="sy0">,</span> <span class="br0">[</span>ItemController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'index'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items/list'</span><span class="sy0">,</span> <span class="br0">[</span>ItemController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'list'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Ara s'enruta a mètodes (<em>index</em>, <em>list</em>, …) del controlador <em>ItemController</em>.
+</p>
+
+<p>
+A la consola, creem el controlador:
+</p>
+<pre class="code">php artisan make:controller ItemController</pre>
+
+<p>
+Ara copiem el codi de les anteriors funcions d'enrutament a les corresponents del controlador.
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=15" title="Descargar trozo de código fuente" class="mediafile mf_php">ItemController.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw2">namespace</span> App\Http\Controllers<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Http\Request<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> ItemController <span class="kw2">extends</span> Controller
+<span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> index<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="co1">//return 'Item page';</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.index'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> <a target="_blank" href="http://www.php.net/list"><span class="kw3">list</span></a><span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="re0">$items</span> <span class="sy0">=</span> <span class="br0">[</span><span class="st_h">'Item1'</span><span class="sy0">,</span> <span class="st_h">'Item2'</span><span class="sy0">,</span> <span class="st_h">'Item3'</span><span class="br0">]</span><span class="sy0">;</span>
+        <span class="co1">//$items = [];</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.list'</span><span class="sy0">,</span> <a target="_blank" href="http://www.php.net/compact"><span class="kw3">compact</span></a><span class="br0">(</span><span class="st_h">'items'</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+&nbsp;
+<span class="br0">}</span></pre>
+</dd></dl>
+
+</div>
+
+<h2 class="sectionedit5" id="gestio_de_recursos_amb_elixir">Gestió de recursos amb Elixir</h2>
+<div class="level2">
+
+<p>
+Anem a veure com gestionar fulls d'estil.
+</p>
+
+<p>
+Afegir l'enllaç al fitxer d'estils a 'layout.blade.php':
+</p>
+<pre class="code html4strict"><span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/link.html"><span class="kw2">link</span></a> <span class="kw3">rel</span><span class="sy0">=</span><span class="st0">"stylesheet"</span> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">"text/css"</span> <span class="kw3">href</span><span class="sy0">=</span><span class="st0">"/css/styles.css"</span>&gt;</span> </pre>
+
+<p>
+Crear el fitxer d'estils:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=17" title="Descargar trozo de código fuente" class="mediafile mf_css">css/styles.css</a></dt>
+<dd><pre class="code css">body <span class="br0">{</span>
+    <span class="kw1">background-color</span><span class="sy0">:</span> <span class="kw4">cyan</span><span class="sy0">;</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+Els recursos css i js s'han d'ubicar a sota del directori 'public' del projecte. 
+</p>
+
+<p>
+Tornem a visualitzar l'aplicació i veiem que el nou estil ja està aplicat.
+</p>
+
+<p>
+En aplicacions grans, però, és millor utilitzar estils precompilats com SASS o LESS.
+</p>
+
+<p>
+Per fer-ho, cal utilitzar Nodejs, Gulp i Laravel-Elixir.
+</p>
+
+<p>
+Instal·lar Gulp:
+</p>
+<pre class="code">npm install --global gulp</pre>
+
+<p>
+A 'package.json' afegir:
+</p>
+<pre class="code">"devDependencies": {
+  "gulp": "^3.8.8"
+},
+"dependencies": {
+  "laravel-elixir": "^4.0.0",
+  "bootstrap-sass": "^3.0.0"
+}</pre>
+
+<p>
+Instal·lem les dependències:
+</p>
+<pre class="code">npm install</pre>
+
+<p>
+Crear al directori arrel del projecte el fitxer 'gulpfile.js':
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=18" title="Descargar trozo de código fuente" class="mediafile mf_js">gulpfile.js</a></dt>
+<dd><pre class="code javascript"><span class="kw1">var</span> elixir <span class="sy0">=</span> require<span class="br0">(</span><span class="st0">'laravel-elixir'</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+elixir<span class="br0">(</span><span class="kw1">function</span><span class="br0">(</span>mix<span class="br0">)</span> <span class="br0">{</span>
+    mix.<span class="me1">sass</span><span class="br0">(</span><span class="st0">'app.scss'</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span></pre>
+</dd></dl>
+
+<p>
+Si volem utilitzar 'less' en comptes de 'sass' substituir el codi de la funció per:
+</p>
+<pre class="code">  mix.less('app.less');</pre>
+
+<p>
+Per compilar els estils:
+</p>
+<pre class="code">gulp</pre>
+
+<p>
+o, per a producció, en mode minificat:
+</p>
+<pre class="code">gulp --production</pre>
+
+<p>
+Afegim l'enllaç als estils generats a la plantilla general 'layout.blade.php':
+</p>
+<pre class="code html4strict"><span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/link.html"><span class="kw2">link</span></a> <span class="kw3">rel</span><span class="sy0">=</span><span class="st0">"stylesheet"</span> <span class="kw3">href</span><span class="sy0">=</span><span class="st0">"{{ elixir('css/app.css') }}"</span>&gt;</span></pre>
+
+<p>
+També podem afegir, abans de l'enllaç anterior, un altre al CDN de Bootstrap per utilitzar-lo a les nostres vistes:
+</p>
+<pre class="code html4strict"><span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/link.html"><span class="kw2">link</span></a> <span class="kw3">rel</span><span class="sy0">=</span><span class="st0">"stylesheet"</span> <span class="kw3">href</span><span class="sy0">=</span><span class="st0">"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"</span> integrity<span class="sy0">=</span><span class="st0">"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"</span> crossorigin<span class="sy0">=</span><span class="st0">"anonymous"</span>&gt;</span></pre>
+
+<p>
+Per exemple, ara podem modificar la vista <em>list.blade.php</em>:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=21" title="Descargar trozo de código fuente" class="mediafile mf_php">list.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">if</span><span class="br0">(</span><a target="_blank" href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">(</span><span class="re0">$items</span><span class="br0">)</span><span class="br0">)</span>
+    <span class="sy0">&lt;</span>p<span class="sy0">&gt;</span>There are no items<span class="sy0">!&lt;/</span>p<span class="sy0">&gt;</span>
+<span class="sy0">@</span><span class="kw1">else</span>
+<span class="sy0">&lt;</span>ul <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"list-group"</span><span class="sy0">&gt;</span>
+    <span class="sy0">@</span><span class="kw1">foreach</span><span class="br0">(</span><span class="re0">$items</span> <span class="kw1">as</span> <span class="re0">$item</span><span class="br0">)</span>
+        <span class="sy0">&lt;</span>li <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"list-group-item"</span><span class="sy0">&gt;&lt;</span>a href<span class="sy0">=</span><span class="st0">"/items/{<span class="es4">{$item-&gt;id}</span>}"</span><span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span> <span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">title</span> <span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>a<span class="sy0">&gt;&lt;/</span>li<span class="sy0">&gt;</span>
+    <span class="sy0">@</span><span class="kw1">endforeach</span>
+<span class="sy0">&lt;/</span>ul<span class="sy0">&gt;</span>    
+<span class="sy0">@</span><span class="kw1">endif</span>
+&nbsp;
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+</div>
+
+<h2 class="sectionedit6" id="model_de_dades_amb_eloquent">Model de dades amb Eloquent</h2>
+<div class="level2">
+
+<p>
+<strong>Connexió amb sqlite</strong>
+</p>
+
+<p>
+Cal revisar les configuracions d'accés a dades al fitxer 
+'/config/database.php'. Per simplicitat, comencem treballant amb 
+'sqlite'. Canviem, doncs, la configuració :
+</p>
+<pre class="code"> 'default' =&gt; env('DB_CONNECTION', 'sqlite'),</pre>
+
+<p>
+Hem de crear manualment el fitxer de la base de dades sqlite:
+</p>
+<pre class="code">touch database/database.sqlite</pre>
+
+<p>
+Al fitxer .env del directori arrel del projecte cal canviar la connexió a
+ sqlite i esborrar la resta de línies que segueixen i que comencen per 
+DB_:
+</p>
+<pre class="code">DB_CONNECTION=sqlite</pre>
+
+<p>
+<strong>Connexió amb mysql</strong>
+</p>
+
+<p>
+Cal revisar les configuracions d'accés a dades al fitxer '/config/database.php'. Podemm canviar la configuració :
+</p>
+<pre class="code"> 'default' =&gt; env('DB_CONNECTION', 'mysql'),</pre>
+
+<p>
+Al fitxer .env del directori arrel del projecte cal canviar la connexió a
+ mysql i esborrar la resta de línies que segueixen i que comencen per 
+DB_:
+</p>
+<pre class="code">DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=itemdb
+DB_USERNAME=itemusr
+DB_PASSWORD=itempsw</pre>
+
+<p>
+Ara caldria escriure manualment el codi de les taules i el seu contingut.
+</p>
+
+<p>
+Alternativament, Laravel proporciona eines anomenades '<strong>migrations</strong>' (veure el directori '/database/migrations').
+</p>
+
+<p>
+Utilizem artisan per crear una migració de creació de la taula de items:
+</p>
+<pre class="code">php artisan make:migration create_items_table --create=items</pre>
+
+<p>
+I modifiquem l'estructura de la taula:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=23" title="Descargar trozo de código fuente" class="mediafile mf_php">create_items-table.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Support\Facades\Schema<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Database\Schema\Blueprint<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Database\Migrations\Migration<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> CreateItemsTable <span class="kw2">extends</span> Migration
+<span class="br0">{</span>
+    <span class="co4">/**
+     * Run the migrations.
+     *
+     * @return void
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> up<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        Schema<span class="sy0">::</span><span class="me2">create</span><span class="br0">(</span><span class="st_h">'items'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span>Blueprint <span class="re0">$table</span><span class="br0">)</span> <span class="br0">{</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">engine</span> <span class="sy0">=</span> <span class="st_h">'InnoDB'</span><span class="sy0">;</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">increments</span><span class="br0">(</span><span class="st_h">'id'</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">string</span><span class="br0">(</span><span class="st_h">'title'</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">string</span><span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="co1">//$table-&gt;timestamps();</span>
+        <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+&nbsp;
+    <span class="co4">/**
+     * Reverse the migrations.
+     *
+     * @return void
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> down<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        Schema<span class="sy0">::</span><span class="me2">dropIfExists</span><span class="br0">(</span><span class="st_h">'items'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+Per executar la migració:
+</p>
+<pre class="code">php artisan migrate</pre>
+
+<p>
+Per fer proves, executar consultes, etc, disposem de l'eina <strong>tinker</strong>:
+</p>
+<pre class="code">php artisan tinker
+
+DB::table('items')-&gt;insert(['title'=&gt;'Title1', 'content'=&gt;'Content1']);
+DB::table('items')-&gt;get();
+DB::table('items')-&gt;where('title', 'Title1')-&gt;first();</pre>
+
+<p>
+Ara substituim la funció list() de ItemController perquè recuperi les dades de la base de dades:
+</p>
+<pre class="code php">    <span class="kw2">public</span> <span class="kw2">function</span> <a target="_blank" href="http://www.php.net/list"><span class="kw3">list</span></a><span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="co1">//$items = ['Item1', 'Item2', 'Item3'];  //using array with mock data</span>
+        <span class="co1">//$items = [];  //using empty array</span>
+        <span class="re0">$items</span> <span class="sy0">=</span> \DB<span class="sy0">::</span><span class="me2">table</span><span class="br0">(</span><span class="st_h">'items'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">get</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">//using database</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.list'</span><span class="sy0">,</span> <a target="_blank" href="http://www.php.net/compact"><span class="kw3">compact</span></a><span class="br0">(</span><span class="st_h">'items'</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span></pre>
+
+<p>
+Elloquent usa el <em>Active Record Pattern</em> per generar classes del model associades a les taules:
+</p>
+<pre class="code">php artisan make:model Item</pre>
+
+<p>
+S'ha creat el fitxer '/app/Models/Item.php':
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=25" title="Descargar trozo de código fuente" class="mediafile mf_php">Item.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw2">namespace</span> App\Models<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Database\Eloquent\Model<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Item <span class="kw2">extends</span> Model
+<span class="br0">{</span>
+    <span class="kw2">use</span> HasFactory<span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="re0">$timestamps</span> <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">;</span>  <span class="co1">//turn off timestamps in migration.    </span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+Ara podem modificar el controlador per utilizar aquest model:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=26" title="Descargar trozo de código fuente" class="mediafile mf_php">ItemController.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw2">namespace</span> App\Http\Controllers<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Http\Request<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> App\Models\Item<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> ItemController <span class="kw2">extends</span> Controller
+<span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> index<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="co1">//return 'Item page';</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.index'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> <a target="_blank" href="http://www.php.net/list"><span class="kw3">list</span></a><span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="co1">//$items = ['Item1', 'Item2', 'Item3'];  //using array with mock data</span>
+        <span class="co1">//$items = [];  //using empty array</span>
+        <span class="co1">//$items = \DB::table('items')-&gt;get(); //using database</span>
+        <span class="re0">$items</span> <span class="sy0">=</span> Item<span class="sy0">::</span><span class="me2">all</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>  <span class="co1">//using model.</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.list'</span><span class="sy0">,</span> <a target="_blank" href="http://www.php.net/compact"><span class="kw3">compact</span></a><span class="br0">(</span><span class="st_h">'items'</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+&nbsp;
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+Anem ara a desenvolupar la cerca d'un Item, donat el seu id.
+</p>
+
+<p>
+Afegim la ruta:
+</p>
+<pre class="code">Route::get('/items/{item}', [ItemController::class, 'find']);</pre>
+
+<p>
+Afegim al controlador el  mètode find():
+</p>
+<pre class="code php">    <span class="kw2">public</span> <span class="kw2">function</span> find<span class="br0">(</span><span class="re0">$id</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="re0">$item</span> <span class="sy0">=</span> Item<span class="sy0">::</span><span class="me2">find</span><span class="br0">(</span><span class="re0">$id</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw1">return</span> <span class="re0">$item</span><span class="sy0">;</span>
+    <span class="br0">}</span></pre>
+
+<p>
+el qual retorna l'objecte Item en format JSON.
+</p>
+
+<p>
+Si volem generar una vista de formulari, canviem el mètode find():
+</p>
+<pre class="code php">    <span class="kw2">public</span> <span class="kw2">function</span> find<span class="br0">(</span><span class="re0">$id</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="re0">$item</span> <span class="sy0">=</span> Item<span class="sy0">::</span><span class="me2">find</span><span class="br0">(</span><span class="re0">$id</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="co1">//return $item;</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.form'</span><span class="sy0">,</span> <a target="_blank" href="http://www.php.net/compact"><span class="kw3">compact</span></a><span class="br0">(</span><span class="st_h">'item'</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span></pre>
+
+<p>
+Ara creem la vista 'form.blade.php':
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=29" title="Descargar trozo de código fuente" class="mediafile mf_php">form.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">if</span><span class="br0">(</span><a target="_blank" href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">(</span><span class="re0">$item</span><span class="br0">)</span><span class="br0">)</span>
+    <span class="sy0">&lt;</span>p<span class="sy0">&gt;</span>No item found<span class="sy0">!&lt;/</span>p<span class="sy0">&gt;</span>
+<span class="sy0">@</span><span class="kw1">else</span>
+<span class="sy0">&lt;</span>form<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"id"</span><span class="sy0">&gt;</span>Id<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"id"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;id}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"title"</span><span class="sy0">&gt;</span>Title<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"title"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;title}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"content"</span><span class="sy0">&gt;</span>Content<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"content"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;content}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+<span class="sy0">&lt;/</span>form<span class="sy0">&gt;</span>    
+<span class="sy0">@</span><span class="kw1">endif</span>
+&nbsp;
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+<p>
+També podem deixar que Laravel i Eloquent s'ocupin d'omplir de contingut les dades automàticament:
+</p>
+<pre class="code php">    <span class="co4">/**
+    * Això també funciona si el paràmetre a la ruta es diu item.
+    * Laravel-Eloquent s'ocupa de fer la cerca automàticament.'
+    */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> find<span class="br0">(</span>Item <span class="re0">$item</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.form'</span><span class="sy0">,</span> <a target="_blank" href="http://www.php.net/compact"><span class="kw3">compact</span></a><span class="br0">(</span><span class="st_h">'item'</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span></pre>
+
+<p>
+<a href="https://docencia.proven.cat/jmoreno/wiki/lib/exe/fetch.php?media=docencia:dawbi:m07:uf4:laravel:items-laravel-nomes_item.zip" class="media mediafile mf_zip" target="_blank" title="docencia:dawbi:m07:uf4:laravel:items-laravel-nomes_item.zip (11.5&nbsp;MB)" rel="noopener">Aplicació de gestió de 'Items' amb Laravel (sols model amb Item)</a>
+</p>
+
+<p>
+<a href="https://docencia.proven.cat/jmoreno/wiki/lib/exe/fetch.php?media=docencia:dawbi:m07:uf4:laravel:items.zip" class="media mediafile mf_zip" target="_blank" title="docencia:dawbi:m07:uf4:laravel:items.zip (11.6&nbsp;MB)" rel="noopener">Items (projecte complet fins aquest punt)</a>
+</p>
+
+</div>
+
+<h2 class="sectionedit7" id="model_amb_relacions_1-n_amb_eloquent">Model amb relacions 1-n amb Eloquent</h2>
+<div class="level2">
+
+<p>
+Anem a crear una entitat (taula a la base de dades i classe al model de dades) <em>Note</em>, de manera que una <em>Note</em> pertany a un <em>Item</em>, i un <em>Item</em> té diversos <em>Note</em>.
+</p>
+
+<p>
+En primer lloc, creem la migració per crear la taula de <em>notes</em>:
+</p>
+<pre class="code">php artisan make:migration create_notes_table --create=notes</pre>
+
+<p>
+I definim el mètode up() per crear la taula de notes:
+</p>
+<pre class="code php">Schema<span class="sy0">::</span><span class="me2">create</span><span class="br0">(</span><span class="st_h">'notes'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span>Blueprint <span class="re0">$table</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">engine</span> <span class="sy0">=</span> <span class="st_h">'InnoDB'</span><span class="sy0">;</span>
+    <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">increments</span><span class="br0">(</span><span class="st_h">'id'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">text</span><span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">integer</span><span class="br0">(</span><span class="st_h">'item_id'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">unsigned</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">index</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">foreign</span><span class="br0">(</span><span class="st_h">'item_id'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">references</span><span class="br0">(</span><span class="st_h">'id'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">on</span><span class="br0">(</span><span class="st_h">'items'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">onUpdate</span><span class="br0">(</span><span class="st_h">'cascade'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">onDelete</span><span class="br0">(</span><span class="st_h">'restrict'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="co1">//$table-&gt;timestamps();</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Ara executem l'eina <em>migrate</em>:
+</p>
+<pre class="code">php artisan migrate</pre>
+
+<p>
+Generar un esquema <em>sql</em> de la base de dades. Després, en executar <em>migrate</em> primer carregarà a la base de dades l'esquema generat i després amb <em>–prune</em> s'aplicaran les migracions pendents.
+</p>
+<pre class="code">php artisan schema:dump
+# Dump the current database schema and prune all existing migrations...
+php artisan schema:dump --prune</pre>
+
+<p>
+Per saber quines migracions s'han fet (consulta la taula de migracions de la base de dades):
+</p>
+<pre class="code">php artisan migrate:status</pre>
+
+<p>
+Per desfer l'ultima tanda de migracions:
+</p>
+<pre class="code">php artisan migrate:rollback</pre>
+
+<p>
+Per desfer totes les migracions efectuades:
+</p>
+<pre class="code">php artisan migrate:reset</pre>
+
+<p>
+Per desfer i tornar a fer totes les migracions:
+</p>
+<pre class="code">php artisan migrate:refresh
+# Refresh the database and run all database seeds...
+php artisan migrate:refresh --seed</pre>
+
+<p>
+Creem la classe de model per a Note:
+</p>
+<pre class="code">php artisan make:model Note {-m}</pre>
+
+<p>
+El paràmetre opcional -m força fer la migració en el moment de la creació del model.
+</p>
+
+<p>
+Anem a crear notes:
+</p>
+<pre class="code php">  php artisan tinker
+&nbsp;
+  <span class="re0">$item</span> <span class="sy0">=</span> App\Models\Item<span class="sy0">::</span><span class="me2">first</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+  <span class="re0">$note</span> <span class="sy0">=</span> <span class="kw2">new</span> App\Models\Note<span class="sy0">;</span>
+  <span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">content</span> <span class="sy0">=</span> <span class="st_h">'some content for the item'</span><span class="sy0">;</span>
+  <span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">item_id</span> <span class="sy0">=</span> <span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">id</span><span class="sy0">;</span>
+  <span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">save</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Establim les relacions entre les entitats Item i Note:
+</p>
+
+<p>
+Un Item té molts Note:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=33" title="Descargar trozo de código fuente" class="mediafile mf_php">Item.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+<span class="kw2">namespace</span> App\Models<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Database\Eloquent\Model<span class="sy0">;</span>
+<span class="kw2">class</span> Item <span class="kw2">extends</span> Model
+<span class="br0">{</span>
+    <span class="kw2">use</span> HasFactory<span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="re0">$timestamps</span> <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">;</span>  <span class="co1">//turn off timestamps in migration.</span>
+&nbsp;
+    <span class="co1">//fields fillable with mass create method.</span>
+    <span class="kw2">protected</span> <span class="re0">$fillable</span> <span class="sy0">=</span> <span class="br0">[</span><span class="st_h">'title'</span><span class="sy0">,</span> <span class="st_h">'content'</span><span class="br0">]</span><span class="sy0">;</span>
+&nbsp;
+    <span class="co1">//relationship OneToMany between Item and Note</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> notes<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="co1">//return $this-&gt;hasMany('App\Note');</span>
+        <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">hasMany</span><span class="br0">(</span>Note<span class="sy0">::</span><span class="kw2">class</span><span class="br0">)</span><span class="sy0">;</span>        
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+I ara un Note pertany a un Item:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=34" title="Descargar trozo de código fuente" class="mediafile mf_php">Note.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw2">namespace</span> App\Models<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Database\Eloquent\Model<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> Note <span class="kw2">extends</span> Model
+<span class="br0">{</span>
+    <span class="kw2">use</span> HasFactory<span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="re0">$timestamps</span> <span class="sy0">=</span> <span class="kw4">false</span><span class="sy0">;</span>  <span class="co1">//turn off timestamps in migration.</span>
+&nbsp;
+    <span class="co1">//fields fillable with mass create method.</span>
+    <span class="kw2">protected</span> <span class="re0">$fillable</span> <span class="sy0">=</span> <span class="br0">[</span><span class="st_h">'content'</span><span class="br0">]</span><span class="sy0">;</span>
+&nbsp;
+    <span class="co1">//relationship ManyToOne between Note and Item</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> item<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">belongsTo</span><span class="br0">(</span>Item<span class="sy0">::</span><span class="kw2">class</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+Ara podem usar aquestes notacions per obtenir els objectes relacionats:
+</p>
+<pre class="code php">php artisan tinker
+&nbsp;
+<span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="co1">//parentesis no són necessaris:</span>
+<span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span><span class="sy0">;</span>
+<span class="co1">//o accedir com a array:</span>
+<span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span><span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span><span class="sy0">;</span>
+<span class="co1">//o com a col·lecció (es recupera tota la col·lecció i després se selecciona el primer)</span>
+<span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span><span class="sy0">-&gt;</span><span class="me1">first</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="co1">//o com a funció (es recupera només el primer)</span>
+<span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">first</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$note</span> <span class="sy0">=</span> App\Models\Note<span class="sy0">::</span><span class="me2">first</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Podem visualitzar quines consultes realment s'estan fent a la base de dades:
+</p>
+<pre class="code php">php artisan tinker
+&nbsp;
+DB<span class="sy0">::</span><span class="me2">listen</span><span class="br0">(</span><span class="kw2">function</span><span class="br0">(</span><span class="re0">$query</span><span class="br0">)</span> <span class="br0">{</span><a target="_blank" href="http://www.php.net/var_dump"><span class="kw3">var_dump</span></a><span class="br0">(</span><span class="re0">$query</span><span class="sy0">-&gt;</span><span class="me1">sql</span><span class="br0">)</span><span class="sy0">;</span><span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$item</span> <span class="sy0">=</span> App\Models\Item<span class="sy0">::</span><span class="me2">first</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="co1">//compara amb:</span>
+App\Models\Item<span class="sy0">::</span><span class="me2">notes</span><span class="sy0">;</span></pre>
+
+<p>
+Els objectes Note de Item s'emmagatzemen en Item la primera vegada que 
+es consulta aquest Item i no es torna a consultar si no es demana que es
+ refresqui la informació.
+</p>
+<pre class="code php"><span class="re0">$item</span> <span class="sy0">=</span> <span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">fresh</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Un cop establertes correctament les relacions entre les entitats, es pot escriure codi com el següent:
+</p>
+<pre class="code php"><span class="re0">$note</span> <span class="sy0">=</span> <span class="kw2">new</span> App\Models\Note<span class="sy0">;</span>
+<span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">content</span> <span class="sy0">=</span> <span class="st_h">'This is the note content'</span><span class="sy0">;</span>
+<span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">save</span><span class="br0">(</span><span class="re0">$note</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Ara cal fer les modificacions pertinents a la vista de mostrar un Item, 
+per tal que mostri també la llista dels seus objectes Note.
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=39" title="Descargar trozo de código fuente" class="mediafile mf_php">form.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">if</span><span class="br0">(</span><a target="_blank" href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">(</span><span class="re0">$item</span><span class="br0">)</span><span class="br0">)</span>
+    <span class="sy0">&lt;</span>p<span class="sy0">&gt;</span>No item found<span class="sy0">!&lt;/</span>p<span class="sy0">&gt;</span>
+<span class="sy0">@</span><span class="kw1">else</span>
+<span class="sy0">&lt;</span>form<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"id"</span><span class="sy0">&gt;</span>Id<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"id"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;id}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"title"</span><span class="sy0">&gt;</span>Title<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"title"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;title}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"content"</span><span class="sy0">&gt;</span>Content<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"content"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;content}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>ul<span class="sy0">&gt;</span>
+        <span class="sy0">@</span><span class="kw1">foreach</span><span class="br0">(</span><span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span> <span class="kw1">as</span> <span class="re0">$note</span><span class="br0">)</span>
+            <span class="sy0">&lt;</span>li<span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span><span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">content</span><span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>li<span class="sy0">&gt;</span>
+        <span class="sy0">@</span><span class="kw1">endforeach</span>
+    <span class="sy0">&lt;/</span>ul<span class="sy0">&gt;</span>
+<span class="sy0">&lt;/</span>form<span class="sy0">&gt;</span>    
+<span class="sy0">@</span><span class="kw1">endif</span>
+&nbsp;
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+<p>
+També podem afegir a la vista de llistat de Items un enllaç a cada Item perquè mostri la vista de detall:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=40" title="Descargar trozo de código fuente" class="mediafile mf_php">list.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">if</span><span class="br0">(</span><a target="_blank" href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">(</span><span class="re0">$items</span><span class="br0">)</span><span class="br0">)</span>
+    <span class="sy0">&lt;</span>p<span class="sy0">&gt;</span>There are no items<span class="sy0">!&lt;/</span>p<span class="sy0">&gt;</span>
+<span class="sy0">@</span><span class="kw1">else</span>
+<span class="sy0">&lt;</span>ul<span class="sy0">&gt;</span>
+    <span class="sy0">@</span><span class="kw1">foreach</span><span class="br0">(</span><span class="re0">$items</span> <span class="kw1">as</span> <span class="re0">$item</span><span class="br0">)</span>
+        <span class="sy0">&lt;</span>li<span class="sy0">&gt;&lt;</span>a href<span class="sy0">=</span><span class="st0">"/items/{<span class="es4">{$item-&gt;id}</span>}"</span><span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span> <span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">title</span> <span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>a<span class="sy0">&gt;&lt;/</span>li<span class="sy0">&gt;</span>
+    <span class="sy0">@</span><span class="kw1">endforeach</span>
+<span class="sy0">&lt;/</span>ul<span class="sy0">&gt;</span>    
+<span class="sy0">@</span><span class="kw1">endif</span>
+&nbsp;
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+</div>
+
+<h2 class="sectionedit8" id="poblar_la_base_de_dades_amb_dades_de_prova_seed">Poblar la base de dades amb dades de prova (seed)</h2>
+<div class="level2">
+
+<p>
+Per tal de generar dades de test per a provar l'aplicació o per a 
+introduir a la base de dades abans de fer els tests, generarem un <em>Factory</em> per a cada entitat del model:
+</p>
+<pre class="code">php artisan make:factory ItemFactory
+php artisan make:factory NoteFactory</pre>
+
+<p>
+Editem les classes ItemFactory i NoteFactory:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=41" title="Descargar trozo de código fuente" class="mediafile mf_php">ItemFactory.php</a></dt>
+<dd><pre class="code php"><span class="kw2">namespace</span> Database\Factories<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Database\Eloquent\Factories\Factory<span class="sy0">;</span>
+&nbsp;
+<span class="co4">/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory&lt;\App\Models\Item&gt;
+ */</span>
+<span class="kw2">class</span> ItemFactory <span class="kw2">extends</span> Factory
+<span class="br0">{</span>
+    <span class="co4">/**
+     * Define the model's default state.
+     *
+     * @return array&lt;string, mixed&gt;
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> definition<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        <span class="kw1">return</span> <span class="br0">[</span>
+            <span class="st_h">'title'</span> <span class="sy0">=&gt;</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">faker</span><span class="sy0">-&gt;</span><span class="me1">name</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">,</span>
+            <span class="st_h">'content'</span> <span class="sy0">=&gt;</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">faker</span><span class="sy0">-&gt;</span><span class="me1">sentence</span><span class="br0">(</span><span class="re0">$nbWords</span> <span class="sy0">=</span> <span class="nu0">4</span><span class="sy0">,</span> <span class="re0">$variableNbWords</span> <span class="sy0">=</span> <span class="kw4">true</span><span class="br0">)</span>
+        <span class="br0">]</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=42" title="Descargar trozo de código fuente" class="mediafile mf_php">NoteFactory.php</a></dt>
+<dd><pre class="code php"><span class="kw2">namespace</span> Database\Factories<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Database\Eloquent\Factories\Factory<span class="sy0">;</span>
+&nbsp;
+<span class="co4">/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory&lt;\App\Models\Note&gt;
+ */</span>
+<span class="kw2">class</span> NoteFactory <span class="kw2">extends</span> Factory
+<span class="br0">{</span>
+    <span class="co4">/**
+     * Define the model's default state.
+     *
+     * @return array&lt;string, mixed&gt;
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> definition<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        <span class="kw1">return</span> <span class="br0">[</span>
+            <span class="st_h">'content'</span> <span class="sy0">=&gt;</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">faker</span><span class="sy0">-&gt;</span><span class="me1">sentence</span><span class="br0">(</span><span class="re0">$nbWords</span> <span class="sy0">=</span> <span class="nu0">6</span><span class="sy0">,</span> <span class="re0">$variableNbWords</span> <span class="sy0">=</span> <span class="kw4">true</span><span class="br0">)</span>
+        <span class="br0">]</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+Ara podem crear un proveïdor de dades de prova (<em>seeder</em>) per a Item i un altre per a Note:
+</p>
+<pre class="code">php artisan make:seeder ItemsTableSeeder
+php artisan make:seeder NotesTableSeeder</pre>
+
+<p>
+Després, cal invocar el seeder des de DatabaseSeedeer.php.
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=43" title="Descargar trozo de código fuente" class="mediafile mf_php">DatabaseSeeder.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Database\Seeder<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Database\Eloquent\Model<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> DatabaseSeeder <span class="kw2">extends</span> Seeder
+<span class="br0">{</span>
+    <span class="co4">/**
+     * Run the database seeds.
+     *
+     * @return void
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> run<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">call</span><span class="br0">(</span>ItemsTableSeeder<span class="sy0">::</span><span class="kw2">class</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+Hauríem de fer el mateix per a Note.
+</p>
+
+<p>
+Com que només tenim dues taules, podem simplificar aquest procés i posar tot el codi dintre de <em>DatabaseSeeder.php</em> sense haver de crear un <em>seeder</em> per a <em>Item</em> i un altre per a <em>Note</em>.
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=44" title="Descargar trozo de código fuente" class="mediafile mf_php">DatabaseSeeder.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Database\Seeder<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Database\Eloquent\Model<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> DatabaseSeeder <span class="kw2">extends</span> Seeder
+<span class="br0">{</span>
+    <span class="co4">/**
+     * Seed the application's database.
+     *
+     * @return void
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> run<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+    <span class="br0">{</span>
+        <span class="co1">// \App\Models\User::factory(10)-&gt;create();</span>
+        \App\Models\Item<span class="sy0">::</span><span class="me2">factory</span><span class="br0">(</span><span class="br0">)</span>
+            <span class="sy0">-&gt;</span><a target="_blank" href="http://www.php.net/count"><span class="kw3">count</span></a><span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span>
+            <span class="sy0">-&gt;</span><span class="me1">sequence</span><span class="br0">(</span>fn <span class="br0">(</span><span class="re0">$sequence</span><span class="br0">)</span> <span class="sy0">=&gt;</span> <span class="br0">[</span><span class="st_h">'title'</span> <span class="sy0">=&gt;</span> <span class="st_h">'title '</span><span class="sy0">.</span><span class="re0">$sequence</span><span class="sy0">-&gt;</span><span class="me1">index</span><span class="br0">]</span><span class="br0">)</span>
+            <span class="sy0">-&gt;</span><span class="me1">hasNotes</span><span class="br0">(</span><span class="nu0">5</span><span class="br0">)</span>
+            <span class="sy0">-&gt;</span><span class="me1">create</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+Per poblar la base de dades:
+</p>
+<pre class="code">php artisan db:seed</pre>
+
+</div>
+
+<h2 class="sectionedit9" id="formularis_i_enviament_de_dades">Formularis i enviament de dades</h2>
+<div class="level2">
+
+<p>
+Primer de tot anem a suprimir els enllaços a <em>sass</em> o <em>less</em> i afegim l'enllaç per a <em>bootstrap</em> a <em>layout.blade.php</em>. També eliminem els estils que haguem posat als fitxers d'estils de <em>sass</em> o <em>less</em>.
+</p>
+
+<p>
+Modifiquem la vista que mostra un <em>Item</em>, per afegir un formulari que permeti afegir un <em>Note</em>.
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=45" title="Descargar trozo de código fuente" class="mediafile mf_php">form.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">if</span><span class="br0">(</span><a target="_blank" href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">(</span><span class="re0">$item</span><span class="br0">)</span><span class="br0">)</span>
+    <span class="sy0">&lt;</span>p<span class="sy0">&gt;</span>No item found<span class="sy0">!&lt;/</span>p<span class="sy0">&gt;</span>
+<span class="sy0">@</span><span class="kw1">else</span>
+<span class="sy0">&lt;</span>form method<span class="sy0">=</span><span class="st0">"post"</span> action<span class="sy0">=</span><span class="st0">"/items/{<span class="es4">{$item-&gt;id}</span>}/notes"</span><span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>fieldset<span class="sy0">&gt;</span>
+    <span class="sy0">@</span>csrf
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"id"</span><span class="sy0">&gt;</span>Id<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"id"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;id}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"title"</span><span class="sy0">&gt;</span>Title<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"title"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;title}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"content"</span><span class="sy0">&gt;</span>Content<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"content"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;content}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;/</span>fieldset<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>b<span class="sy0">&gt;</span>Notes<span class="sy0">:&lt;/</span>b<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>ul<span class="sy0">&gt;</span>
+        <span class="sy0">@</span><span class="kw1">foreach</span><span class="br0">(</span><span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span> <span class="kw1">as</span> <span class="re0">$note</span><span class="br0">)</span>
+            <span class="sy0">&lt;</span>li<span class="sy0">&gt;&lt;</span>a href<span class="sy0">=</span><span class="st0">"/notes/{<span class="es4">{$note-&gt;id}</span>}/edit"</span><span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span><span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">content</span><span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>a<span class="sy0">&gt;&lt;/</span>li<span class="sy0">&gt;</span>
+        <span class="sy0">@</span><span class="kw1">endforeach</span>
+    <span class="sy0">&lt;/</span>ul<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+&nbsp;
+<span class="sy0">&lt;</span>hr<span class="sy0">/&gt;</span>
+<span class="sy0">&lt;</span>h3<span class="sy0">&gt;</span>Add a <span class="kw2">new</span> note<span class="sy0">&lt;/</span>h3<span class="sy0">&gt;</span>
+<span class="sy0">&lt;</span>form method<span class="sy0">=</span><span class="st0">"post"</span> action<span class="sy0">=</span><span class="st0">"/items/{<span class="es4">{$item-&gt;id}</span>}/notes"</span><span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"form-group"</span><span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>textarea name<span class="sy0">=</span><span class="st0">"content"</span> <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"form-control"</span><span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span>old<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span><span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>textarea<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"form-group"</span><span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>button type<span class="sy0">=</span><span class="st0">"submit"</span> <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"btn btn-primary"</span><span class="sy0">&gt;</span>Add note<span class="sy0">&lt;/</span>button<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+<span class="sy0">&lt;/</span>form<span class="sy0">&gt;</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">endif</span>
+&nbsp;
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+<p>
+Afegim la ruta destinació del formulari
+</p>
+<pre class="code php">  Route<span class="sy0">::</span><span class="me2">post</span><span class="br0">(</span><span class="st_h">'/items/{item}/notes'</span><span class="sy0">,</span> <span class="br0">[</span>NoteController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'store'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Creem un controlador per a notes.
+</p>
+<pre class="code">php artisan make:controller NoteController</pre>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=47" title="Descargar trozo de código fuente" class="mediafile mf_php">NoteController.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+<span class="kw2">namespace</span> App\Http\Controllers<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Http\Request<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> App\Item<span class="sy0">;</span>
+<span class="kw2">use</span> App\Note<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> NoteController <span class="kw2">extends</span> Controller
+<span class="br0">{</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> store<span class="br0">(</span>Request <span class="re0">$request</span><span class="sy0">,</span> Item <span class="re0">$item</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="co1">//return $request-&gt;all();  //only to test data has been received.</span>
+        <span class="re0">$note</span> <span class="sy0">=</span> <span class="kw2">new</span> Note<span class="sy0">;</span>
+        <span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">content</span> <span class="sy0">=</span> <span class="re0">$request</span><span class="sy0">-&gt;</span><span class="me1">content</span><span class="sy0">;</span>
+        <span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">save</span><span class="br0">(</span><span class="re0">$note</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="co1">//or alternatively:</span>
+        <span class="co1">//$item-&gt;notes()-&gt;create(['content' =&gt; $request-&gt;content]);</span>
+        <span class="co1">//or with a method addNote in Item:</span>
+        <span class="co1">//$item-&gt;addNote($note);</span>
+        <span class="co1">//return \Redirect::to('url');  //with a facade</span>
+        <span class="co1">//return redirect('url');   //with function</span>
+        <span class="kw1">return</span> back<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>  <span class="co1">//return back.</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+Podem millorar l'estructura del codi afegint un mètode addNote() a la classe Item:
+</p>
+<pre class="code php">    <span class="kw2">public</span> <span class="kw2">function</span> addNote<span class="br0">(</span>Note <span class="re0">$note</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">notes</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">save</span><span class="br0">(</span><span class="re0">$note</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span></pre>
+
+</div>
+
+<h2 class="sectionedit10" id="formularis_d_edicio">Formularis d'edició</h2>
+<div class="level2">
+
+<p>
+Afegim una nova ruta per editar notes:
+</p>
+<pre class="code php">Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/notes/{note}/edit'</span><span class="sy0">,</span> <span class="br0">[</span>NoteController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'edit'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+Afegim el mètode edit() a NoteController:
+</p>
+<pre class="code php"><span class="kw2">public</span> <span class="kw2">function</span> edit<span class="br0">(</span>Note <span class="re0">$note</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'note.edit'</span><span class="sy0">,</span> <a target="_blank" href="http://www.php.net/compact"><span class="kw3">compact</span></a><span class="br0">(</span><span class="st_h">'note'</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span></pre>
+
+<p>
+Ara cal crear la vista form.blade.php al subdirectori note:
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=51" title="Descargar trozo de código fuente" class="mediafile mf_php">form.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">if</span><span class="br0">(</span><a target="_blank" href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">(</span><span class="re0">$note</span><span class="br0">)</span><span class="br0">)</span>
+    <span class="sy0">&lt;</span>p<span class="sy0">&gt;</span>No note found<span class="sy0">!&lt;/</span>p<span class="sy0">&gt;</span>
+<span class="sy0">@</span><span class="kw1">else</span>
+<span class="sy0">&lt;</span>hr<span class="sy0">/&gt;</span>
+<span class="sy0">&lt;</span>h3<span class="sy0">&gt;</span>Edit a note<span class="sy0">&lt;/</span>h3<span class="sy0">&gt;</span>
+<span class="sy0">&lt;</span>form method<span class="sy0">=</span><span class="st0">"post"</span> action<span class="sy0">=</span><span class="st0">"/notes/{<span class="es4">{$note-&gt;id}</span>}"</span><span class="sy0">&gt;</span>
+    <span class="sy0">@</span>csrf
+    <span class="sy0">&lt;</span>div <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"form-group"</span><span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>textarea name<span class="sy0">=</span><span class="st0">"content"</span> <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"form-control"</span><span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span><span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">content</span><span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>textarea<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"form-group"</span><span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>button type<span class="sy0">=</span><span class="st0">"submit"</span> <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"btn btn-primary"</span><span class="sy0">&gt;</span>Update note<span class="sy0">&lt;/</span>button<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+<span class="sy0">&lt;/</span>form<span class="sy0">&gt;</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">endif</span>
+&nbsp;
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+<p>
+Al formulari, el codi @csrf genera un cap ocult que s'envia amb el 
+formulari i permet saber al controlador que el formulari ha estat enviat
+ pel mateix servidor.
+</p>
+
+<p>
+Afegim la nova ruta així com el mètode update() a NoteController.
+</p>
+<pre class="code php">  Route<span class="sy0">::</span><span class="me2">post</span><span class="br0">(</span><span class="st_h">'/notes/{note}'</span><span class="sy0">,</span> <span class="br0">[</span>NoteController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'update'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span></pre>
+<pre class="code php"><span class="kw2">public</span> <span class="kw2">function</span> update<span class="br0">(</span>Request <span class="re0">$request</span><span class="sy0">,</span> Note <span class="re0">$note</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="re0">$noteNew</span> <span class="sy0">=</span> Note<span class="sy0">::</span><span class="me2">find</span><span class="br0">(</span><span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">id</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="re0">$noteNew</span><span class="sy0">-&gt;</span><span class="me1">content</span> <span class="sy0">=</span> <span class="re0">$request</span><span class="sy0">-&gt;</span><span class="me1">content</span><span class="sy0">;</span>
+        <span class="re0">$noteNew</span><span class="sy0">-&gt;</span><span class="me1">save</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw1">return</span> back<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span> <span class="co1">//redirection</span>
+<span class="br0">}</span></pre>
+
+</div>
+
+<h2 class="sectionedit11" id="validacio_de_dades">Validació de dades</h2>
+<div class="level2">
+
+<p>
+La classe Controller, la qual estenen tots els controladors, conté un mètode validate()
+</p>
+<pre class="code php"><span class="kw2">public</span> <span class="kw2">function</span> validate<span class="br0">(</span>Request <span class="re0">$request</span><span class="sy0">,</span> <a target="_blank" href="http://www.php.net/array"><span class="kw3">array</span></a> <span class="re0">$rules</span><span class="sy0">,</span> <a target="_blank" href="http://www.php.net/array"><span class="kw3">array</span></a> <span class="re0">$messages</span><span class="sy0">=</span><span class="br0">[</span><span class="br0">]</span><span class="sy0">,</span> <span class="sy0">...</span><span class="br0">)</span><span class="sy0">;</span></pre>
+
+<p>
+El mètode accepta un array de regles de validació, un array de missatges
+ d'error i altres paràmetres (veure documentació oficial).
+</p>
+
+<p>
+Modifiquem el mètode store() de NoteController per incloure la validació. En aquest cas, imposem que 'content' és requerit:
+</p>
+<pre class="code php">    <span class="kw2">public</span> <span class="kw2">function</span> store<span class="br0">(</span>Request <span class="re0">$request</span><span class="sy0">,</span> Item <span class="re0">$item</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="co1">//validation:</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">validate</span><span class="br0">(</span><span class="re0">$request</span><span class="sy0">,</span> <span class="br0">[</span>
+            <span class="st_h">'content'</span> <span class="sy0">=&gt;</span> <span class="st_h">'required|min:10'</span>
+        <span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="re0">$note</span> <span class="sy0">=</span> <span class="kw2">new</span> Note<span class="sy0">;</span>
+        <span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">content</span> <span class="sy0">=</span> <span class="re0">$request</span><span class="sy0">-&gt;</span><span class="me1">content</span><span class="sy0">;</span>
+        <span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">addNote</span><span class="br0">(</span><span class="re0">$note</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="kw1">return</span> back<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>  <span class="co1">//return back.</span>
+    <span class="br0">}</span></pre>
+
+<p>
+Si la validació falla, Laravel llança una excepció, però s'encarrega de 
+capturar-la automàticament. El resultat és que redirecciona a la url de 
+redirecció definida, juntament amb un array anomenat <strong>errors</strong>, els quals podem mostrar a la vista. Amb la redirecció també envia les dades que s'havien rebut.
+</p>
+
+<p>
+El mecanisme es basa en controladors que fan de filtre, anomenats 
+Middleware. Perquè funcionin aquests filtres amb les url que hem 
+definit, cal incloure les seves rutes en el grup 'web' de Middleware. 
+Canviem el fitxer de rutes 'web.php':
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=56" title="Descargar trozo de código fuente" class="mediafile mf_php">web.php</a></dt>
+<dd><pre class="code php"><span class="kw2">&lt;?php</span>
+Route<span class="sy0">::</span><span class="me2">group</span><span class="br0">(</span><span class="br0">[</span><span class="st_h">'middleware'</span> <span class="sy0">=&gt;</span> <span class="br0">[</span><span class="st_h">'web'</span><span class="br0">]</span><span class="br0">]</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'welcome'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/home'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'welcome'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.index'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items/list'</span><span class="sy0">,</span> <span class="br0">[</span>ItemController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'list'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items/{item}'</span><span class="sy0">,</span> <span class="br0">[</span>ItemController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'find'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">post</span><span class="br0">(</span><span class="st_h">'/items/{item}/notes'</span><span class="sy0">,</span> <span class="br0">[</span>NoteController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'store'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/notes/{note}/edit'</span><span class="sy0">,</span> <span class="br0">[</span>NoteController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'edit'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">post</span><span class="br0">(</span><span class="st_h">'/notes/{note}'</span><span class="sy0">,</span> <span class="br0">[</span>NoteController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'update'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span></pre>
+</dd></dl>
+
+<p>
+Tot formulari ha de contenir un camp ocult amb el csrf→token(). Afegim, doncs, a tots els formularis:
+</p>
+<pre class="code">{{csrf-&gt;field()}}</pre>
+
+<p>
+o bé
+</p>
+<pre class="code">@csrf</pre>
+
+<p>
+Ara podem afegir un bloc per mostrar errors a la vista (fitxer form.blade.php) de formulari de Item.
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=57" title="Descargar trozo de código fuente" class="mediafile mf_php">form.blade.php</a></dt>
+<dd><pre class="code php"><span class="sy0">@</span><span class="kw2">extends</span><span class="br0">(</span><span class="st_h">'layout'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span>section<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">if</span><span class="br0">(</span><a target="_blank" href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">(</span><span class="re0">$item</span><span class="br0">)</span><span class="br0">)</span>
+    <span class="sy0">&lt;</span>p<span class="sy0">&gt;</span>No item found<span class="sy0">!&lt;/</span>p<span class="sy0">&gt;</span>
+<span class="sy0">@</span><span class="kw1">else</span>
+<span class="sy0">&lt;</span>form method<span class="sy0">=</span><span class="st0">"post"</span> action<span class="sy0">=</span><span class="st0">"/items/{<span class="es4">{$item-&gt;id}</span>}/notes"</span><span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"id"</span><span class="sy0">&gt;</span>Id<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"id"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;id}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"title"</span><span class="sy0">&gt;</span>Title<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"title"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;title}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>label <span class="kw1">for</span><span class="sy0">=</span><span class="st0">"content"</span><span class="sy0">&gt;</span>Content<span class="sy0">:&lt;/</span>label<span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>input type<span class="sy0">=</span><span class="st0">"text"</span> name<span class="sy0">=</span><span class="st0">"content"</span> value<span class="sy0">=</span><span class="st0">"{<span class="es4">{$item-&gt;content}</span>}"</span><span class="sy0">/&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>ul<span class="sy0">&gt;</span>
+        <span class="sy0">@</span><span class="kw1">foreach</span><span class="br0">(</span><span class="re0">$item</span><span class="sy0">-&gt;</span><span class="me1">notes</span> <span class="kw1">as</span> <span class="re0">$note</span><span class="br0">)</span>
+            <span class="sy0">&lt;</span>li<span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span><span class="re0">$note</span><span class="sy0">-&gt;</span><span class="me1">content</span><span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>li<span class="sy0">&gt;</span>
+        <span class="sy0">@</span><span class="kw1">endforeach</span>
+    <span class="sy0">&lt;/</span>ul<span class="sy0">&gt;</span>
+&nbsp;
+<span class="sy0">&lt;</span>hr<span class="sy0">/&gt;</span>
+<span class="sy0">&lt;</span>h3<span class="sy0">&gt;</span>Add a <span class="kw2">new</span> note<span class="sy0">&lt;/</span>h3<span class="sy0">&gt;</span>
+&nbsp;
+    <span class="br0">{</span><span class="br0">{</span>csrf<span class="sy0">-&gt;</span><span class="me1">field</span><span class="br0">(</span><span class="br0">)</span><span class="br0">}</span><span class="br0">}</span>
+    <span class="sy0">&lt;</span>div <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"form-group"</span><span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>textarea name<span class="sy0">=</span><span class="st0">"content"</span> <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"form-control"</span><span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span>old<span class="br0">(</span><span class="st_h">'content'</span><span class="br0">)</span><span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>textarea<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;</span>div <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"form-group"</span><span class="sy0">&gt;</span>
+        <span class="sy0">&lt;</span>button type<span class="sy0">=</span><span class="st0">"submit"</span> <span class="kw2">class</span><span class="sy0">=</span><span class="st0">"btn btn-primary"</span><span class="sy0">&gt;</span>Add note<span class="sy0">&lt;/</span>button<span class="sy0">&gt;</span>
+    <span class="sy0">&lt;/</span>div<span class="sy0">&gt;</span>
+<span class="sy0">&lt;/</span>form<span class="sy0">&gt;</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">if</span> <span class="br0">(</span><a target="_blank" href="http://www.php.net/count"><span class="kw3">count</span></a><span class="br0">(</span><span class="re0">$errors</span><span class="br0">)</span><span class="br0">)</span>
+    <span class="sy0">&lt;</span>ul<span class="sy0">&gt;</span>
+        <span class="sy0">@</span><span class="kw1">foreach</span> <span class="br0">(</span><span class="re0">$errors</span><span class="sy0">-&gt;</span><span class="me1">all</span><span class="br0">(</span><span class="br0">)</span> <span class="kw1">as</span> <span class="re0">$error</span><span class="br0">)</span>
+            <span class="sy0">&lt;</span>li<span class="sy0">&gt;</span><span class="br0">{</span><span class="br0">{</span><span class="re0">$error</span><span class="br0">}</span><span class="br0">}</span><span class="sy0">&lt;/</span>li<span class="sy0">&gt;</span>
+        <span class="sy0">@</span><span class="kw1">endforeach</span>
+    <span class="sy0">&lt;/</span>ul<span class="sy0">&gt;</span>
+<span class="sy0">@</span><span class="kw1">endif</span>
+&nbsp;
+<span class="sy0">@</span><span class="kw1">endif</span>
+&nbsp;
+<span class="sy0">@</span>endsection</pre>
+</dd></dl>
+
+<p>
+El mètode old() recupera el valor del camp especificat que s'havia enviat.
+</p>
+
+</div>
+
+<h2 class="sectionedit12" id="autenticacio_d_usuaris">Autenticació d'usuaris</h2>
+<div class="level2">
+
+<p>
+Cal definir controladors per a <em>login</em> i <em>logout</em> i canviar les rutes perquè les pàgines que requereixin inici de sessió passin pel <strong><em>middleware</em></strong>.
+</p>
+
+<p>
+També necessitem un model per a usuaris. Per tant, cal una classe <em>User</em> i les migracions (per crear les taules a la base de dades) i <em>seeds</em> que convinguin per generar les dades de test.
+</p>
+
+<p>
+Per últim, cal generar vistes per les noves funcionalitats. Almenys cal un formulari per introduir les credencials d'accés.
+</p>
+
+<p>
+La classe User
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=58" title="Descargar trozo de código fuente" class="mediafile mf_php">User.php</a></dt>
+<dd><pre class="code php"><span class="kw2">class</span> User <span class="kw2">extends</span> Authenticatable
+<span class="br0">{</span>
+    <span class="kw2">use</span> HasApiTokens<span class="sy0">,</span> HasFactory<span class="sy0">,</span> Notifiable<span class="sy0">;</span>
+&nbsp;
+    <span class="co4">/**
+     * The attributes that are mass assignable.
+     *
+     * @var array&lt;int, string&gt;
+     */</span>
+    <span class="kw2">protected</span> <span class="re0">$fillable</span> <span class="sy0">=</span> <span class="br0">[</span>
+        <span class="st_h">'name'</span><span class="sy0">,</span>
+        <span class="st_h">'email'</span><span class="sy0">,</span>
+        <span class="st_h">'password'</span><span class="sy0">,</span>
+    <span class="br0">]</span><span class="sy0">;</span>
+&nbsp;
+    <span class="co4">/**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array&lt;int, string&gt;
+     */</span>
+    <span class="kw2">protected</span> <span class="re0">$hidden</span> <span class="sy0">=</span> <span class="br0">[</span>
+        <span class="st_h">'password'</span><span class="sy0">,</span>
+        <span class="st_h">'remember_token'</span><span class="sy0">,</span>
+    <span class="br0">]</span><span class="sy0">;</span>
+&nbsp;
+    <span class="co4">/**
+     * The attributes that should be cast.
+     *
+     * @var array&lt;string, string&gt;
+     */</span>
+    <span class="kw2">protected</span> <span class="re0">$casts</span> <span class="sy0">=</span> <span class="br0">[</span>
+        <span class="st_h">'email_verified_at'</span> <span class="sy0">=&gt;</span> <span class="st_h">'datetime'</span><span class="sy0">,</span>
+    <span class="br0">]</span><span class="sy0">;</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+La migració per a la taula d'usuaris
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=59" title="Descargar trozo de código fuente" class="mediafile mf_php">create_users_table.php</a></dt>
+<dd><pre class="code php"><span class="kw2">use</span> Illuminate\Database\Migrations\Migration<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Database\Schema\Blueprint<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Support\Facades\Schema<span class="sy0">;</span>
+&nbsp;
+<span class="kw1">return</span> <span class="kw2">new</span> <span class="kw2">class</span> <span class="kw2">extends</span> Migration
+<span class="br0">{</span>
+    <span class="co4">/**
+     * Run the migrations.
+     *
+     * @return void
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> up<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        Schema<span class="sy0">::</span><span class="me2">create</span><span class="br0">(</span><span class="st_h">'users'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span>Blueprint <span class="re0">$table</span><span class="br0">)</span> <span class="br0">{</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">id</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">string</span><span class="br0">(</span><span class="st_h">'name'</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">string</span><span class="br0">(</span><span class="st_h">'email'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">unique</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">timestamp</span><span class="br0">(</span><span class="st_h">'email_verified_at'</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">nullable</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">string</span><span class="br0">(</span><span class="st_h">'password'</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">rememberToken</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+            <span class="re0">$table</span><span class="sy0">-&gt;</span><span class="me1">timestamps</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+        <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+&nbsp;
+    <span class="co4">/**
+     * Reverse the migrations.
+     *
+     * @return void
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> down<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        Schema<span class="sy0">::</span><span class="me2">dropIfExists</span><span class="br0">(</span><span class="st_h">'users'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span><span class="sy0">;</span></pre>
+</dd></dl>
+
+<p>
+La Factory per a usuaris
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=60" title="Descargar trozo de código fuente" class="mediafile mf_php">FactoryUser.php</a></dt>
+<dd><pre class="code php"><span class="kw2">namespace</span> Database\Factories<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Database\Eloquent\Factories\Factory<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Support\Str<span class="sy0">;</span>
+&nbsp;
+<span class="co4">/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory&lt;\App\Models\User&gt;
+ */</span>
+<span class="kw2">class</span> UserFactory <span class="kw2">extends</span> Factory
+<span class="br0">{</span>
+    <span class="co4">/**
+     * Define the model's default state.
+     *
+     * @return array&lt;string, mixed&gt;
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> definition<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        <span class="kw1">return</span> <span class="br0">[</span>
+            <span class="st_h">'name'</span> <span class="sy0">=&gt;</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">faker</span><span class="sy0">-&gt;</span><span class="me1">name</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">,</span>
+            <span class="st_h">'email'</span> <span class="sy0">=&gt;</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">faker</span><span class="sy0">-&gt;</span><span class="me1">unique</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">safeEmail</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">,</span>
+            <span class="st_h">'email_verified_at'</span> <span class="sy0">=&gt;</span> now<span class="br0">(</span><span class="br0">)</span><span class="sy0">,</span>
+            <span class="st_h">'password'</span> <span class="sy0">=&gt;</span> <span class="st_h">'$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'</span><span class="sy0">,</span> <span class="co1">// password</span>
+            <span class="st_h">'remember_token'</span> <span class="sy0">=&gt;</span> Str<span class="sy0">::</span><span class="me2">random</span><span class="br0">(</span><span class="nu0">10</span><span class="br0">)</span><span class="sy0">,</span>
+        <span class="br0">]</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+&nbsp;
+    <span class="co4">/**
+     * Indicate that the model's email address should be unverified.
+     *
+     * @return static
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> unverified<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">state</span><span class="br0">(</span><span class="kw2">function</span> <span class="br0">(</span><a target="_blank" href="http://www.php.net/array"><span class="kw3">array</span></a> <span class="re0">$attributes</span><span class="br0">)</span> <span class="br0">{</span>
+            <span class="kw1">return</span> <span class="br0">[</span>
+                <span class="st_h">'email_verified_at'</span> <span class="sy0">=&gt;</span> <span class="kw4">null</span><span class="sy0">,</span>
+            <span class="br0">]</span><span class="sy0">;</span>
+        <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+La classe de <em>seeder</em> per a usuaris
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=61" title="Descargar trozo de código fuente" class="mediafile mf_php">UserTableSeeder.php</a></dt>
+<dd><pre class="code php"><span class="kw2">class</span> UserTableSeeder <span class="kw2">extends</span> Seeder
+<span class="br0">{</span>
+    <span class="co4">/**
+     * Run the database seeds.
+     *
+     * @return void
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> run<span class="br0">(</span><span class="br0">)</span>
+    <span class="br0">{</span>
+        <span class="co1">//</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+El LoginController
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=62" title="Descargar trozo de código fuente" class="mediafile mf_php">LoginController.php</a></dt>
+<dd><pre class="code php"><span class="kw2">namespace</span> App\Http\Controllers<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Http\Request<span class="sy0">;</span>
+<span class="kw2">use</span> App\Http\Requests\LoginRequest<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Support\Facades\Auth<span class="sy0">;</span>
+<span class="co1">//use App\Services\Login\RememberMeExpiration;</span>
+&nbsp;
+<span class="kw2">class</span> LoginController <span class="kw2">extends</span> Controller
+<span class="br0">{</span>
+    <span class="co1">//use RememberMeExpiration;</span>
+&nbsp;
+    <span class="co4">/**
+     * Display login page.
+     * @return Renderable
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> show<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'auth.login'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> login<span class="br0">(</span>Request <span class="re0">$request</span><span class="br0">)</span> <span class="br0">{</span>
+         <span class="re0">$username</span> <span class="sy0">=</span> <span class="re0">$request</span><span class="br0">[</span><span class="st_h">'username'</span><span class="br0">]</span><span class="sy0">;</span>
+         <span class="re0">$password</span> <span class="sy0">=</span> <span class="re0">$request</span><span class="br0">[</span><span class="st_h">'password'</span><span class="br0">]</span><span class="sy0">;</span>
+         <span class="re0">$credentials</span> <span class="sy0">=</span> <span class="br0">[</span>
+             <span class="st_h">'email'</span> <span class="sy0">=&gt;</span> <span class="re0">$username</span><span class="sy0">,</span>
+             <span class="st_h">'password'</span> <span class="sy0">=&gt;</span> <span class="re0">$password</span> 
+         <span class="br0">]</span><span class="sy0">;</span>
+         <span class="co1">//var_dump($credentials);</span>
+         <span class="re0">$user</span> <span class="sy0">=</span> Auth<span class="sy0">::</span><span class="me2">getProvider</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">retrieveByCredentials</span><span class="br0">(</span><span class="re0">$credentials</span><span class="br0">)</span><span class="sy0">;</span>
+         Auth<span class="sy0">::</span><span class="me2">login</span><span class="br0">(</span><span class="re0">$user</span><span class="br0">)</span><span class="sy0">;</span>
+         <span class="re0">$request</span><span class="sy0">-&gt;</span><span class="me1">session</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">put</span><span class="br0">(</span><span class="st_h">'username'</span><span class="sy0">,</span> <span class="re0">$user</span><span class="sy0">-&gt;</span><span class="me1">name</span><span class="br0">)</span><span class="sy0">;</span>
+         <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">authenticated</span><span class="br0">(</span><span class="re0">$request</span><span class="sy0">,</span> <span class="re0">$user</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+&nbsp;
+    <span class="co4">/**
+     * Handle response after user authenticated
+     * @param Request $request
+     * @param Auth $user
+     * @return \Illuminate\Http\Response
+     */</span>
+    <span class="kw2">protected</span> <span class="kw2">function</span> authenticated<span class="br0">(</span>Request <span class="re0">$request</span><span class="sy0">,</span> <span class="re0">$user</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> redirect<span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">intended</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+El LogoutController
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=63" title="Descargar trozo de código fuente" class="mediafile mf_php">LogoutController.php</a></dt>
+<dd><pre class="code php"><span class="kw2">namespace</span> App\Http\Controllers<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> Illuminate\Http\Request<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Support\Facades\Auth<span class="sy0">;</span>
+<span class="kw2">use</span> Illuminate\Support\Facades\Session<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> LogoutController <span class="kw2">extends</span> Controller
+<span class="br0">{</span>
+    <span class="co4">/**
+     * Log out account user.
+     * @return \Illuminate\Routing\Redirector
+     */</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> perform<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        Session<span class="sy0">::</span><a target="_blank" href="http://www.php.net/flush"><span class="kw3">flush</span></a><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+        Auth<span class="sy0">::</span><span class="me2">logout</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+        <span class="kw1">return</span> redirect<span class="br0">(</span><span class="st_h">'login'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span>
+<span class="br0">}</span></pre>
+</dd></dl>
+
+<p>
+La vista d'autenticació (formulari de login) a 'resources/views/auth'
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=64" title="Descargar trozo de código fuente" class="mediafile mf_php">login.blade.php</a></dt>
+<dd><pre class="code html4strict">@extends('layout')
+&nbsp;
+@section('content')
+&nbsp;
+<span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/form.html"><span class="kw2">form</span></a> <span class="kw3">method</span><span class="sy0">=</span><span class="st0">"post"</span> <span class="kw3">action</span><span class="sy0">=</span><span class="st0">"{{ route('login.perform') }}"</span>&gt;</span>
+    @csrf
+    <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/h1.html"><span class="kw2">h1</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"h3 mb-3 fw-normal"</span>&gt;</span>Login<span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/h1.html"><span class="kw2">h1</span></a>&gt;</span>
+&nbsp;
+    <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/div.html"><span class="kw2">div</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"form-group mb-3"</span>&gt;</span>
+        <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/label.html"><span class="kw2">label</span></a> <span class="kw3">for</span><span class="sy0">=</span><span class="st0">"username"</span>&gt;</span>Email or Username<span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/label.html"><span class="kw2">label</span></a>&gt;</span>
+        <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">"text"</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"form-control"</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">"username"</span> <span class="kw3">value</span><span class="sy0">=</span><span class="st0">"{{ old('username') }}"</span> placeholder<span class="sy0">=</span><span class="st0">"Username"</span> required<span class="sy0">=</span><span class="st0">"required"</span> autofocus&gt;</span>
+        @if ($errors-&gt;has('username'))
+            <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/span.html"><span class="kw2">span</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"text-danger text-left"</span>&gt;</span>{{ $errors-&gt;first('username') }}<span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/span.html"><span class="kw2">span</span></a>&gt;</span>
+        @endif
+    <span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/div.html"><span class="kw2">div</span></a>&gt;</span>
+&nbsp;
+    <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/div.html"><span class="kw2">div</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"form-group mb-3"</span>&gt;</span>
+        <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/label.html"><span class="kw2">label</span></a> <span class="kw3">for</span><span class="sy0">=</span><span class="st0">"password"</span>&gt;</span>Password<span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/label.html"><span class="kw2">label</span></a>&gt;</span>
+        <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">"password"</span> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"form-control"</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">"password"</span> <span class="kw3">value</span><span class="sy0">=</span><span class="st0">"{{ old('password') }}"</span> placeholder<span class="sy0">=</span><span class="st0">"Password"</span> required<span class="sy0">=</span><span class="st0">"required"</span>&gt;</span>
+        @if ($errors-&gt;has('password'))
+            <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/span.html"><span class="kw2">span</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"text-danger text-left"</span>&gt;</span>{{ $errors-&gt;first('password') }}<span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/span.html"><span class="kw2">span</span></a>&gt;</span>
+        @endif
+    <span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/div.html"><span class="kw2">div</span></a>&gt;</span>
+&nbsp;
+    <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/div.html"><span class="kw2">div</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"form-group mb-3"</span>&gt;</span>
+        <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/label.html"><span class="kw2">label</span></a> <span class="kw3">for</span><span class="sy0">=</span><span class="st0">"remember"</span>&gt;</span>Remember me<span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/label.html"><span class="kw2">label</span></a>&gt;</span>
+        <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">"checkbox"</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">"remember"</span> <span class="kw3">value</span><span class="sy0">=</span><span class="st0">"1"</span>&gt;</span>
+    <span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/div.html"><span class="kw2">div</span></a>&gt;</span>
+&nbsp;
+    <span class="sc2">&lt;<a target="_blank" href="http://december.com/html/4/element/button.html"><span class="kw2">button</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">"w-100 btn btn-lg btn-primary"</span> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">"submit"</span>&gt;</span>Login<span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/button.html"><span class="kw2">button</span></a>&gt;</span>
+&nbsp;
+<span class="sc2">&lt;<span class="sy0">/</span><a target="_blank" href="http://december.com/html/4/element/form.html"><span class="kw2">form</span></a>&gt;</span>
+&nbsp;
+@endsection</pre>
+</dd></dl>
+
+<p>
+El fitxer de rutes
+</p>
+<dl class="code">
+<dt><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?do=export_code&amp;id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;codeblock=65" title="Descargar trozo de código fuente" class="mediafile mf_php">web.php</a></dt>
+<dd><pre class="code php"><span class="kw2">use</span> Illuminate\Support\Facades\Route<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">use</span> App\Http\Controllers\ItemController<span class="sy0">;</span>
+<span class="kw2">use</span> App\Http\Controllers\NoteController<span class="sy0">;</span>
+<span class="kw2">use</span> App\Http\Controllers\LoginController<span class="sy0">;</span>
+<span class="kw2">use</span> App\Http\Controllers\LogoutController<span class="sy0">;</span>
+&nbsp;
+Route<span class="sy0">::</span><span class="me2">group</span><span class="br0">(</span><span class="br0">[</span><span class="st_h">'middleware'</span> <span class="sy0">=&gt;</span> <span class="br0">[</span><span class="st_h">'web'</span><span class="br0">]</span><span class="br0">]</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'welcome'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/home'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'welcome'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items'</span><span class="sy0">,</span> <span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+        <span class="kw1">return</span> view<span class="br0">(</span><span class="st_h">'item.index'</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items/list'</span><span class="sy0">,</span> <span class="br0">[</span>ItemController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'list'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/items/{item}'</span><span class="sy0">,</span> <span class="br0">[</span>ItemController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'find'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">post</span><span class="br0">(</span><span class="st_h">'/items/{item}/notes'</span><span class="sy0">,</span> <span class="br0">[</span>NoteController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'store'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/notes/{note}/edit'</span><span class="sy0">,</span> <span class="br0">[</span>NoteController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'edit'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">post</span><span class="br0">(</span><span class="st_h">'/notes/{note}'</span><span class="sy0">,</span> <span class="br0">[</span>NoteController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'update'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+Route<span class="sy0">::</span><span class="me2">middleware</span><span class="br0">(</span><span class="br0">[</span><span class="st_h">'auth'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">group</span><span class="br0">(</span><span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/logout'</span><span class="sy0">,</span> <span class="br0">[</span>LogoutController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'perform'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">name</span><span class="br0">(</span><span class="st_h">'logout'</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span>
+&nbsp;
+Route<span class="sy0">::</span><span class="me2">middleware</span><span class="br0">(</span><span class="br0">[</span><span class="st_h">'guest'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">group</span><span class="br0">(</span><span class="kw2">function</span> <span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span>
+    Route<span class="sy0">::</span><span class="me2">get</span><span class="br0">(</span><span class="st_h">'/login'</span><span class="sy0">,</span> <span class="br0">[</span>LoginController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'show'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">name</span><span class="br0">(</span><span class="st_h">'login.show'</span><span class="br0">)</span><span class="sy0">;</span>
+    Route<span class="sy0">::</span><span class="me2">post</span><span class="br0">(</span><span class="st_h">'/login'</span><span class="sy0">,</span> <span class="br0">[</span>LoginController<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">,</span> <span class="st_h">'login'</span><span class="br0">]</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me1">name</span><span class="br0">(</span><span class="st_h">'login.perform'</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span><span class="br0">)</span><span class="sy0">;</span></pre>
+</dd></dl>
+
+<p>
+<a href="https://docencia.proven.cat/jmoreno/wiki/lib/exe/fetch.php?media=docencia:dawbi:m07:uf4:laravel:items_notes-laravel.zip" class="media mediafile mf_zip" target="_blank" title="docencia:dawbi:m07:uf4:laravel:items_notes-laravel.zip (11.5&nbsp;MB)" rel="noopener">Codi complet aplicació de gestió de Item i Note (sense autenticació)</a>
+</p>
+
+<p>
+<a href="https://docencia.proven.cat/jmoreno/wiki/lib/exe/fetch.php?media=docencia:dawbi:m07:uf4:laravel:items_notes-laravel-autent.zip" class="media mediafile mf_zip" target="_blank" title="docencia:dawbi:m07:uf4:laravel:items_notes-laravel-autent.zip (11.5&nbsp;MB)" rel="noopener">Codi complet aplicació de gestió de Item i Note (amb autenticació)</a>
+</p>
+
+</div>
+
+          <!-- end rendered wiki content -->
+
+          <br>
+          
+          <!-- end main content area -->
+          <div class="visualClear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="column-one" class="noprint">
+    <div class="portlet" id="p-logo">
+      <a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=start" style="background-image:url(/jmoreno/wiki/lib/tpl/monobook/user/logo.png);" accesskey="h" title="[ALT+H]"></a>
+    </div>
+    
+    <div id="p-cactions" class="portlet">
+      <ul>
+        <li id="ca-nstab-main"><span class="selected"><span class="curid"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager" class="wikilink1" title="docencia:dawbi:m07:uf4:laravel:item_manager" data-wiki-id="docencia:dawbi:m07:uf4:laravel:item_manager">Artículo</a></span></span></li>
+        <li id="ca-talk"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=talk:docencia:dawbi:m07:uf4:laravel:item_manager" class="wikilink2" title="talk:docencia:dawbi:m07:uf4:laravel:item_manager" rel="nofollow" data-wiki-id="talk:docencia:dawbi:m07:uf4:laravel:item_manager">Discusión</a></li>
+        <li id="ca-edit"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;do=edit&amp;rev=1676382716" accesskey="E" title="[ALT+E]">Ver la fuente de esta página</a></li>
+        <li id="ca-history"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;do=revisions" accesskey="O" title="[ALT+O]">Revisiones antiguas</a></li>
+        <li id="tab-export-odt"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;do=export_odt" rel="nofollow">Exportar: ODT</a></li>
+      </ul>
+    </div>
+
+    <div id="p-personal" class="portlet">
+      <div class="pBody">
+        <ul>
+          <li id="pt-userpage"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=wiki:user:student" class="wikilink2" title="wiki:user:student" rel="nofollow" data-wiki-id="wiki:user:student">student</a></li>          <li id="pt-mytalk"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=talk:wiki:user:student" class="wikilink2" title="talk:wiki:user:student" rel="nofollow" data-wiki-id="talk:wiki:user:student">Mis discusiones</a></li>          <li id="pt-preferences"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;do=profile" rel="nofollow">Actualizar perfil</a></li>
+          <li id="pt-logout"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;do=logout" rel="nofollow">Desconectarse</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="portlet" id="p-x-navigation">
+      <h5>Navegación</h5>
+      <div class="pBody">
+        <div class="dokuwiki">
+<ul>
+<li class="level1"><div class="li"> <a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=start" class="wikilink1" title="start" data-wiki-id="start">Índex</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=subjects:start" class="wikilink1" title="subjects:start" data-wiki-id="subjects:start">Mòduls professionals</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:start" class="wikilink1" title="docencia:start" data-wiki-id="docencia:start">Docència</a></div>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+    <div class="portlet" id="p-search">
+      <h5><label for="qsearch__in">Búsqueda</label></h5>
+      <div class="pBody">
+        <div class="dokuwiki">
+<form action="/jmoreno/wiki/doku.php?id=start" accept-charset="utf-8" id="dw__search" name="dw__search">
+  <input type="hidden" name="do" value="search">
+  <input id="qsearch__in" name="id" type="text" accesskey="f">
+  <input type="button" class="searchButton" id="searchGoButton" value="Ir" onclick="document.location.href='/jmoreno/wiki/doku.php?id='+document.getElementById('qsearch__in').value;">&nbsp;
+  <input type="submit" name="fulltext" class="searchButton" value="Buscar">
+</form>
+        </div>
+      </div>
+    </div>
+    <div id="qsearch__out" class="ajax_qsearch JSpopup" style="display: none;"></div>
+    <div class="portlet" id="p-tb">
+      <h5>Herramientas</h5>
+      <div class="pBody">
+        <div class="dokuwiki">
+        <ul>
+          <li id="tb-whatlinkshere"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;do=backlink">Qué enlaza aquí</a></li>
+          <li id="tb-recent"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=start&amp;do=recent" rel="nofollow">Cambios recientes</a></li>
+          <li id="tb-upload"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=start&amp;do=media" rel="nofollow">Administrador de Ficheros</a></li>
+          <li id="tb-special"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=start&amp;do=index" rel="nofollow">Índice del sitio</a></li>
+          <li id="tb-print"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;rev=1676382716&amp;mddo=print" rel="nofollow">Versión imprimible</a></li>
+          <li id="tb-permanent"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;rev=1676382716" rel="nofollow">Enlace permanente</a></li>
+          <li id="tb-cite"><a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=docencia:dawbi:m07:uf4:laravel:item_manager&amp;rev=1676382716&amp;mddo=cite" rel="nofollow">Citar este artículo</a></li>
+        </ul>
+        </div>
+      </div>
+    </div>
+    <div class="portlet" id="p-qrcode">
+      <h5>QR Code</h5>
+      <div class="pBody">
+        <div class="dokuwiki">
+        <span id="t-qrcode"><img src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/index.png" alt="QR Code docencia:dawbi:m07:uf4:laravel:item_manager (generated for current page)" title="Current page as QR Code (scan for easy mobile access)"></span>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- end of the left (by default at least) column -->
+
+  <div class="visualClear"></div>
+
+  <div id="footer" class="noprint">
+    <div id="footer-buttons">
+    
+      <a href="https://docencia.proven.cat/jmoreno/wiki/feed.php" rel="nofollow" title="Cambios recientes" target="_blank"><img src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/button-rss.png" title="Cambios recientes" alt="Cambios recientes" width="80" height="15" border="0"></a>
+      <a href="http://andreas-haerter.com/" rel="nofollow" title="Monobook para DokuWiki" target="_blank"><img src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/button-monobook.png" title="Monobook para DokuWiki" alt="Monobook para DokuWiki" width="80" height="15" border="0"></a>
+      <a href="http://donate.andreas-haerter.com/dokuwiki-template-monobook/" rel="nofollow" title="Donar" target="_blank"><img src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/button-donate.gif" title="Donar" alt="Donar" width="80" height="15" border="0"></a>
+      <a href="http://goqr.me/" rel="nofollow" title="QR Code generator" target="_blank"><img src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/button-qrcode.png" title="QR Code generator" alt="QR Code generator" width="80" height="15" border="0"></a>
+      <a href="http://www.dokuwiki.org/" title="DokuWiki" target="_blank"><img src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/button-dw.png" title="DokuWiki" alt="DokuWiki" width="80" height="15" border="0"></a>
+      <a href="http://validator.w3.org/check/referer" rel="nofollow" title="Valid XHTML" target="_blank"><img src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/button-xhtml.png" title="Valid XHTML" alt="Valid XHTML" width="80" height="15" border="0"></a>
+    </div>
+    <ul id="f-list">
+      <li id="lastmod">
+        <bdi>docencia/dawbi/m07/uf4/laravel/item_manager.txt</bdi> · Última modificación: 2023/02/14 14:51 por <bdi>jose</bdi><br>
+      </li>
+      <li id="copyright">
+        <div class="dokuwiki"><div class="license">Excepto donde se indique lo contrario, el contenido de este wiki esta bajo la siguiente licencia: <bdi><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license" class="urlextern" target="_blank">CC Attribution-Noncommercial-Share Alike 4.0 International</a></bdi></div></div>
+      </li>
+      <li id="usermod">
+        Conectado como: <bdi>Alumne</bdi> (<bdi>student</bdi>)<br>
+      </li>
+    </ul>
+  </div>
+
+</div>  <!-- end of global wrap -->
+<a href="https://docencia.proven.cat/jmoreno/wiki/doku.php?id=start&amp;do=recent" accesskey="r" style="visibility:hidden;" rel="nofollow">&nbsp;</a>
+<img src="docencia%20dawbi%20m07%20uf4%20laravel%20item_manager%20-%20JoseWiki_files/taskrunner.gif" alt="" width="2" height="1">
+
+</body></html>
