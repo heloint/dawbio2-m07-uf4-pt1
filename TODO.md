@@ -1,4 +1,4 @@
-# 1. DATABASE USER FOR MARIADB!
+# 1. DATABASE USER FOR MARIADB! => DONE
 - Create a bash script for that.
 
 ---
@@ -8,19 +8,22 @@
 - Teams
 
 1. Create the migrations:
-    - php artisan make:migration create_players_table --create=players
-    - php artisan make:migration create_teams_table --create=teams
-2. Edit migration files with the function "up()"
-3. Do the migration:
-    - php artisan migrate
-4. Create the models:
-    - php artisan make:model Player
-    - php artisan make:model Team
-5. Create the factories:
-    - php artisan make:factory PlayerFactory
-    - php artisan make:factory TeamFactory
+    - php artisan make:migration create_teams_table --create=teams => DONE
+    - php artisan make:migration create_players_table --create=players => DONE
+2. Edit migration files with the function "up()" => DONE
+3. Do the migration: => DONE
+    - php artisan migrate => DONE
+4. Create the models: => DONE
+    - php artisan make:model Team => DONE
+    - php artisan make:model Player => DONE
+5. Create the factories: => DONE
+    - php artisan make:factory TeamFactory => DONE
+    - php artisan make:factory PlayerFactory => DONE
 6. Fill the definition function with faker.
    (MUST CHECK THE DOCUMENTATION OF IT TO CHECK WHAT OPTIONS I HAVE.)
+7. Create seeders:
+    - php artisan make:seeder TeamsTableSeeder
+    - php artisan make:seeder PlayersTableSeeder
 
 ---
 
