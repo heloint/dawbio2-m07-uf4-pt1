@@ -21,7 +21,8 @@
                     </li>
                 </ul>
             </div>
-                <table id="myTable" class="table table-hover">
+
+                <table id="paginated-table" class="table table-hover">
                     <thead>
                         <tr class="table-primary">
                             <th class="text-center" scope="col">Name</th>
@@ -51,16 +52,6 @@
             </tbody>
             </table>
 
-            <div class="pagination-container">
-                <ul class="pagination justify-content-center" id="paginationLinks">
-                    <li class="page-item" id="previousPage">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
     @endif

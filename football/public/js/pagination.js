@@ -1,19 +1,23 @@
 $(document).ready(function () {
     // Number of rows to display per page
-    let rowsPerPage = 10;
+    const rowsPerPage = 10;
+    let currentPageNumber = 1;
 
     // Get the table and tbody elements
-    let table = $("#myTable");
-    let tbody = table.find("tbody");
+    const table = $("#paginated-table");
+    const tbody = table.find("tbody");
 
     // Get the number of rows in the table
-    let numRows = tbody.find("tr").length;
+    const numRows = tbody.find("tr").length;
 
     // Calculate the number of pages
-    let numPages = Math.ceil(numRows / rowsPerPage);
+    const numPages = Math.ceil(numRows / rowsPerPage);
 
     // Create the pagination links
-    let pagination = $('<ul class="pagination justify-content-center"></ul>');
+    // const pagination = $('<ul class="pagination justify-content-center"></ul>');
+    const pagination = $('.pagination');
+
+    // Add enumerated buttons.
     for (let i = 1; i <= numPages; i++) {
         let pageLink = $('<a class="page-link" href="#"></a>').text(i);
         let pageItem = $('<li class="page-item"></li>').append(pageLink);
@@ -38,42 +42,23 @@ $(document).ready(function () {
     // Handle pagination link click events
     pagination.find("a").click(function (event) {
         event.preventDefault();
-        let page = $(this).text();
 
-        // Show the rows for the selected page
-        let startRow = (page - 1) * rowsPerPage;
-        let endRow = startRow + rowsPerPage - 1;
-        tbody
-            .find("tr")
-            .hide()
-            .slice(startRow, endRow + 1)
-            .show();
+        const clickedAriaLabel =
+            event.currentTarget.attributes["aria-label"]?.value;
 
-        // Update the active class for the pagination links
-        pagination.find("li").removeClass("active");
-        $(this).parent().addClass("active");
-
-        // Update the previous and next buttons
-        updateButtons(parseInt(page), numPages);
-    });
-
-    // Handle previous and next button click events
-    $("#previousPage").click(function (event) {
-        // Prevent the default link behavior
-        event.preventDefault();
-
-        // Get the current active page
-        let currentPage = pagination.find("li.active").find("a").text();
-
-        // Calculate the previous page
-        let previousPage = parseInt(currentPage) - 1;
-        if (previousPage < 1) {
-            previousPage = 1;
+        if (clickedAriaLabel !== undefined) {
+            if ("next" === clickedAriaLabel.toLowerCase()) {
+                currentPageNumber += 1;
+            } else if ("previous" === clickedAriaLabel.toLowerCase()) {
+                currentPageNumber -= 1;
+            }
+        } else {
+            currentPageNumber = parseInt($(this).text());
         }
 
-        // Show the rows for the previous page
-        let startRow = (previousPage - 1) * rowsPerPage;
-        let endRow = startRow + rowsPerPage - 1;
+        // Show the rows for the selected currentPageNumber
+        const startRow = (currentPageNumber - 1) * rowsPerPage;
+        const endRow = startRow + rowsPerPage - 1;
         tbody
             .find("tr")
             .hide()
@@ -82,46 +67,11 @@ $(document).ready(function () {
 
         // Update the active class for the pagination links
         pagination.find("li").removeClass("active");
-        pagination
-            .find("li")
-            .eq(previousPage - 1)
-            .addClass("active");
+        $(`a:contains('${currentPageNumber}')`).parent().addClass("active");
+        // $(this).parent().addClass("active");
 
         // Update the previous and next buttons
-        updateButtons(previousPage, numPages);
-    });
-
-    $("#nextPage").click(function (event) {
-        // Prevent the default link behavior
-        event.preventDefault();
-
-        // Get the current active page
-        let currentPage = pagination.find("li.active").find("a").text();
-
-        // Calculate the next page
-        let nextPage = parseInt(currentPage) + 1;
-        if (nextPage > numPages) {
-            nextPage = numPages;
-        }
-
-        // Show the rows for the next page
-        let startRow = (nextPage - 1) * rowsPerPage;
-        let endRow = startRow + rowsPerPage - 1;
-        tbody
-            .find("tr")
-            .hide()
-            .slice(startRow, endRow + 1)
-            .show();
-
-        // Update the active class for the pagination links
-        pagination.find("li").removeClass("active");
-        pagination
-            .find("li")
-            .eq(nextPage - 1)
-            .addClass("active");
-
-        // Update the previous and next buttons
-        updateButtons(nextPage, numPages);
+        updateButtons(parseInt(currentPageNumber), numPages);
     });
 
     // Function to update the previous and next buttons
@@ -142,5 +92,5 @@ $(document).ready(function () {
     }
 
     // Show the first page
-    pagination.find("li:first-child").find("a").click();
+    $(pagination.find("li")[1]).find('a').click();
 });
