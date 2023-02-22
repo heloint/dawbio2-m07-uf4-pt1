@@ -16,15 +16,9 @@ class TeamFactory extends Factory
      */
     public function definition(): array
     {
-
-        // FIELDS
-        //· name (string, unique)
-        //· coach (string)
-        //· category (string)
-        //· budget (double)
         return [
-            'name' => $this->faker->unique()->name,
-            'coach' => $this->faker->name() . ' ' . $this->faker->lastName(),
+            'name' => \ucwords($this->faker->unique()->city . ' ' . $this->faker->word),
+            'coach' => $this->faker->name(),
             'category' => 'Category ' . (string) $this->faker->randomDigit(),
             'budget' => $this->faker->randomFloat(2)
         ];

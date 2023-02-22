@@ -16,8 +16,13 @@ class PlayerFactory extends Factory
      */
     public function definition(): array
     {
+        $fakeDate = $this->faker->dateTimeBetween($startDate = '-40 years', $endDate = '-18years');
+        $formatedFakeDate = $fakeDate->format('dmY');
         return [
-            //
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'birth_date' => $formatedFakeDate,
+            'salary' => $this->faker->randomFloat(2, 5000, 8000)
         ];
     }
 }
