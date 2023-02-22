@@ -19,11 +19,10 @@
 5. Create the factories: => DONE
     - php artisan make:factory TeamFactory => DONE
     - php artisan make:factory PlayerFactory => DONE
-6. Fill the definition function with faker.
-   (MUST CHECK THE DOCUMENTATION OF IT TO CHECK WHAT OPTIONS I HAVE.)
-7. Create seeders:
-    - php artisan make:seeder TeamsTableSeeder
-    - php artisan make:seeder PlayersTableSeeder
+6. Fill the definition function with faker. => DONE
+7. Create seeders: => DONE
+    - php artisan make:seeder TeamsTableSeeder => DONE
+    - php artisan make:seeder PlayersTableSeeder => DONE
 
 ---
 
