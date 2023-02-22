@@ -2,8 +2,12 @@
 
 @section('content')
 
-<div class="container">
+<div class="container my-5">
+    <h3>Manage Teams</h3>
     <div class="row">
+    <div class="my-3">
+        <button class="btn btn-primary">Add team</button>
+    </div>
     @if(empty($teams))
     <p>There are no items!</p>
     @else
@@ -26,8 +30,8 @@
           <td >
           <form class="d-flex justify-content-center gap-3">
             <input type="hidden" name="team_id" value="{{ $team->id }}" >
-            <button class="btn btn-primary">Edit</button>
-            <button class="btn btn-danger">Delete</button>
+            <button type="submit" name="edit/team" value="{{ $team->id }}" class="btn btn-primary">Edit</button>
+            <button type="submit" name="delete/team" value="{{ $team->id }}" class="btn btn-danger">Delete</button>
           </form>
           </td>
         </tr>

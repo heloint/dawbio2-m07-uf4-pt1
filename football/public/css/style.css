@@ -1,0 +1,11 @@
+header {
+    background-image: url('/images/header-football-banner.jpg');
+    height: 23.5rem;
+    margin-top: -7rem;
+    position: relative;
+    z-index: -1;
+}
+
+#navbar-icon {
+    max-width: 3rem;
+}
