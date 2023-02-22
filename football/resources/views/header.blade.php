@@ -25,7 +25,7 @@
 
                     <!-- MANAGE players -->
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Manage players</a>
+                      <a class="nav-link" href="/manageplayers">Manage players</a>
                     </li>
                     <!-- END: MANAGE players -->
                   </ul>

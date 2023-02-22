@@ -12,6 +12,6 @@ class Player extends Model
 
     // Relationship OneToMany between Player and Team
     public function notes() {
-        return $this->belongsTo(Note::class);        
+        return $this->belongsTo(Note::class);
     }
 }
