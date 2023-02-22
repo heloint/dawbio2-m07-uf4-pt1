@@ -6,7 +6,7 @@
         <h3>Manage Teams</h3>
         <div class="row">
             <div class="my-3">
-                <button class="btn btn-primary">Add team</button>
+                <button class="btn btn-primary"><a class="no-style text-white" href="/newteam">Add team</a></button>
             </div>
             @if (empty($teams))
                 <p>There are no items!</p>

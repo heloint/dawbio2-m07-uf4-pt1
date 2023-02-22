@@ -38,20 +38,20 @@
 - Home
 - Manage Teams
     - "Add team button"
-        - Form with:
-            · id (disabled, autoincrement)
-            · name (string, unique)
-            · coach (string)
-            · category (string)
-            · budget (double)
+        - Form with: => DONE
+            · id (disabled, autoincrement) => DONE
+            · name (string, unique) => DONE
+            · coach (string) => DONE
+            · category (string) => DONE
+            · budget (double) => DONE
             · Two buttons:
                 - "Add new team"
-                - "Cancel" -> Brings back to the Manage teams menu option.
-    - Data table with the all the teams, each line has the following:
-        · Name
-        · Coach
-        · Team category
-        · Actions (Buttons)
+                - "Cancel" -> Brings back to the Manage teams menu option. => DONE
+    - Data table with the all the teams, each line has the following: => DONE
+        · Name => DONE
+        · Coach => DONE
+        · Team category => DONE
+        · Actions (Buttons) => DONE
             - Edit:
                 - Form with:
                     · id (disabled, autoincrement) -> In the edit form must contain the

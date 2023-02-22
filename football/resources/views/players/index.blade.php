@@ -5,9 +5,9 @@
     <div class="container my-5">
         <h3>Manage Players</h3>
         <div class="row">
-            <form class="my-3">
-                <button class="btn btn-primary">Add player</button>
-            </form>
+            <div class="my-3">
+                <button class="btn btn-primary"><a class="no-style text-white" href="/newplayer">Add player</a></button>
+            </div >
             @if (empty($players))
                 <p>There are no items!</p>
             @else

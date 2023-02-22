@@ -21,4 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/manageteams', [TeamController::class, 'index']);
+Route::get('/newteam', [TeamController::class, 'newTeam']);
+
 Route::get('/manageplayers', [PlayerController::class, 'index']);
+Route::get('/newplayer', [PlayerController::class, 'newPlayer']);
+Route::get('/addplayer', [PlayerController::class, 'addNewPlayer']);

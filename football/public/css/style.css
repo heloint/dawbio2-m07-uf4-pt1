@@ -9,3 +9,7 @@ header {
 #navbar-icon {
     max-width: 3rem;
 }
+
+.no-style {
+    text-decoration: none;
+}

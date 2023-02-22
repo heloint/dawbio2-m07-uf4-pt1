@@ -12,4 +12,10 @@ class TeamController extends Controller
         $teams = Team::all();
         return view('teams.index', compact('teams'));
     }
+
+    public function newTeam()
+    {
+        $nextFreeID = Team::max('id') + 1;
+        return view('teams.team_form', compact('nextFreeID'));
+    }
 }
