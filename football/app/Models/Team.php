@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Team extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     // Relationship OneToMany between Team and Player
     public function players() {

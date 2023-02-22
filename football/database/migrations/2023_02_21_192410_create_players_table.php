@@ -23,12 +23,12 @@ return new class extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->integer('dateOfBirth');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->integer('birth_date');
             $table->double('salary');
-            $table->integer('teamID')->unsigned()->index()->nullable();
-            $table->foreign('teamID')->references('id')->on('teams')->onUpdate('cascade')->onDelete('restrict');
+            $table->integer('team_id')->unsigned()->index()->nullable();
+            $table->foreign('team_id')->references('id')->on('teams')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
