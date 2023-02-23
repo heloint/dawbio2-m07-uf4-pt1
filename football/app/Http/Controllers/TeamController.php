@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
-
     /**
      * Display a listing of all teams.
      *
@@ -17,7 +16,7 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::all();
-        return view('teams.index', compact('teams'));
+        return view("teams.index", compact("teams"));
     }
 
     /**
@@ -28,7 +27,7 @@ class TeamController extends Controller
     public function newTeam()
     {
         // The mode of the operation.
-        $mode = 'add';
+        $mode = "add";
 
         $nextFreeID = Team::max("id") + 1;
         $team = new Team();
@@ -46,14 +45,14 @@ class TeamController extends Controller
     public function addNewTeam(Request $request)
     {
         // The mode of the operation.
-        $mode = 'add';
+        $mode = "add";
 
         // Validate the received fields from the post request.
         $this->validate($request, [
-            'name' => 'required|min:2|regex:/^[a-zA-Z\s]+$/',
-            'coach' => 'required|min:2|regex:/^[a-zA-Z\s]+$/',
-            'category' => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
-            'budget' => 'numeric',
+            "name" => 'required|min:2|regex:/^[a-zA-Z\s]+$/',
+            "coach" => 'required|min:2|regex:/^[a-zA-Z\s]+$/',
+            "category" => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
+            "budget" => "numeric",
         ]);
 
         // Initialize a new Team object.
@@ -61,7 +60,7 @@ class TeamController extends Controller
 
         // Assign field values to the empty Team object.
         foreach ($request->all() as $key => $value) {
-            if ($key !== '_token') {
+            if ($key !== "_token") {
                 $team->$key = $value;
             }
         }
@@ -71,9 +70,10 @@ class TeamController extends Controller
         try {
             $result = $team->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            $error = 'Unexpected error has occured in the database. Please contact with one of our admin.';
-            if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
-                $error = 'Team already exists!';
+            $error =
+                "Unexpected error has occured in the database. Please contact with one of our admin.";
+            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
+                $error = "Team already exists!";
             }
             return view("teams.team_form", compact("error", "team", "mode"));
         }
@@ -81,27 +81,70 @@ class TeamController extends Controller
         return view("teams.team_form", compact("result", "team", "mode"));
     }
 
-    public function editTeamForm(Request $request)
-    {
-        // The mode of the operation.
-        $mode = 'edit';
-        
-        // Get team with ID.
-        $team = Team::find($request->team_id);
+/**
+ * Display the form for editing a team.
+ *
+ * @param \Illuminate\Http\Request $request
+ * @return \Illuminate\View\View
+ */
+public function editTeamForm(Request $request)
+{
+    // Determine the mode of the operation.
+    $mode = 'edit';
 
-        // Get players of this team.
-        $players = $team::with('players')->find($team->id)->players;
-        /* return $players; */
-        return view("teams.team_form", compact("team", "players", "mode"));
-    }
+    // Retrieve the team and its players.
+    $team = Team::findOrFail($request->team_id);
+    $players = $team->players;
 
-    public function confirmUnsubscribtion(Request $request) {
-        $team = Team::find($request->team_id);
-        $player = Player::find($request->player_id);
-
-        return view("teams.unsubscription_confirm", compact("team", "player"));
-    }
-
+    return view('teams.team_form', compact('team', 'players', 'mode'));
 }
 
+/**
+ * Display the confirmation page for unsubscribing a player.
+ *
+ * @param \Illuminate\Http\Request $request
+ * @return \Illuminate\View\View
+ */
+public function confirmUnsubscribtion(Request $request)
+{
+    // Retrieve the team and player to be unsubscribed.
+    $team = Team::findOrFail($request->team_id);
+    $player = Player::findOrFail($request->player_id);
 
+    return view('teams.unsubscription_confirm', compact('team', 'player'));
+}
+
+/**
+ * Unsubscribe a player from a team.
+ *
+ * @param \Illuminate\Http\Request $request
+ * @return \Illuminate\View\View
+ */
+public function unsubscribeUser(Request $request)
+{
+    // Determine the mode of the operation and initialize some variables.
+    $mode = 'edit';
+    $error = null;
+    $unsubscriptionResult = false;
+
+    // Retrieve the player to be unsubscribed.
+    $unsubscribedPlayer = Player::findOrFail($request->player_id);
+
+    // Retrieve the team and its players.
+    $team = Team::findOrFail($request->team_id);
+    $players = $team->players;
+
+    try {
+        // Attempt to unsubscribe the player from the team.
+        $unsubscribedPlayer->team_id = null;
+        $unsubscribedPlayer->save();
+        $unsubscriptionResult = true;
+    } catch (\Illuminate\Database\QueryException $e) {
+        // Handle any database exceptions that occur during the operation.
+        $error = 'Unexpected error has occured in the database. Please contact one of our admins.';
+        return view('teams.team_form', compact('error', 'team', 'unsubscribedPlayer', 'players', 'mode', 'unsubscriptionResult'));
+    }
+
+    return view('teams.team_form', compact('team', 'unsubscribedPlayer', 'players', 'mode', 'unsubscriptionResult'));
+}
+}
