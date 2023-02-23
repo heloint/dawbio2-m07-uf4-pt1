@@ -11,7 +11,7 @@ class Player extends Model
     public $timestamps = false;
 
     // Relationship OneToMany between Player and Team
-    public function notes() {
-        return $this->belongsTo(Note::class);
+    public function team() {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 }

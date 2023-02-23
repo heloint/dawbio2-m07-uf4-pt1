@@ -151,7 +151,7 @@ class TeamController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
      */
-    public function unsubscribeUser(Request $request)
+    public function unsubscribePlayer(Request $request)
     {
         // Determine the mode of the operation and initialize some variables.
         $mode = "edit";
@@ -295,4 +295,13 @@ class TeamController extends Controller
             compact("error", "deletionResult", "teamToDelete", "teams")
         );
     }
+
+    public function subscribePlayer(Request $request)
+    {
+        $team = Team::find($request->team_id);
+        $players = Player::all()->where('team_id', '!=', $team->id);
+        return view('teams.subscribe', compact("team", "players"));
+            
+    }
+
 }

@@ -83,10 +83,11 @@
         <div class="container my-5">
             <h3>Players</h3>
             <div class="row">
-                <div class="my-3">
-                    <button class="btn btn-primary"><a class="no-style text-white" href="/subscribe-player">Subscribe
+                <form action="/team/subscribe-player" method="post" class="my-3">
+                    @csrf
+                    <button name="team_id" value="{{ $team->id }}" class="btn btn-primary"><a class="no-style text-white">Subscribe
                             player</a></button>
-                </div>
+                </form>
                 @if (empty($players))
                     <p class="text-danger">There are no players to display!</p>
                 @else

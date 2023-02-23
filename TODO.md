@@ -68,7 +68,7 @@
                   team and the number of displayed players:
                     · Player name => DONE
                     · Button to "unsubscribe" => DONE
-            - Delete:
+            - Delete: => DONE
                 (Must redirect to a confirmation page. If the team has players,
                 the action won't let the deletion, and in either case will inform
                 the user about the outcome and the cause of it ...)

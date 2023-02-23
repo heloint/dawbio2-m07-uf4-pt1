@@ -9,7 +9,7 @@
                 <button class="btn btn-primary"><a class="no-style text-white" href="/player/new">Add player</a></button>
             </div>
             @if (empty($players))
-                <p>There are no items!</p>
+                <p>There are no players to display!</p>
             @else
             @if (!empty($error))
                 <h6 class="text-danger my-5">{{ $error }}</h6>
