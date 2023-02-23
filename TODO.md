@@ -45,7 +45,7 @@
             · category (string) => DONE
             · budget (double) => DONE
             · Two buttons:
-                - "Add new team"
+                - "Add new team" => DONE
                 - "Cancel" -> Brings back to the Manage teams menu option. => DONE
     - Data table with the all the teams, each line has the following: => DONE
         · Name => DONE
@@ -73,7 +73,7 @@
                 the action won't let the deletion, and in either case will inform
                 the user about the outcome and the cause of it ...)
 
-    - FROM "edit team" -> Enroll player:
+    - FROM "Subscribe player" -> Enroll player:
         Data table with the followings:
             · First name
             · Last name

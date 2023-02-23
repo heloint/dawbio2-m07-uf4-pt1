@@ -7,7 +7,7 @@
         <div class="row">
             <div class="my-3">
                 <button class="btn btn-primary"><a class="no-style text-white" href="/newplayer">Add player</a></button>
-            </div >
+            </div>
             @if (empty($players))
                 <p>There are no items!</p>
             @else
@@ -37,12 +37,13 @@
                             <td class="text-center">{{ $player->first_name }}</td>
                             <td class="text-center">{{ $player->last_name }}</td>
                             <td class="text-center">{{ $player->birth_date }}</td>
-                            <td>
-                                <form class="d-flex justify-content-center gap-3">
-                                    <input type="hidden" name="team_id" value="{{ $player->id }}">
-                                    <button type="submit" name="edit/player" value="{{ $player->id }}"
+                            <td class="d-flex justify-content-center gap-3">
+                                <form action="/editplayer">
+                                    <button type="submit" name="player_id" value="{{ $player->id }}"
                                         class="btn btn-primary">Edit</button>
-                                    <button type="submit" name="delete/player" value="{{ $player->id }}"
+                                </form>
+                                <form action="/deleteplayerconfirm">
+                                    <button type="submit" name="player_id" value="{{ $player->id }}"
                                         class="btn btn-danger">Delete</button>
                                 </form>
                             </td>

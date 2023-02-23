@@ -38,12 +38,13 @@
                             <td class="text-center">{{ $team->name }}</td>
                             <td class="text-center">{{ $team->coach }}</td>
                             <td class="text-center">{{ $team->category }}</td>
-                            <td>
-                                <form class="d-flex justify-content-center gap-3">
-                                    <input type="hidden" name="team_id" value="{{ $team->id }}">
-                                    <button type="submit" name="edit/team" value="{{ $team->id }}"
+                            <td class="d-flex justify-content-center gap-3">
+                                <form action="/editteamform" method="get">
+                                    <button type="submit" name="team_id" value="{{ $team->id }}"
                                         class="btn btn-primary">Edit</button>
-                                    <button type="submit" name="delete/team" value="{{ $team->id }}"
+                                </form>
+                                <form action="/deleteteamconfirm" method="post">
+                                    <button type="submit" name="team_id" value="{{ $team->id }}"
                                         class="btn btn-danger">Delete</button>
                                 </form>
                             </td>

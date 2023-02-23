@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Models\Player;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -26,11 +27,14 @@ class TeamController extends Controller
      */
     public function newTeam()
     {
+        // The mode of the operation.
+        $mode = 'add';
+
         $nextFreeID = Team::max("id") + 1;
         $team = new Team();
         $team->id = $nextFreeID;
 
-        return view("teams.team_form", compact("team"));
+        return view("teams.team_form", compact("team", "mode"));
     }
 
     /**
@@ -41,6 +45,9 @@ class TeamController extends Controller
      */
     public function addNewTeam(Request $request)
     {
+        // The mode of the operation.
+        $mode = 'add';
+
         // Validate the received fields from the post request.
         $this->validate($request, [
             'name' => 'required|min:2|regex:/^[a-zA-Z\s]+$/',
@@ -68,10 +75,33 @@ class TeamController extends Controller
             if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
                 $error = 'Team already exists!';
             }
-            return view("teams.team_form", compact("error", "team"));
+            return view("teams.team_form", compact("error", "team", "mode"));
         }
 
-        return view("teams.team_form", compact("result", "team"));
+        return view("teams.team_form", compact("result", "team", "mode"));
+    }
+
+    public function editTeamForm(Request $request)
+    {
+        // The mode of the operation.
+        $mode = 'edit';
+        
+        // Get team with ID.
+        $team = Team::find($request->team_id);
+
+        // Get players of this team.
+        $players = $team::with('players')->find($team->id)->players;
+        /* return $players; */
+        return view("teams.team_form", compact("team", "players", "mode"));
+    }
+
+    public function confirmUnsubscribtion(Request $request) {
+        $team = Team::find($request->team_id);
+        $player = Player::find($request->player_id);
+
+        return view("teams.unsubscription_confirm", compact("team", "player"));
     }
 
 }
+
+
