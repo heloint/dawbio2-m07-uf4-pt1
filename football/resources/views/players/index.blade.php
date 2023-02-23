@@ -11,6 +11,14 @@
             @if (empty($players))
                 <p>There are no items!</p>
             @else
+            @if (!empty($error))
+                <h6 class="text-danger my-5">{{ $error }}</h6>
+            @endif
+            @if (!empty($deletionResult))
+                @if ($deletionResult === true)
+                    <h6 class="text-success"> Successfully deleted player "{{ $playerToDelete->name }}" !</h6>
+                @endif
+            @endif
                 <div class="pagination-container">
                     <ul class="pagination justify-content-center" id="paginationLinks">
                         <li class="page-item" id="previousPage">
@@ -42,7 +50,7 @@
                                     <button type="submit" name="player_id" value="{{ $player->id }}"
                                         class="btn btn-primary">Edit</button>
                                 </form>
-                                <form action="/deleteplayerconfirm">
+                                <form action="/confirm-player-deletion">
                                     <button type="submit" name="player_id" value="{{ $player->id }}"
                                         class="btn btn-danger">Delete</button>
                                 </form>

@@ -84,6 +84,37 @@ class PlayerController extends Controller
         return view("players.player_form", compact("result", "player"));
     }
 
+    public function confirmDeletion(Request $request)
+    {
+        $player = Player::findOrFail($request->player_id);
+        return view("players.deletion_confirm", compact("player"));
+    }
+
+    public function deletePlayer(Request $request)
+    {
+        $playerToDelete = Player::findOrFail($request->player_id);
+        $error = null;
+        $deletionResult = null;
+        $players = Player::all();
+
+        try {
+            // Delete entity from DB.
+            $deletionResult = $playerToDelete->delete();
+            // Get update about table.
+            $players = Player::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            $deletionResult = false;
+            $error =
+                "Unexpected error has occured in the database. Please contact with one of our admin.";
+
+            if (strpos($e->getMessage(), "foreign key constraint") !== false) {
+                $error = 'player "' . $playerToDelete->name . '" has players subscribed to it.';
+                $error .= ' First you need to delete all players from it, before eliminating the player!';
+            }
+        }
+
+        return view("players.index", compact("error", "deletionResult", "playerToDelete", "players"));
+    }
 
 
 }
