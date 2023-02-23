@@ -63,9 +63,6 @@ Route::post('/addplayer', [PlayerController::class, 'addNewPlayer']);
 // Route to handle modify/edit operation on existing player entities.
 Route::post('/editplayer', [PlayerController::class, 'editPlayer']);
 
-// Route to handle deletion operation on existing player entities.
-Route::post('/deleteplayerconfirm', [PlayerController::class, 'confirmDeletion']);
-
 // Route to handle deletion confirmation on an existing player entity.
 Route::post('/confirm-player-deletion', [PlayerController::class, 'confirmDeletion']);
 

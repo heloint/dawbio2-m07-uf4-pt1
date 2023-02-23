@@ -8,6 +8,63 @@ use Illuminate\Http\Request;
 class PlayerController extends Controller
 {
     /**
+     * Validate the player form data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return void
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    private function validatePlayerForm(Request $request)
+    {
+        // Validate the received fields from the post request.
+        $this->validate($request, [
+            "first_name" => 'required|min:2|regex:/^[a-zA-Z]+$/',
+            "last_name" => 'required|min:2|regex:/^[a-zA-Z]+$/',
+            "birth_date" =>
+                "required|date|before_or_equal:" .
+                \Carbon\Carbon::now()
+                    ->subYears(18)
+                    ->format("Y-m-d") .
+                "|after_or_equal:" .
+                \Carbon\Carbon::now()
+                    ->subYears(60)
+                    ->format("Y-m-d"),
+            "salary" => "numeric",
+        ]);
+    }
+
+    /**
+     * Create a new Player object from the request data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \App\Models\Player
+     */
+    private function createPlayerFromRequest(Request $request): Player
+    {
+        $player = new Player();
+        // Assign field values to the empty Player object.
+        foreach ($request->all() as $key => $value) {
+            if ($key !== "_token" && $key !== "id") {
+                $player->$key = $value;
+            }
+        }
+        return $player;
+    }
+
+    /**
+     * Convert a date string from the request to an integer in the database's format.
+     *
+     * @param string $requestDate The date string from the request.
+     * @return int The date as an integer in the format Ymd.
+     */
+    private function requestDateToInt(string $requestDate): int
+    {
+        return (int) \implode(
+            \array_reverse(\explode("-", $requestDate))
+        );
+    }
+
+    /**
      * Returns a view that displays all players.
      *
      * @return \Illuminate\View\View
@@ -40,56 +97,55 @@ class PlayerController extends Controller
      */
     public function addNewPlayer(Request $request)
     {
-        // Validate the received fields from the post request.
-        $this->validate($request, [
-            "first_name" => 'required|min:2|regex:/^[a-zA-Z]+$/',
-            "last_name" => 'required|min:2|regex:/^[a-zA-Z]+$/',
-            "birth_date" =>
-                "required|date|before_or_equal:" . \Carbon\Carbon::now()
-                                                    ->subYears(18)
-                                                    ->format("Y-m-d") .
-                "|after_or_equal:" . \Carbon\Carbon::now()
-                                        ->subYears(60)
-                                        ->format("Y-m-d"),
-            "salary" => "numeric",
-        ]);
+        // Initialize empty variables.
+        $error = null;
+        $result = null;
 
-        // Reformat received date so it matches the database's format.
-        $request["birth_date"] = (int) \implode(
-            \array_reverse(\explode("-", $request["birth_date"]))
-        );
+        // Validate form field values.
+        $this->validatePlayerForm($request);
 
-        // Initialize a new empty Player object.
-        $player = new Player();
+        $request['birth_date'] = $this->requestDateToInt($request['birth_date']);
 
-        // Assign field values to the empty Player object.
-        foreach ($request->all() as $key => $value) {
-            if ($key !== '_token') {
-                $player->$key = $value;
-            }
-        }
+        $player = $this->createPlayerFromRequest($request);
 
         // Try to insert the new Player object into the database.
         // If there's a query exception, handle it and return error message.
         try {
             $result = $player->save();
         } catch (\Illuminate\Database\QueryException $e) {
-            $error = 'Unexpected error has occured in the database. Please contact with one of our admin.';
-            if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
-                $error = 'Player already exists!';
+            $error =
+                "Unexpected error has occured in the database. Please contact with one of our admin.";
+            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
+                $error = "Player already exists!";
             }
-            return view("players.player_form", compact("error", "player"));
         }
 
-        return view("players.player_form", compact("result", "player"));
+        return view(
+            "players.player_form",
+            compact("result", "error", "player")
+        );
     }
 
+    /**
+     * Display confirmation page before deleting a player.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\View
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
     public function confirmDeletion(Request $request)
     {
         $player = Player::findOrFail($request->player_id);
+
         return view("players.deletion_confirm", compact("player"));
     }
 
+    /**
+     * Delete the player from the database.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
     public function deletePlayer(Request $request)
     {
         $playerToDelete = Player::findOrFail($request->player_id);
@@ -105,16 +161,12 @@ class PlayerController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             $deletionResult = false;
             $error =
-                "Unexpected error has occured in the database. Please contact with one of our admin.";
-
-            if (strpos($e->getMessage(), "foreign key constraint") !== false) {
-                $error = 'player "' . $playerToDelete->name . '" has players subscribed to it.';
-                $error .= ' First you need to delete all players from it, before eliminating the player!';
-            }
+                "Unexpected error has occurred in the database. Please contact one of our admins.";
         }
 
-        return view("players.index", compact("error", "deletionResult", "playerToDelete", "players"));
+        return view(
+            "players.index",
+            compact("error", "deletionResult", "playerToDelete", "players")
+        );
     }
-
-
 }

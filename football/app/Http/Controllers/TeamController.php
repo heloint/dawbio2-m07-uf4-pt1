@@ -55,6 +55,23 @@ class TeamController extends Controller
     }
 
     /**
+     * Create a new Team object from the request data.
+     *
+     * @param \Illuminate\Http\Request $request The request object.
+     * @return \App\Models\Team The newly created Team object.
+     */
+    private function createTeamFromRequest($request): Team
+    {
+        $team = new Team();
+        foreach ($request->all() as $key => $value) {
+            if ($key !== "_token" && $key !== "team_id") {
+                $team->$key = $value;
+            }
+        }
+        return $team;
+    }
+
+    /**
      * Store a new team in the database.
      *
      * @param \Illuminate\Http\Request $request
@@ -72,22 +89,13 @@ class TeamController extends Controller
         // Validate the received fields from the post request.
         $this->validateTeamFormFields($request);
 
-        // Initialize a new Team object.
-        $team = new Team();
-
-        // Assign field values to the empty Team object.
-        foreach ($request->all() as $key => $value) {
-            if ($key !== "_token" && $key !== "team_id") {
-                $team->$key = $value;
-            }
-        }
+        $team = $this->createTeamFromRequest($request);
 
         // Try to insert the new Team object into the database.
         // If there's a query exception, handle it and return error message.
         try {
             $result = $team->save();
         } catch (\Illuminate\Database\QueryException $e) {
-
             // Assign the "team_id" obtained from the form,
             // to display all the data of the failed form.
             $team->id = $request->team_id;
@@ -98,7 +106,10 @@ class TeamController extends Controller
             }
         }
 
-        return view("teams.team_form", compact("result", "error", "team", "mode"));
+        return view(
+            "teams.team_form",
+            compact("result", "error", "team", "mode")
+        );
     }
 
     /**
@@ -232,12 +243,26 @@ class TeamController extends Controller
         );
     }
 
+    /**
+     * Display the confirmation page for deleting a team.
+     *
+     * @param \Illuminate\Http\Request $request The request object containing the team ID.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View The deletion confirmation view.
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the team with the given ID is not found.
+     */
     public function confirmDeletion(Request $request)
     {
         $team = Team::findOrFail($request->team_id);
         return view("teams.deletion_confirm", compact("team"));
     }
 
+    /**
+     * Delete a team from the database.
+     *
+     * @param \Illuminate\Http\Request $request The request object containing the team ID.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View The view to redirect to after deleting the team.
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the team with the given ID is not found.
+     */
     public function deleteTeam(Request $request)
     {
         $teamToDelete = Team::findOrFail($request->team_id);
@@ -256,11 +281,18 @@ class TeamController extends Controller
                 "Unexpected error has occured in the database. Please contact with one of our admin.";
 
             if (strpos($e->getMessage(), "foreign key constraint") !== false) {
-                $error = 'Team "' . $teamToDelete->name . '" has players subscribed to it.';
-                $error .= ' First you need to delete all players from it, before eliminating the team!';
+                $error =
+                    'Team "' .
+                    $teamToDelete->name .
+                    '" has players subscribed to it.';
+                $error .=
+                    " First you need to delete all players from it, before eliminating the team!";
             }
         }
 
-        return view("teams.index", compact("error", "deletionResult", "teamToDelete", "teams"));
+        return view(
+            "teams.index",
+            compact("error", "deletionResult", "teamToDelete", "teams")
+        );
     }
 }

@@ -18,7 +18,7 @@
 
                 @if (!empty($result))
                     @if ($result === true)
-                        <p class="text-success text-lg">Succesfully added!</p>
+                        <p class="text-success text-lg">Succesfully added new team!</p>
                     @else
                         <p class="text-danger text-lg">Internal error has occured, please contact with one of the admins..
                         </p>

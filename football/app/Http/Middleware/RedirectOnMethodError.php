@@ -23,7 +23,7 @@ class RedirectOnMethodError
         // Check if the request method is POST and an error occurred.
         if ( 500 > $response->getStatusCode() && $response->getStatusCode() >= 400) {
             // Redirect to the most possible previous page which doesn't give error code.
-            return back();
+            return redirect('/');
         }
         return $response;
     }
