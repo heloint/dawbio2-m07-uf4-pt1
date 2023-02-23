@@ -60,7 +60,7 @@ class TeamController extends Controller
 
         // Assign field values to the empty Team object.
         foreach ($request->all() as $key => $value) {
-            if ($key !== "_token") {
+            if ($key !== "_token" && $key !== "team_id") {
                 $team->$key = $value;
             }
         }
@@ -147,4 +147,44 @@ public function unsubscribeUser(Request $request)
 
     return view('teams.team_form', compact('team', 'unsubscribedPlayer', 'players', 'mode', 'unsubscriptionResult'));
 }
+
+public function modifyTeam(Request $request) {
+    // The mode of the operation.
+    $mode = "edit";
+
+    // Validate the received fields from the post request.
+    $this->validate($request, [
+        "name" => 'required|min:2|regex:/^[a-zA-Z\s]+$/',
+        "coach" => 'required|min:2|regex:/^[a-zA-Z\s]+$/',
+        "category" => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
+        "budget" => "numeric",
+    ]);
+
+    // Retrieve the team and its players.
+    $team = Team::findOrFail($request->team_id);
+    $players = $team->players;
+
+    // Re-assign field values to the found team entity.
+    foreach ($request->all() as $key => $value) {
+        if ($key !== "_token" && $key !== "team_id") {
+            $team->$key = $value;
+        }
+    }
+
+    // Try to update the modified team object in the DB.
+    // If there's a query exception, handle it and return error message.
+    try {
+        $result = $team->save();
+    } catch (\Illuminate\Database\QueryException $e) {
+        $error = $e->getMessage();
+            /* "Unexpected error has occured in the database. Please contact with one of our admin."; */
+        if (strpos($e->getMessage(), "Duplicate entry") !== false) {
+            $error = "Team already exists!";
+        }
+        return view('teams.team_form', compact('error', 'team', 'players', 'mode'));
+    }
+
+    return view('teams.team_form', compact('result', 'team', 'players', 'mode'));
+}
+
 }

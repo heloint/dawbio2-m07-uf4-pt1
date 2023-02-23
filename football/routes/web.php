@@ -40,7 +40,8 @@ Route::post('/unsubscribe-confirmation', [TeamController::class, 'confirmUnsubsc
 // Route to handle deletion operation on existing player entities.
 Route::post('/unsubscribe-user', [TeamController::class, 'unsubscribeUser']);
 
-Route::get('/modifyteam', [TeamController::class, 'modifyTeam']);
+// Route to handle update operation on existing team entities.
+Route::post('/modify-team', [TeamController::class, 'modifyTeam']);
 
 // Route to handle deletion operation on existing player entities.
 Route::post('/deleteteamconfirm', [TeamController::class, 'confirmDeletion']);

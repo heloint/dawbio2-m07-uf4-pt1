@@ -10,15 +10,23 @@
                     <p class="text-danger text-lg">{{ $error }}</p>
                 @endif
 
+                @if (!empty($result))
+                    @if ($result === true)
+                        <p class="text-success text-lg">Succesfully added!</p>
+                    @else
+                        <p class="text-danger text-lg">Internal error has occured, please retry later.</p>
+                    @endif
+                @endif
                 @if ($mode === 'add')
                     <form action="/addteam" method="post">
                     @elseif($mode === 'edit')
-                        <form action="/modifyTeam" method="post">
+                        <form action="/modify-team" method="post">
                 @endif
                 @csrf
                 <div class="mb-3">
                     <label for="id" class="form-label">ID</label>
-                    <input type="text" id="id" class="form-control" value="{{ $team->id }}" disabled>
+                    <input type="text" id="id" name="team_id" class="form-control" value="{{ $team->id }}"
+                        readonly>
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -70,7 +78,8 @@
             <h3>Players</h3>
             <div class="row">
                 <div class="my-3">
-                    <button class="btn btn-primary"><a class="no-style text-white" href="/newplayer">Add player</a></button>
+                    <button class="btn btn-primary"><a class="no-style text-white" href="/subscribe-player">Subscribe
+                            player</a></button>
                 </div>
                 @if (empty($players))
                     <p class="text-danger">There are no players to display!</p>
