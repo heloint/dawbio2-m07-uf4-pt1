@@ -13,7 +13,7 @@
             <p class="text-danger text-lg">Internal error has occured, please retry later.</p> 
           @endif
       @endif
-      <form action="/addplayer" method="post">
+      <form action="/player/add" method="post">
         @csrf
         <div class="mb-3">
           <label for="id" class="form-label">ID</label>
@@ -48,7 +48,7 @@
           @endif
         </div>
         <button type="submit" class="btn btn-primary">Add Player</button>
-        <button class="btn btn-secondary"><a class="no-style text-white" href="/manageplayers">Cancel</a></button>
+        <button class="btn btn-secondary"><a class="no-style text-white" href="/manage-players">Cancel</a></button>
       </form>
     </div>
   </div>

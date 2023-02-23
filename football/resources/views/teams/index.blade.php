@@ -6,7 +6,7 @@
         <h3>Manage Teams</h3>
         <div class="row">
             <div class="my-3">
-                <button class="btn btn-primary"><a class="no-style text-white" href="/newteam">Add team</a></button>
+                <button class="btn btn-primary"><a class="no-style text-white" href="/team/new">Add team</a></button>
             </div>
             @if (empty($teams))
                 <h6 class="text-danger my-5">There are no items!</h6>
@@ -47,11 +47,11 @@
                             <td class="text-center">{{ $team->coach }}</td>
                             <td class="text-center">{{ $team->category }}</td>
                             <td class="d-flex justify-content-center gap-3">
-                                <form action="/editteamform" method="get">
+                                <form action="/team/edit-form" method="get">
                                     <button type="submit" name="team_id" value="{{ $team->id }}"
                                         class="btn btn-primary">Edit</button>
                                 </form>
-                                <form action="/confirm-team-deletion" method="post">
+                                <form action="/team/confirm-deletion" method="post">
                                     @csrf
                                     <button type="submit" name="team_id" value="{{ $team->id }}"
                                         class="btn btn-danger">Delete</button>

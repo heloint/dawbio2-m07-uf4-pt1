@@ -25,9 +25,9 @@
                     @endif
                 @endif
                 @if ($mode === 'add')
-                    <form action="/addteam" method="post">
+                    <form action="/team/add" method="post">
                     @elseif($mode === 'edit')
-                        <form action="/modify-team" method="post">
+                        <form action="/team/modify" method="post">
                 @endif
                 @csrf
                 <div class="mb-3">
@@ -72,7 +72,7 @@
                 @elseif($mode === 'edit')
                     <button type="submit" class="btn btn-primary">Edit Team</button>
                 @endif
-                <button class="btn btn-secondary"><a class="no-style text-white" href="/manageteams">Cancel</a></button>
+                <button class="btn btn-secondary"><a class="no-style text-white" href="/manage-teams">Cancel</a></button>
                 </form>
             </div>
         </div>
@@ -123,7 +123,7 @@
                                 <td class="text-center">{{ $player->first_name }}</td>
                                 <td class="text-center">{{ $player->last_name }}</td>
                                 <td class="d-flex justify-content-center gap-3">
-                                    <form action="/unsubscribe-confirmation" method="post">
+                                    <form action="/player/unsubscribe-confirmation" method="post">
                                         @csrf
                                         <input type="hidden" name="team_id" value="{{ $team->id }}">
                                         <button type="submit" name="player_id" value="{{ $player->id }}"

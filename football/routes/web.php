@@ -23,48 +23,48 @@ Route::get('/', function () {
 // TEAM RELATED ROUTES
 // ================
 // Route to display the team management dashboard.
-Route::get('/manageteams', [TeamController::class, 'index']);
+Route::get('/manage-teams', [TeamController::class, 'index']);
 
 // Route to display the form for creating a new team.
-Route::get('/newteam', [TeamController::class, 'newTeam']);
+Route::get('/team/new', [TeamController::class, 'newTeam']);
 
 // Route to handle the submission of the new team form.
-Route::post('/addteam', [TeamController::class, 'addNewTeam']);
+Route::post('/team/add', [TeamController::class, 'addNewTeam']);
 
 // Route to bring up the edition form for the requested team register.
-Route::get('/editteamform', [TeamController::class, 'editTeamForm']);
+Route::get('/team/edit-form', [TeamController::class, 'editTeamForm']);
 
 // Route to handle deletion operation on existing player entities.
-Route::post('/unsubscribe-confirmation', [TeamController::class, 'confirmUnsubscribtion']);
+Route::post('/team/unsubscribe-confirmation', [TeamController::class, 'confirmUnsubscribtion']);
 
 // Route to handle deletion operation on existing player entities.
-Route::post('/unsubscribe-user', [TeamController::class, 'unsubscribeUser']);
+Route::post('/team/unsubscribe-user', [TeamController::class, 'unsubscribeUser']);
 
 // Route to handle update operation on existing team entities.
-Route::post('/modify-team', [TeamController::class, 'modifyTeam']);
+Route::post('/team/modify', [TeamController::class, 'modifyTeam']);
 
 // Route to handle deletion confirmation on an existing team entity.
-Route::post('/confirm-team-deletion', [TeamController::class, 'confirmDeletion']);
+Route::post('/team/confirm-deletion', [TeamController::class, 'confirmDeletion']);
 
 // Route to handle deletion confirmation on an existing team entity.
-Route::post('/delete-team', [TeamController::class, 'deleteTeam']);
+Route::post('/team/delete', [TeamController::class, 'deleteTeam']);
 
 // PLAYER RELATED ROUTES
 // ================
 // Route to display the player management dashboard.
-Route::get('/manageplayers', [PlayerController::class, 'index']);
+Route::get('/manage-players', [PlayerController::class, 'index']);
 
 // Route to display the form for creating a new player.
-Route::get('/newplayer', [PlayerController::class, 'newPlayer']);
+Route::get('/player/new', [PlayerController::class, 'newPlayer']);
 
 // Route to handle the submission of the new player form.
-Route::post('/addplayer', [PlayerController::class, 'addNewPlayer']);
+Route::post('/player/add', [PlayerController::class, 'addNewPlayer']);
 
 // Route to handle modify/edit operation on existing player entities.
-Route::post('/editplayer', [PlayerController::class, 'editPlayer']);
+Route::post('/player/edit', [PlayerController::class, 'editPlayer']);
 
 // Route to handle deletion confirmation on an existing player entity.
-Route::post('/confirm-player-deletion', [PlayerController::class, 'confirmDeletion']);
+Route::post('/player/confirm-deletion', [PlayerController::class, 'confirmDeletion']);
 
 // Route to handle deletion confirmation on an existing player entity.
-Route::post('/delete-player', [PlayerController::class, 'deletePlayer']);
+Route::post('/player/delete', [PlayerController::class, 'deletePlayer']);

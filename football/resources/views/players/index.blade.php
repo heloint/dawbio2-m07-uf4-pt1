@@ -6,7 +6,7 @@
         <h3>Manage Players</h3>
         <div class="row">
             <div class="my-3">
-                <button class="btn btn-primary"><a class="no-style text-white" href="/newplayer">Add player</a></button>
+                <button class="btn btn-primary"><a class="no-style text-white" href="/player/new">Add player</a></button>
             </div>
             @if (empty($players))
                 <p>There are no items!</p>
@@ -46,11 +46,11 @@
                             <td class="text-center">{{ $player->last_name }}</td>
                             <td class="text-center">{{ $player->birth_date }}</td>
                             <td class="d-flex justify-content-center gap-3">
-                                <form action="/editplayer">
+                                <form action="/player/edit">
                                     <button type="submit" name="player_id" value="{{ $player->id }}"
                                         class="btn btn-primary">Edit</button>
                                 </form>
-                                <form action="/confirm-player-deletion" method="post">
+                                <form action="/player/confirm-deletion" method="post">
                                     @csrf
                                     <button type="submit" name="player_id" value="{{ $player->id }}"
                                         class="btn btn-danger">Delete</button>
