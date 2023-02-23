@@ -31,7 +31,7 @@
 
 # 4. FRONT END!
 ## HEADER
-- With a banner of football or something.
+- With a banner of football or something. => DONE
 
 ## NAVIGATION BAR
 
@@ -52,22 +52,22 @@
         · Coach => DONE
         · Team category => DONE
         · Actions (Buttons) => DONE
-            - Edit:
-                - Form with:
-                    · id (disabled, autoincrement) -> In the edit form must contain the
+            - Edit: => DONE
+                - Form with: => DONE
+                    · id (disabled, autoincrement) -> In the edit form must contain the => DONE
                                                       ID of the team which we are editing.
-                    · name (string, unique)
-                    · coach (string)
-                    · category (string)
-                    · budget (double)
-                    · Two buttons:
-                        - "Update" / "Modify"
-                        - "Cancel" -> Brings back to the Manage teams menu option.
-                - "Subscribe player" button which will redirect to the "Enroll player" view.
-                - Data table under the form with all the subscribed players of the
+                    · name (string, unique) => DONE
+                    · coach (string) => DONE
+                    · category (string) => DONE
+                    · budget (double) => DONE
+                    · Two buttons: => DONE
+                        - "Update" / "Modify" => DONE
+                        - "Cancel" -> Brings back to the Manage teams menu option. => DONE
+                - "Subscribe player" button which will redirect to the "Enroll player" view.=> DONE, !!!!!!! BUT MISSING THE FUNCTIONALITY!!!!!!!!
+                - Data table under the form with all the subscribed players of the => DONE
                   team and the number of displayed players:
-                    · Player name
-                    · Button to "unsubscribe"
+                    · Player name => DONE
+                    · Button to "unsubscribe" => DONE
             - Delete:
                 (Must redirect to a confirmation page. If the team has players,
                 the action won't let the deletion, and in either case will inform

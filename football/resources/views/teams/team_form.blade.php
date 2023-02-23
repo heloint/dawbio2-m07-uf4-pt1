@@ -5,7 +5,13 @@
     <div class="container my-5">
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
-                <h3 class="mb-5">Add new team</h3>
+
+                @if ($mode === 'add')
+                    <h3 class="mb-5">Add new team</h3>
+                @elseif($mode === 'edit')
+                    <h3 class="mb-5">Edit team</h3>
+                @endif
+
                 @if (!empty($error))
                     <p class="text-danger text-lg">{{ $error }}</p>
                 @endif
@@ -14,7 +20,8 @@
                     @if ($result === true)
                         <p class="text-success text-lg">Succesfully added!</p>
                     @else
-                        <p class="text-danger text-lg">Internal error has occured, please retry later.</p>
+                        <p class="text-danger text-lg">Internal error has occured, please contact with one of the admins..
+                        </p>
                     @endif
                 @endif
                 @if ($mode === 'add')
@@ -30,15 +37,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" id="name" name="name" class="form-control" value="{{ $team->name }}"
-                        required>
+                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $team->name)}}" required>
                     @if ($errors->has('name'))
                         <p class="text-danger">{{ $errors->first('name') }}</p>
                     @endif
                 </div>
                 <div class="mb-3">
                     <label for="coach" class="form-label">Coach</label>
-                    <input type="text" id="coach" name="coach" class="form-control" value="{{ $team->coach }}"
+                    <input type="text" id="coach" name="coach" class="form-control" value="{{ old('coach', $team->coach) }}"
                         required>
                     @if ($errors->has('coach'))
                         <p class="text-danger">{{ $errors->first('coach') }}</p>
@@ -46,7 +52,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <input type="text" id="category" name="category" class="form-control" value="{{ $team->category }}"
+                    <input type="text" id="category" name="category" class="form-control" value="{{ old('category', $team->category) }}"
                         required>
                     @if ($errors->has('category'))
                         <p class="text-danger">{{ $errors->first('category') }}</p>
@@ -55,7 +61,7 @@
                 <div class="mb-3">
                     <label for="budget" class="form-label">Budget</label>
                     <input type="number" id="budget" name="budget" class="form-control"
-                        value="{{ $team->budget }}"required>
+                        value="{{ old('budget', $team->budget) }}"required>
                     @if ($errors->has('budget'))
                         <p class="text-danger">{{ $errors->first('budget') }}</p>
                     @endif
