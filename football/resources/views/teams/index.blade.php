@@ -9,8 +9,16 @@
                 <button class="btn btn-primary"><a class="no-style text-white" href="/newteam">Add team</a></button>
             </div>
             @if (empty($teams))
-                <p>There are no items!</p>
+                <h6 class="text-danger my-5">There are no items!</h6>
             @else
+            @if (!empty($error))
+                <h6 class="text-danger my-5">{{ $error }}</h6>
+            @endif
+            @if (!empty($deletionResult))
+                @if ($deletionResult === true)
+                    <h6 class="text-success"> Successfully deleted team "{{ $teamToDelete->name }}" !</h6>
+                @endif
+            @endif
             <div class="pagination-container">
                 <ul class="pagination justify-content-center" id="paginationLinks">
                     <li class="page-item" id="previousPage">
@@ -43,7 +51,8 @@
                                     <button type="submit" name="team_id" value="{{ $team->id }}"
                                         class="btn btn-primary">Edit</button>
                                 </form>
-                                <form action="/deleteteamconfirm" method="post">
+                                <form action="/confirm-team-deletion" method="post">
+                                    @csrf
                                     <button type="submit" name="team_id" value="{{ $team->id }}"
                                         class="btn btn-danger">Delete</button>
                                 </form>

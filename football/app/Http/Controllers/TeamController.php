@@ -231,4 +231,36 @@ class TeamController extends Controller
             compact("result", "error", "team", "players", "mode")
         );
     }
+
+    public function confirmDeletion(Request $request)
+    {
+        $team = Team::findOrFail($request->team_id);
+        return view("teams.deletion_confirm", compact("team"));
+    }
+
+    public function deleteTeam(Request $request)
+    {
+        $teamToDelete = Team::findOrFail($request->team_id);
+        $error = null;
+        $deletionResult = null;
+        $teams = Team::all();
+
+        try {
+            // Delete entity from DB.
+            $deletionResult = $teamToDelete->delete();
+            // Get update about table.
+            $teams = Team::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            $deletionResult = false;
+            $error =
+                "Unexpected error has occured in the database. Please contact with one of our admin.";
+
+            if (strpos($e->getMessage(), "foreign key constraint") !== false) {
+                $error = 'Team "' . $teamToDelete->name . '" has players subscribed to it.';
+                $error .= ' First you need to delete all players from it, before eliminating the team!';
+            }
+        }
+
+        return view("teams.index", compact("error", "deletionResult", "teamToDelete", "teams"));
+    }
 }
