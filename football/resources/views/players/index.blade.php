@@ -40,7 +40,7 @@
                         <tr class="table-primary">
                             <th class="text-center" scope="col">First name</th>
                             <th class="text-center" scope="col">Last name</th>
-                            <th class="text-center" scope="col">Date of birth</th>
+                            <th class="text-center" scope="col">Year of birth</th>
                             <th class="text-center" scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -50,7 +50,7 @@
                         <tr class="table-light">
                             <td class="text-center">{{ $player->first_name }}</td>
                             <td class="text-center">{{ $player->last_name }}</td>
-                            <td class="text-center">{{ $player->birth_date }}</td>
+                            <td class="text-center">{{ $player->birth_year }}</td>
                             <td class="d-flex justify-content-center gap-3">
                                 <form action="/player/edit-form">
                                     @csrf

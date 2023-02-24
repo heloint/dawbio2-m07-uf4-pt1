@@ -19,8 +19,8 @@ class TeamController extends Controller
     {
         // Validate the received fields from the post request.
         $this->validate($request, [
-            "name" => 'required|min:2|regex:/^[a-zA-Z0-9\.\s]+$/',
-            "coach" => 'required|min:2|regex:/^[a-zA-Z\.\s]+$/',
+            "name" => "required|min:2|regex:/^[\pL'\s]+$/",
+            "coach" => "required|min:2|regex:/^[\pL'\s]+$/",
             "category" => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
             "budget" => "numeric",
         ]);
@@ -120,6 +120,9 @@ class TeamController extends Controller
      */
     public function editTeamForm(Request $request)
     {
+        /* if ($request->isMethod('get')) {
+
+        } */
         // Determine the mode of the operation.
         $mode = "edit";
 
@@ -128,6 +131,59 @@ class TeamController extends Controller
         $players = $team->players;
 
         return view("teams.team_form", compact("team", "players", "mode"));
+    }
+
+    /**
+     * Modify a team in the database based on the received form fields.
+     *
+     * @param  \Illuminate\Http\Request  $request The request object containing the form fields.
+     * @return \Illuminate\View\View A view that displays the outcome of the modification.
+     */
+    public function modifyTeam(Request $request)
+    {
+        // The mode of the operation.
+        $mode = "edit";
+
+        // Initialize the empty variables of the outcomes.
+        $error = null;
+        $result = null;
+
+        $this->validateTeamFormFields($request);
+
+        // Retrieve the team and its players.
+        $team = Team::findOrFail($request->team_id);
+        $players = $team->players;
+
+        // Re-assign field values to the found team entity.
+        foreach ($request->all() as $key => $value) {
+            if ($key !== "_token" && $key !== "team_id") {
+                $team->$key = $value;
+            }
+        }
+
+        // Try to update the modified team object in the DB.
+        // If there's a query exception, handle it and return error message.
+        try {
+            // Save the modifications.
+            $result = $team->save();
+
+            // Get updated data about this team.
+            $team = Team::findOrFail($request->team_id);
+        } catch (\Illuminate\Database\QueryException $e) {
+            $error = $e->getMessage();
+            /* "Unexpected error has occured in the database. Please contact with one of our admin."; */
+            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
+                $error = "Team with this name already exists!";
+            }
+        }
+
+        redirect("/player/edit-form")->with(
+            compact("result", "error", "team", "players", "mode")
+        );
+        return view(
+            "teams.team_form",
+            compact("result", "error", "team", "players", "mode")
+        );
     }
 
     /**
@@ -238,55 +294,6 @@ class TeamController extends Controller
         );
     }
 
-    /**
-     * Modify a team in the database based on the received form fields.
-     *
-     * @param  \Illuminate\Http\Request  $request The request object containing the form fields.
-     * @return \Illuminate\View\View A view that displays the outcome of the modification.
-     */
-    public function modifyTeam(Request $request)
-    {
-        // The mode of the operation.
-        $mode = "edit";
-
-        // Initialize the empty variables of the outcomes.
-        $error = null;
-        $result = null;
-
-        $this->validateTeamFormFields($request);
-
-        // Retrieve the team and its players.
-        $team = Team::findOrFail($request->team_id);
-        $players = $team->players;
-
-        // Re-assign field values to the found team entity.
-        foreach ($request->all() as $key => $value) {
-            if ($key !== "_token" && $key !== "team_id") {
-                $team->$key = $value;
-            }
-        }
-
-        // Try to update the modified team object in the DB.
-        // If there's a query exception, handle it and return error message.
-        try {
-            // Save the modifications.
-            $result = $team->save();
-
-            // Get updated data about this team.
-            $team = Team::findOrFail($request->team_id);
-        } catch (\Illuminate\Database\QueryException $e) {
-            $error = $e->getMessage();
-            /* "Unexpected error has occured in the database. Please contact with one of our admin."; */
-            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
-                $error = "Team with this name already exists!";
-            }
-        }
-
-        return view(
-            "teams.team_form",
-            compact("result", "error", "team", "players", "mode")
-        );
-    }
 
     /**
      * Display the confirmation page for deleting a team.

@@ -30,7 +30,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name</label>
-                    <input type="text" name="first_name" id="first_name" value="{{ $player->first_name }}"
+                    <input type="text" name="first_name" id="first_name" value="{{ old('first_name', $player->first_name) }}"
                         class="form-control" required>
                     @if ($errors->has('first_name'))
                         <p class="text-danger">{{ $errors->first('first_name') }}</p>
@@ -38,33 +38,23 @@
                 </div>
                 <div class="mb-3">
                     <label for="lastName" class="form-label">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" value="{{ $player->last_name }}"
+                    <input type="text" id="last_name" name="last_name" value="{{ old('last_name', $player->last_name) }}"
                         class="form-control" required>
                     @if ($errors->has('last_name'))
                         <p class="text-danger">{{ $errors->first('last_name') }}</p>
                     @endif
                 </div>
                 <div class="mb-3">
-                    <label for="dob" class="form-label">Date of Birth</label>
-                    @if ($player->birth_date)
-                        <input type="date" id="birth_date" name="birth_date" value="{{ $player->birth_date }}"
+                    <label for="dob" class="form-label">Year of birth</label>
+                        <input type="number" id="birth_year" name="birth_year" value="{{ old('birth_year', $player->birth_year) }}"
                             class="form-control" required>
-                    @else
-                        <input type="date" id="birth_date" name="birth_date" value="<?php
-                        $currentDate = new DateTime();
-                        $interval = new DateInterval('P18Y');
-                        $eighteenYearsAgo = $currentDate->sub($interval);
-                        echo $eighteenYearsAgo->format('Y-m-d');
-                        ?>"
-                            class="form-control" required>
-                    @endif
-                    @if ($errors->has('birth_date'))
-                        <p class="text-danger">{{ $errors->first('birth_date') }}</p>
+                    @if ($errors->has('birth_year'))
+                        <p class="text-danger">{{ $errors->first('birth_year') }}</p>
                     @endif
                 </div>
                 <div class="mb-3">
                     <label for="salary" class="form-label">Salary</label>
-                    <input type="number" id="salary" name="salary" step="0.01" value="{{ $player->salary }}"
+                    <input type="number" id="salary" name="salary" step="0.01" value="{{ old('salary', $player->salary) }}"
                         class="form-control" required>
                     @if ($errors->has('salary'))
                         <p class="text-danger">{{ $errors->first('salary') }}</p>

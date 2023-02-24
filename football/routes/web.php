@@ -33,6 +33,7 @@ Route::post('/team/add', [TeamController::class, 'addNewTeam']);
 
 // Route to bring up the edition form for the requested team register.
 Route::get('/team/edit-form', [TeamController::class, 'editTeamForm']);
+/* Route::match(['get', 'post'], '/team/edit-form', [TeamController::class, 'editTeamForm']); */
 
 // Route to handle deletion operation on existing player entities.
 Route::post('/team/unsubscribe-confirmation', [TeamController::class, 'confirmUnsubscription']);
@@ -74,6 +75,7 @@ Route::get('/player/modify', [PlayerController::class, 'modifyPlayer']);
 
 // Route to bring up the edition form for the requested player register.
 Route::get('/player/edit-form', [PlayerController::class, 'editPlayerForm']);
+
 
 // Route to handle deletion confirmation on an existing player entity.
 Route::post('/player/confirm-deletion', [PlayerController::class, 'confirmDeletion']);

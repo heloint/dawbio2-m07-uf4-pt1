@@ -18,18 +18,10 @@ class PlayerController extends Controller
     {
         // Validate the received fields from the post request.
         $this->validate($request, [
-            "first_name" => 'required|min:2|regex:/^[a-zA-Z]+$/',
-            "last_name" => 'required|min:2|regex:/^[a-zA-Z]+$/',
-            "birth_date" =>
-                "required|date|before_or_equal:" .
-                \Carbon\Carbon::now()
-                    ->subYears(18)
-                    ->format("Y-m-d") .
-                "|after_or_equal:" .
-                \Carbon\Carbon::now()
-                    ->subYears(60)
-                    ->format("Y-m-d"),
-            "salary" => "numeric",
+            "first_name" => "required|min:2|regex:/^[\pL'\s]+$/",
+            "last_name" => "required|min:2|regex:/^[\pL'\s]+$/",
+            "birth_year" => sprintf("required|numeric|min:%d|max:%d", (int)date('Y')-60, (int)date('Y')-18),
+            "salary" => "numeric|min:0",
         ]);
     }
 
@@ -49,34 +41,6 @@ class PlayerController extends Controller
             }
         }
         return $player;
-    }
-
-    /**
-     * Convert a date string from the request to an integer in the database's format.
-     *
-     * @param string $requestDate The date string from the request.
-     * @return int The date as an integer in the format Ymd.
-     */
-    private function requestDateToInt(string $requestDate): int
-    {
-        // Split up the string
-        $arr = \explode("-", $requestDate);
-        if (\strlen($arr[0]) == 1) {
-            $arr[0] = "0{$arr[0]}";
-        }
-
-        return (int) \implode(
-            \array_reverse($arr)
-        );
-    }
-
-    private function dbDateToDOMDate(int $dbDate): string
-    {
-        $dbDateAsStr = (string)$dbDate;
-        $day = \substr($dbDateAsStr, 0, 2);
-        $month = \substr($dbDateAsStr,2,2);
-        $year= \substr($dbDateAsStr,4);
-        return sprintf("%s-%s-%s", $year, $month, $day);
     }
 
     /**
@@ -119,9 +83,7 @@ class PlayerController extends Controller
         $result = null;
 
         // Validate form field values.
-        /* $this->validatePlayerForm($request); */
-
-        $request['birth_date'] = $this->requestDateToInt($request['birth_date']);
+        $this->validatePlayerForm($request);
 
         $player = $this->createPlayerFromRequest($request);
 
@@ -229,8 +191,6 @@ class PlayerController extends Controller
                 $player->$key = $value;
             }
         }
-        // Format the date correspondingly to the DB format.
-        $player->birth_date = $this->requestDateToInt($player->birth_date);
 
         // Try to update the modified team object in the DB.
         // If there's a query exception, handle it and return error message.
@@ -239,9 +199,6 @@ class PlayerController extends Controller
             $result = $player->save();
             // Get updated data about this team.
             $player = Player::findOrFail($request->player_id);
-            // Convert player's birth_date back to the DOM date format.
-            /* $player->birth_date = $this->dbDateToDOMDate($player->birth_date); */
-            return $player;
         } catch (\Illuminate\Database\QueryException $e) {
             $result = false;
             $error = $e->getMessage();

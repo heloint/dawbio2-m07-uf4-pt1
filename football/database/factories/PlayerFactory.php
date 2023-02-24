@@ -16,17 +16,10 @@ class PlayerFactory extends Factory
      */
     public function definition(): array
     {
-        $fakeDate = $this->faker->dateTimeBetween($startDate = '-40 years', $endDate = '-18years');
-        $formatedFakeDate = $fakeDate->format('dmY');
-
-        if (\strlen($formatedFakeDate) !== 8) {
-            $formatedFakeDate = "0{$formatedFakeDate}";
-        }
-
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'birth_date' => $formatedFakeDate,
+            'birth_year' => $this->faker->numberBetween($min = (Date('Y')-60), $max = (Date('Y')-18)),
             'salary' => $this->faker->randomFloat(2, 5000, 8000)
         ];
     }
