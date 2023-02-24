@@ -4,7 +4,7 @@ $(document).ready(function () {
     let currentPageNumber = 1;
 
     // Get the table and tbody elements
-    const table = $("#paginated-table");
+    const table = $(".paginated-table");
     const tbody = table.find("tbody");
 
     // Get the number of rows in the table

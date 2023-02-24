@@ -25,5 +25,6 @@
     @show
 
     <script src="{{ asset('js/pagination.js') }}"></script>
+    <script src="{{ asset('js/table-filter.js') }}"></script>
 </body>
 </html>

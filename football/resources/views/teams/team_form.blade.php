@@ -103,6 +103,12 @@
                             <h6 class="text-danger my-5">{{ $error }}</h6>
                         @endif
                     @endif
+
+                    <div class="input-group mb-3 w-50 d-flex gap-1">
+                        <input id="search-input" type="text" class="form-control" placeholder="Search...">
+                        <button id="search-button" class="btn btn-primary" type="button">Search</button>
+                    </div>
+
                     <div class="pagination-container">
                         <ul class="pagination justify-content-center" id="paginationLinks">
                             <li class="page-item" id="previousPage">
@@ -113,7 +119,7 @@
                             </li>
                         </ul>
                     </div>
-                    <table id="paginated-table" class="table table-hover">
+                    <table class="table table-hover filterable-table paginated-table">
                         <thead>
                             <tr class="table-primary">
                                 <th class="text-center" scope="col">First name</th>
