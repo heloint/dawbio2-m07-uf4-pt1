@@ -70,7 +70,10 @@ Route::get('/player/new', [PlayerController::class, 'newPlayer']);
 Route::post('/player/add', [PlayerController::class, 'addNewPlayer']);
 
 // Route to handle modify/edit operation on existing player entities.
-Route::post('/player/edit', [PlayerController::class, 'editPlayer']);
+Route::get('/player/modify', [PlayerController::class, 'modifyPlayer']);
+
+// Route to bring up the edition form for the requested player register.
+Route::get('/player/edit-form', [PlayerController::class, 'editPlayerForm']);
 
 // Route to handle deletion confirmation on an existing player entity.
 Route::post('/player/confirm-deletion', [PlayerController::class, 'confirmDeletion']);

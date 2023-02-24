@@ -18,7 +18,11 @@
 
                 @if (!empty($result))
                     @if ($result === true)
-                        <p class="text-success text-lg">Succesfully added new team!</p>
+                        @if ($mode === 'add')
+                            <p class="text-success text-lg">Succesfully added new team!</p>
+                        @elseif($mode === 'edit')
+                            <p class="text-success text-lg">Succesfully modified team!</p>
+                        @endif
                     @else
                         <p class="text-danger text-lg">Internal error has occured, please contact with one of the admins..
                         </p>

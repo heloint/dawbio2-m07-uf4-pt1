@@ -26,14 +26,13 @@
 
 ---
 
-# 3. Create controllers for each of the main menu option (Each main menu option corresponds to a model!)
-- TODO: Describe it.
+# 3. Create controllers for each of the main menu option (Each main menu option corresponds to a model!) => DONE
 
 # 4. FRONT END!
-## HEADER
+## HEADER => DONE
 - With a banner of football or something. => DONE
 
-## NAVIGATION BAR
+## NAVIGATION BAR => DONE
 
 - Home
 - Manage Teams
@@ -73,12 +72,12 @@
                 the action won't let the deletion, and in either case will inform
                 the user about the outcome and the cause of it ...)
 
-    - FROM "Subscribe player" -> Enroll player:
-        Data table with the followings:
-            · First name
-            · Last name
-            · Team subscribed to
-            · Button to subscribe:
+    - FROM "Subscribe player" -> Enroll player: => DONE
+        Data table with the followings: => DONE
+            · First name => DONE
+            · Last name => DONE
+            · Team subscribed to => DONE
+            · Button to subscribe: => DONE
                 (If the user is already subscribed to a team, then ask for confirmation to
                 unsubscribe from that team and subscribe to the requested new one.
                 MUST MAKE SURE THAT ALL THE OPERATIONS ARE DONE IN THE CHAIN!!!)
@@ -86,25 +85,25 @@
 ---
 
 - Manage players:
-    - "Add player" button, which will redirect to the "Add player" view form.
-            · id (disabled, autoincrement)
-            · first name (string)
-            · last name (string)
-            · date of birth (integer)
-            · salary (double)
-            · "Add player" button
-            · "Cancel" button, which will redirect to the "Manage players"
-    - Data table with all the players and the number of players displayed:
-        · first name
-        · last name
-        · date of birth
+    - "Add player" button, which will redirect to the "Add player" view form. => DONE
+            · id (disabled, autoincrement) => DONE
+            · first name (string) => DONE
+            · last name (string) => DONE
+            · date of birth (integer) => DONE
+            · salary (double) => DONE
+            · "Add player" button => DONE
+            · "Cancel" button, which will redirect to the "Manage players" => DONE
+    - Data table with all the players and the number of players displayed: => DONE
+        · first name => DONE
+        · last name => DONE
+        · date of birth => DONE
         · "Edit" button -> redirect to the "Edit player" view form.
         · "Delete" button -> Confirmation page:
                                 (If the player belongs to a team, the action
                                 should not be allowed, as he must be removed
                                 from the team before he can be deleted.
                                 Warn the user about the outcome and its cause.)
-    - FROM "Edit player" button -> "Add player form":
+    - FROM "Edit player" button -> "Add player form"(but in edit mode with data already fetched):
         · id (disabled, autoincrement)
         · first name (string)
         · last name (string)
@@ -114,8 +113,8 @@
         · "Cancel" button, which will redirect to the "Manage players"
 
 ## FOOTER
-- copyright
-- some made up sponsors (use icons or something...)
+- copyright => DONE
+- some made up sponsors (use icons or something...) => DONE
 
 
 

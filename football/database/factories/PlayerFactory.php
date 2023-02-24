@@ -18,6 +18,11 @@ class PlayerFactory extends Factory
     {
         $fakeDate = $this->faker->dateTimeBetween($startDate = '-40 years', $endDate = '-18years');
         $formatedFakeDate = $fakeDate->format('dmY');
+
+        if (\strlen($formatedFakeDate) !== 8) {
+            $formatedFakeDate = "0{$formatedFakeDate}";
+        }
+
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),

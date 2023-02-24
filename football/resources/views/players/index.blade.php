@@ -52,7 +52,8 @@
                             <td class="text-center">{{ $player->last_name }}</td>
                             <td class="text-center">{{ $player->birth_date }}</td>
                             <td class="d-flex justify-content-center gap-3">
-                                <form action="/player/edit">
+                                <form action="/player/edit-form">
+                                    @csrf
                                     <button type="submit" name="player_id" value="{{ $player->id }}"
                                         class="btn btn-primary">Edit</button>
                                 </form>
