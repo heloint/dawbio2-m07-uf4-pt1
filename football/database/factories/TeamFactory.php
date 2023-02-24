@@ -20,7 +20,7 @@ class TeamFactory extends Factory
             'name' => \ucwords($this->faker->unique()->city . ' ' . $this->faker->word),
             'coach' => $this->faker->name(),
             'category' => 'Category ' . (string) $this->faker->randomDigit(),
-            'budget' => $this->faker->randomFloat(2)
+            'budget' => $this->faker->randomFloat(2, 800000,1000000)
         ];
     }
 }

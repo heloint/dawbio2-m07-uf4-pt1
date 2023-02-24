@@ -14,8 +14,7 @@ $(document).ready(function () {
     const numPages = Math.ceil(numRows / rowsPerPage);
 
     // Create the pagination links
-    // const pagination = $('<ul class="pagination justify-content-center"></ul>');
-    const pagination = $('.pagination');
+    const pagination = $(".pagination");
 
     // Add enumerated buttons.
     for (let i = 1; i <= numPages; i++) {
@@ -67,8 +66,12 @@ $(document).ready(function () {
 
         // Update the active class for the pagination links
         pagination.find("li").removeClass("active");
-        $(`a:contains('${currentPageNumber}')`).parent().addClass("active");
-        // $(this).parent().addClass("active");
+        $(`a:contains('${currentPageNumber}')`)
+            .filter(function () {
+                return $(this).text().trim() === `${currentPageNumber}`;
+            })
+            .parent()
+            .addClass("active");
 
         // Update the previous and next buttons
         updateButtons(parseInt(currentPageNumber), numPages);
@@ -92,5 +95,5 @@ $(document).ready(function () {
     }
 
     // Show the first page
-    $(pagination.find("li")[1]).find('a').click();
+    $(pagination.find("li")[1]).find("a").click();
 });

@@ -82,16 +82,27 @@
 
     @if ($mode === 'edit')
         <div class="container my-5">
-            <h3>Players</h3>
+            <h3>Contracted players</h3>
             <div class="row">
-                <form action="/team/subscribe-player-table" method="post" class="my-3">
-                    @csrf
-                    <button name="team_id" value="{{ $team->id }}" class="btn btn-primary">
-                        <a class="no-style text-white">
-                            Subscribe players
-                        </a>
-                    </button>
-                </form>
+                <div class="d-flex gap-3">
+                    <form action="/team/subscribe-player-table" method="post" class="my-3">
+                        @csrf
+                        <button name="team_id" value="{{ $team->id }}" class="btn btn-primary">
+                            <a class="no-style text-white">
+                                Subscribe players
+                            </a>
+                        </button>
+                    </form>
+                    <form action="/team/unsubscribe-confirmation" method="post" class="my-3">
+                        @csrf
+                        <input type="hidden" name="apply_all" value="true">
+                        <button name="team_id" value="{{ $team->id }}" class="btn btn-danger">
+                            <a class="no-style text-white">
+                                Unsubscribe all
+                            </a>
+                        </button>
+                    </form>
+                </div>
                 @if (empty($players))
                     <p class="text-danger">There are no players to display!</p>
                 @else
@@ -104,13 +115,21 @@
                         @endif
                     @endif
 
+                    @if (!empty($unsubAllResult))
+                        @if ($unsubAllResult === true)
+                            <h6 class="text-success my-5">Successfully unsubscribed all player!</h6>
+                        @else
+                            <h6 class="text-danger my-5">{{ $error }}</h6>
+                        @endif
+                    @endif
+
                     <div class="input-group mb-3 w-50 d-flex gap-1">
                         <input id="search-input" type="text" class="form-control" placeholder="Search...">
                         <button id="search-button" class="btn btn-primary" type="button">Search</button>
                     </div>
 
                     <div class="pagination-container">
-                        <ul class="pagination justify-content-center" id="paginationLinks">
+                        <ul class="pagination justify-content-start" id="paginationLinks">
                             <li class="page-item" id="previousPage">
                                 <a class="page-link" href="#" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
@@ -134,7 +153,7 @@
                                 <td class="text-center">{{ $player->first_name }}</td>
                                 <td class="text-center">{{ $player->last_name }}</td>
                                 <td class="d-flex justify-content-center gap-3">
-                                    <form action="/player/unsubscribe-confirmation" method="post">
+                                    <form action="/team/unsubscribe-confirmation" method="post">
                                         @csrf
                                         <input type="hidden" name="team_id" value="{{ $team->id }}">
                                         <button type="submit" name="player_id" value="{{ $player->id }}"

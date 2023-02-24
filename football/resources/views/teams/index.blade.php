@@ -26,7 +26,7 @@
             </div>
 
             <div class="pagination-container">
-                <ul class="pagination justify-content-center" id="paginationLinks">
+                <ul class="pagination justify-content-start" id="paginationLinks">
                     <li class="page-item" id="previousPage">
                         <a class="page-link" href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
