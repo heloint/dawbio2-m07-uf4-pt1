@@ -3,13 +3,20 @@
 @section('content')
 
     <div class="container my-5">
-        <h3>Subscribe users</h3>
+        <h3 class="my-5">Subscribe players to team "{{ $team->name }}"</h3>
         <div class="row">
             @if (empty($players))
                 <h6 class="text-danger my-5">There are no players to display!</h6>
             @else
             @if (!empty($error))
                 <h6 class="text-danger my-5">{{ $error }}</h6>
+            @endif
+
+            @if (!empty($result) && $result === true)
+                <h6 class="text-success my-5">Successfully subscribed player 
+                    "{{ $player->first_name . ' ' . $player->last_name }}" 
+                    to team "{{ $team->name }}"
+                </h6>
             @endif
             <div class="pagination-container">
                 <ul class="pagination justify-content-center" id="paginationLinks">
@@ -39,7 +46,7 @@
                             <td class="text-center">{{ $player->last_name }}</td>
                             <td class="text-center">{{ $player->team ? $player->team->name : 'None' }}</td>
                             <td class="d-flex justify-content-center gap-3">
-                                <form action="/team/edit-form" method="get">
+                                <form action="/team/subscribe-player" method="post">
                                     @csrf
                                     <input type="hidden" name="player_id" value="{{ $player->id }}">
                                     <button type="submit" name="team_id" value="{{ $team->id }}"

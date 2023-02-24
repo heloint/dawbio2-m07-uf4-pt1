@@ -37,23 +37,24 @@
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $team->name)}}" required>
+                    <input type="text" id="name" name="name" class="form-control"
+                        value="{{ old('name', $team->name) }}" required>
                     @if ($errors->has('name'))
                         <p class="text-danger">{{ $errors->first('name') }}</p>
                     @endif
                 </div>
                 <div class="mb-3">
                     <label for="coach" class="form-label">Coach</label>
-                    <input type="text" id="coach" name="coach" class="form-control" value="{{ old('coach', $team->coach) }}"
-                        required>
+                    <input type="text" id="coach" name="coach" class="form-control"
+                        value="{{ old('coach', $team->coach) }}" required>
                     @if ($errors->has('coach'))
                         <p class="text-danger">{{ $errors->first('coach') }}</p>
                     @endif
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
-                    <input type="text" id="category" name="category" class="form-control" value="{{ old('category', $team->category) }}"
-                        required>
+                    <input type="text" id="category" name="category" class="form-control"
+                        value="{{ old('category', $team->category) }}" required>
                     @if ($errors->has('category'))
                         <p class="text-danger">{{ $errors->first('category') }}</p>
                     @endif
@@ -83,10 +84,13 @@
         <div class="container my-5">
             <h3>Players</h3>
             <div class="row">
-                <form action="/team/subscribe-player" method="post" class="my-3">
+                <form action="/team/subscribe-player-table" method="post" class="my-3">
                     @csrf
-                    <button name="team_id" value="{{ $team->id }}" class="btn btn-primary"><a class="no-style text-white">Subscribe
-                            player</a></button>
+                    <button name="team_id" value="{{ $team->id }}" class="btn btn-primary">
+                        <a class="no-style text-white">
+                            Subscribe players
+                        </a>
+                    </button>
                 </form>
                 @if (empty($players))
                     <p class="text-danger">There are no players to display!</p>

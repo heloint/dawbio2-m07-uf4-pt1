@@ -19,10 +19,10 @@ class TeamController extends Controller
     {
         // Validate the received fields from the post request.
         $this->validate($request, [
-            "name" => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
-            "coach" => 'required|min:2|regex:/^[a-zA-Z\s]+$/',
-            "category" => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
-            "budget" => "numeric",
+            'name' => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
+            'coach' => 'required|min:2|regex:/^[a-zA-Z\s]+$/',
+            'category' => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
+            'budget' => 'numeric',
         ]);
     }
 
@@ -34,7 +34,7 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::all();
-        return view("teams.index", compact("teams"));
+        return view('teams.index', compact('teams'));
     }
 
     /**
@@ -45,13 +45,13 @@ class TeamController extends Controller
     public function newTeam()
     {
         // The mode of the operation.
-        $mode = "add";
+        $mode = 'add';
 
-        $nextFreeID = Team::max("id") + 1;
+        $nextFreeID = Team::max('id') + 1;
         $team = new Team();
         $team->id = $nextFreeID;
 
-        return view("teams.team_form", compact("team", "mode"));
+        return view('teams.team_form', compact('team', 'mode'));
     }
 
     /**
@@ -64,7 +64,7 @@ class TeamController extends Controller
     {
         $team = new Team();
         foreach ($request->all() as $key => $value) {
-            if ($key !== "_token" && $key !== "team_id") {
+            if ($key !== '_token' && $key !== 'team_id') {
                 $team->$key = $value;
             }
         }
@@ -80,7 +80,7 @@ class TeamController extends Controller
     public function addNewTeam(Request $request)
     {
         // The mode of the operation.
-        $mode = "add";
+        $mode = 'add';
 
         // Initialize the empty variables of the outcomes.
         $result = null;
@@ -99,17 +99,13 @@ class TeamController extends Controller
             // Assign the "team_id" obtained from the form,
             // to display all the data of the failed form.
             $team->id = $request->team_id;
-            $error =
-                "Unexpected error has occured in the database. Please contact with one of our admin.";
-            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
-                $error = "Team with this name already exists!";
+            $error = 'Unexpected error has occured in the database. Please contact with one of our admin.';
+            if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                $error = 'Team with this name already exists!';
             }
         }
 
-        return view(
-            "teams.team_form",
-            compact("result", "error", "team", "mode")
-        );
+        return view('teams.team_form', compact('result', 'error', 'team', 'mode'));
     }
 
     /**
@@ -121,13 +117,13 @@ class TeamController extends Controller
     public function editTeamForm(Request $request)
     {
         // Determine the mode of the operation.
-        $mode = "edit";
+        $mode = 'edit';
 
         // Retrieve the team and its players.
         $team = Team::findOrFail($request->team_id);
         $players = $team->players;
 
-        return view("teams.team_form", compact("team", "players", "mode"));
+        return view('teams.team_form', compact('team', 'players', 'mode'));
     }
 
     /**
@@ -136,13 +132,13 @@ class TeamController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
      */
-    public function confirmUnsubscribtion(Request $request)
+    public function confirmUnsubscription(Request $request)
     {
         // Retrieve the team and player to be unsubscribed.
         $team = Team::findOrFail($request->team_id);
         $player = Player::findOrFail($request->player_id);
 
-        return view("teams.unsubscription_confirm", compact("team", "player"));
+        return view('teams.unsubscription_confirm', compact('team', 'player'));
     }
 
     /**
@@ -154,7 +150,7 @@ class TeamController extends Controller
     public function unsubscribePlayer(Request $request)
     {
         // Determine the mode of the operation and initialize some variables.
-        $mode = "edit";
+        $mode = 'edit';
         $error = null;
         $unsubscriptionResult = false;
 
@@ -176,21 +172,10 @@ class TeamController extends Controller
             // Get updated array of players of this team.
             $players = $team->players;
             // Handle any database exceptions that occur during the operation.
-            $error =
-                "Unexpected error has occured in the database. Please contact one of our admins.";
+            $error = 'Unexpected error has occured in the database. Please contact one of our admins.';
         }
 
-        return view(
-            "teams.team_form",
-            compact(
-                "error",
-                "team",
-                "unsubscribedPlayer",
-                "players",
-                "mode",
-                "unsubscriptionResult"
-            )
-        );
+        return view('teams.team_form', compact('error', 'team', 'unsubscribedPlayer', 'players', 'mode', 'unsubscriptionResult'));
     }
 
     /**
@@ -202,7 +187,7 @@ class TeamController extends Controller
     public function modifyTeam(Request $request)
     {
         // The mode of the operation.
-        $mode = "edit";
+        $mode = 'edit';
 
         // Initialize the empty variables of the outcomes.
         $error = null;
@@ -216,7 +201,7 @@ class TeamController extends Controller
 
         // Re-assign field values to the found team entity.
         foreach ($request->all() as $key => $value) {
-            if ($key !== "_token" && $key !== "team_id") {
+            if ($key !== '_token' && $key !== 'team_id') {
                 $team->$key = $value;
             }
         }
@@ -232,15 +217,12 @@ class TeamController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             $error = $e->getMessage();
             /* "Unexpected error has occured in the database. Please contact with one of our admin."; */
-            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
-                $error = "Team with this name already exists!";
+            if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                $error = 'Team with this name already exists!';
             }
         }
 
-        return view(
-            "teams.team_form",
-            compact("result", "error", "team", "players", "mode")
-        );
+        return view('teams.team_form', compact('result', 'error', 'team', 'players', 'mode'));
     }
 
     /**
@@ -253,7 +235,7 @@ class TeamController extends Controller
     public function confirmDeletion(Request $request)
     {
         $team = Team::findOrFail($request->team_id);
-        return view("teams.deletion_confirm", compact("team"));
+        return view('teams.deletion_confirm', compact('team'));
     }
 
     /**
@@ -277,31 +259,68 @@ class TeamController extends Controller
             $teams = Team::all();
         } catch (\Illuminate\Database\QueryException $e) {
             $deletionResult = false;
-            $error =
-                "Unexpected error has occured in the database. Please contact with one of our admin.";
+            $error = 'Unexpected error has occured in the database. Please contact with one of our admin.';
 
-            if (strpos($e->getMessage(), "foreign key constraint") !== false) {
-                $error =
-                    'Team "' .
-                    $teamToDelete->name .
-                    '" has players subscribed to it.';
-                $error .=
-                    " First you need to delete all players from it, before eliminating the team!";
+            if (strpos($e->getMessage(), 'foreign key constraint') !== false) {
+                $error = 'Team "' . $teamToDelete->name . '" has players subscribed to it.';
+                $error .= ' First you need to delete all players from it, before eliminating the team!';
             }
         }
 
-        return view(
-            "teams.index",
-            compact("error", "deletionResult", "teamToDelete", "teams")
-        );
+        return view('teams.index', compact('error', 'deletionResult', 'teamToDelete', 'teams'));
     }
 
+    /**
+     * Display the subscription form for a given team and list of available players.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function subscribePlayerTable(Request $request)
+    {
+        // Find the team associated with the given team ID.
+        $team = Team::findOrFail($request->team_id);
+
+        // Get all players that are not already associated with the team.
+        $players = Player::all()->where('team_id', '!=', $team->id);
+
+        // Render the subscription view with the team and players as data.
+        return view('teams.subscribe', compact('team', 'players'));
+    }
+
+    /**
+     * Subscribe a player to a team or confirm their subscription, if necessary.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
     public function subscribePlayer(Request $request)
     {
-        $team = Team::find($request->team_id);
-        $players = Player::all()->where('team_id', '!=', $team->id);
-        return view('teams.subscribe', compact("team", "players"));
-            
-    }
+        $result = null;
+        $error = null;
 
+        // Find the team and player associated with the given IDs.
+        $team = Team::findOrFail($request->team_id);
+        $player = Player::findOrFail($request->player_id);
+
+        // If the player is already on the team, set an error message.
+        if ($player->team_id === $team->team_id) {
+            $error = sprintf("Player \"%s %s\" already subscribed to team \"%s\"! ", $player->first_name, $player->last_name, $team->name);
+        }
+        // If the player has been confirmed for subscription, add them to the team and set a success message.
+        elseif ((bool) $request->confirmed) {
+            $player->team_id = $team->id;
+            $result = $player->save();
+        }
+        // If the player already has a team, show the confirmation view.
+        elseif ($player->team_id) {
+            return view('teams.subscription_confirm', compact('team', 'player'));
+        }
+
+        // Get all players that are not already associated with the team.
+        $players = Player::all()->where('team_id', '!=', $team->id);
+
+        // Render the subscription view with any result, error, team, player, and players as data.
+        return view('teams.subscribe', compact('result', 'error', 'team', 'player', 'players'));
+    }
 }
