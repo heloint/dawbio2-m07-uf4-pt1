@@ -16,8 +16,7 @@
                 @endif
                 @if (!empty($deletionResult))
                     @if ($deletionResult === true)
-                        <h6 class="text-success"> Successfully deleted player
-                            "{{ $playerToDelete->first_name . ' ' . $playerToDelete->last_name }}" !</h6>
+                        <h6 class="text-success"> Successfully deleted player !</h6>
                     @endif
                 @endif
 

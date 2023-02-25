@@ -47,7 +47,7 @@ Route::post('/team/unsubscribe-player', [TeamController::class, 'unsubscribePlay
 Route::post('/team/unsubscribe-all', [TeamController::class, 'unsubscribeAll']);
 
 // Route to display the subscribtion table with the player entities.
-Route::post('/team/subscribe-player-table', [TeamController::class, 'subscribePlayerTable']);
+Route::get('/team/subscribe-player-table', [TeamController::class, 'subscribePlayerTable']);
 
 // Route to handle the subscribtion operation on existing player entities.
 Route::post('/team/subscribe-player', [TeamController::class, 'subscribePlayer']);

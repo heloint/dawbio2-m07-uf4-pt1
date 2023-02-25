@@ -17,9 +17,8 @@
                 @endif
 
                 @if (!empty($result) && $result === true)
-                    <h6 class="text-success my-5">Successfully subscribed player
-                        "{{ $player->first_name . ' ' . $player->last_name }}"
-                        to team "{{ $team->name }}"
+                    <h6 class="text-success my-5">
+                        Successfully subscribed player to team "{{ $team->name }}!"
                     </h6>
                 @endif
                 <div class="input-group mb-3 w-50 d-flex gap-1">

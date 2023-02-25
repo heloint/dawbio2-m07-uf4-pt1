@@ -14,7 +14,7 @@ class PlayerController extends Controller
      * @return void
      * @throws \Illuminate\Validation\ValidationException
      */
-    private function validatePlayerFormFields(Request $request)
+    private function validatePlayerFormFields(Request $request): void
     {
         // Validate the received fields from the post request.
         $this->validate($request, [
@@ -53,7 +53,7 @@ class PlayerController extends Controller
      * @param Player $player The Player object to save to the database.
      * @return array An array containing the result (true for success, false for failure) and error code (null if no error occurred).
      */
-    private function savePlayerToDB(Player $player)
+    private function savePlayerToDB(Player $player): array
     {
         $result = null;
         $error = null;
@@ -109,20 +109,23 @@ class PlayerController extends Controller
         // Check for errors. If got error code, then get the custom message for it.
         $errorCode = $request->error;
         $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
-        $deletionResult = $request->deletionResult ?? null;
+        $deletionResult = $request->deletionResult ? (bool) $request->deletionResult : null;
 
         try {
             $players = Player::all();
         } catch (\Illuminate\Database\QueryException $e) {
             $players = null;
         }
-        return view("players.index", compact("players", "error", "deletionResult"));
+        return view(
+            "players.index",
+            compact("players", "error", "deletionResult")
+        );
     }
 
     /**
      * Returns a view that displays a form for adding a new player.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function addPlayerForm(Request $request)
     {
@@ -163,13 +166,10 @@ class PlayerController extends Controller
      * Validates the request data and adds a new player to the database.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
-    private function addPlayer(Request $request)
+    private function addPlayer(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $error = null;
-        $result = null;
-
         // Validate form field values.
         $this->validatePlayerFormFields($request);
 
@@ -201,10 +201,9 @@ class PlayerController extends Controller
      * @return \Illuminate\Contracts\View\View
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function confirmDeletion(Request $request)
+    public function confirmDeletion(Request $request): \Illuminate\Contracts\View\View
     {
         $player = Player::findOrFail($request->player_id);
-
         return view("players.deletion_confirm", compact("player"));
     }
 
@@ -212,9 +211,9 @@ class PlayerController extends Controller
      * Delete the player from the database.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function deletePlayer(Request $request)
+    public function deletePlayer(Request $request): \Illuminate\Http\RedirectResponse
     {
         $error = null;
         $deletionResult = null;
@@ -237,14 +236,13 @@ class PlayerController extends Controller
             [PlayerController::class, "index"],
             compact("error", "deletionResult")
         );
-
     }
 
     /**
      * Display the form for editing a player.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function editPlayerForm(Request $request)
     {
@@ -252,10 +250,19 @@ class PlayerController extends Controller
             // Determine the mode of the operation.
             $mode = "edit";
 
+            // Check for errors. If got error code, then get the custom message for it.
+            $errorCode = $request->error;
+            $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
+
+            $result = (bool) $request->result;
+
             // Retrieve the team and its players.
             $player = Player::findOrFail($request->player_id);
 
-            return view("players.player_form", compact("player", "mode"));
+            return view(
+                "players.player_form",
+                compact("player", "mode", "result", "error")
+            );
         } elseif ($request->isMethod("post")) {
             return $this->editPlayer($request);
         }
@@ -265,18 +272,15 @@ class PlayerController extends Controller
      * Modify a player in the database based on the received form fields.
      *
      * @param  \Illuminate\Http\Request  $request The request object containing the form fields.
-     * @return \Illuminate\View\View A view that displays the outcome of the modification.
+     * @return \Illuminate\Http\RedirectResponse
      */
-    private function editPlayer(Request $request)
+    private function editPlayer(Request $request): \Illuminate\Http\RedirectResponse
     {
-        // The mode of the operation.
-        $mode = "edit";
-
         // Initialize the empty variables of the outcomes.
         $error = null;
         $result = null;
 
-        $this->validatePlayerForm($request);
+        $this->validatePlayerFormFields($request);
 
         // Retrieve the team and its players.
         $foundPlayer = Player::findOrFail($request->player_id);

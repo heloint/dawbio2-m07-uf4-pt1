@@ -88,8 +88,7 @@
             <h3>Contracted players</h3>
             <div class="row">
                 <div class="d-flex gap-3">
-                    <form action="/team/subscribe-player-table" method="post" class="my-3">
-                        @csrf
+                    <form action="/team/subscribe-player-table" method="get" class="my-3">
                         <button name="team_id" value="{{ $team->id }}" class="btn btn-primary">
                             <a class="no-style text-white">
                                 Subscribe players
@@ -119,7 +118,7 @@
 
                     @if (!empty($unsubAllResult))
                         @if ($unsubAllResult === true)
-                            <h6 class="text-success my-5">Successfully unsubscribed all player!</h6>
+                            <h6 class="text-success my-5">Successfully unsubscribed all players!</h6>
                         @else
                             <h6 class="text-danger my-5">{{ $error }}</h6>
                         @endif

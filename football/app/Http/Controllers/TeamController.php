@@ -16,7 +16,7 @@ class TeamController extends Controller
      * @return void
      * @throws \Illuminate\Validation\ValidationException When validation fails.
      */
-    private function validateTeamFormFields(Request $request)
+    private function validateTeamFormFields(Request $request): void
     {
         // Validate the received fields from the post request.
         $this->validate($request, [
@@ -50,7 +50,7 @@ class TeamController extends Controller
      * @param Team $team The Team object to save to the database.
      * @return array An array containing the result (true for success, false for failure) and error code (null if no error occurred).
      */
-    private function saveTeamToDB(Team $team)
+    private function saveTeamToDB(Team $team): array
     {
         $result = null;
         $error = null;
@@ -100,7 +100,7 @@ class TeamController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\View\View
     {
         // Check for errors. If got error code, then get the custom message for it.
         $errorCode = $request->error;
@@ -119,7 +119,7 @@ class TeamController extends Controller
      * If the request method is post, call the "addTeam" method.
      *
      * @param Request $request The HTTP request object.
-     * @return Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function addTeamForm(Request $request)
     {
@@ -136,7 +136,7 @@ class TeamController extends Controller
             try {
                 // If result is empty, that means the add form is fresh.
                 // Get the next empty ID.
-                if (!empty($request->team_id)) {
+                if (!empty($request->team_id) && !$error) {
                     $team = Team::findOrFail($request->team_id);
                 } else {
                     $team = new Team();
@@ -160,9 +160,9 @@ class TeamController extends Controller
      * Adds a new team to the database based on the received form data.
      *
      * @param Request $request The HTTP request object.
-     * @return Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function addTeam(Request $request)
+    public function addTeam(Request $request): \Illuminate\Http\RedirectResponse
     {
         // Validate the received fields from the post request.
         $this->validateTeamFormFields($request);
@@ -232,10 +232,10 @@ class TeamController extends Controller
     /**
      * Modify an existing team in the database based on the data submitted via a HTTP POST request.
      * @param Request $request The HTTP request object containing the form data.
-     * @return RedirectResponse A redirect to the "editTeamForm" page with parameters.
+     * @return \Illuminate\Http\RedirectResponse A redirect to the "editTeamForm" page with parameters.
      * @throws ValidationException If the form data fails to pass validation.
      */
-    public function editTeam(Request $request)
+    public function editTeam(Request $request): \Illuminate\Http\RedirectResponse
     {
         $this->validateTeamFormFields($request);
 
@@ -271,7 +271,7 @@ class TeamController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
      */
-    public function confirmUnsubscription(Request $request)
+    public function confirmUnsubscription(Request $request): \Illuminate\View\View
     {
         $applyAll = null;
         $player = new Player();
@@ -303,9 +303,9 @@ class TeamController extends Controller
      * Unsubscribe a player from a team.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function unsubscribePlayer(Request $request)
+    public function unsubscribePlayer(Request $request): \Illuminate\Http\RedirectResponse
     {
         // Determine the mode of the operation and initialize some variables.
         $mode = "edit";
@@ -406,10 +406,10 @@ class TeamController extends Controller
      * Display the confirmation page for deleting a team.
      *
      * @param \Illuminate\Http\Request $request The request object containing the team ID.
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View The deletion confirmation view.
+     * @return \Illuminate\View\View The deletion confirmation view.
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the team with the given ID is not found.
      */
-    public function confirmDeletion(Request $request)
+    public function confirmDeletion(Request $request): \Illuminate\View\View
     {
         $team = Team::findOrFail($request->team_id);
         return view("teams.deletion_confirm", compact("team"));
@@ -419,10 +419,10 @@ class TeamController extends Controller
      * Delete a team from the database.
      *
      * @param \Illuminate\Http\Request $request The request object containing the team ID.
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View The view to redirect to after deleting the team.
+     * @return \Illuminate\Http\RedirectResponse The view to redirect to after deleting the team.
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException If the team with the given ID is not found.
      */
-    public function deleteTeam(Request $request)
+    public function deleteTeam(Request $request): \Illuminate\Http\RedirectResponse
     {
         $error = null;
         $deletionResult = null;
@@ -449,8 +449,14 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function subscribePlayerTable(Request $request)
+    public function subscribePlayerTable(Request $request): \Illuminate\View\View
     {
+        // Check for errors. If got error code, then get the custom message for it.
+        $errorCode = $request->error;
+        $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
+
+        $result = (bool) $request->result;
+
         // Find the team associated with the given team ID.
         $team = Team::findOrFail($request->team_id);
 
@@ -458,16 +464,16 @@ class TeamController extends Controller
         $players = Player::all()->where("team_id", "!=", $team->id);
 
         // Render the subscription view with the team and players as data.
-        return view("teams.subscribe", compact("team", "players"));
+        return view("teams.subscribe", compact("team", "players", "result", "error"));
     }
 
     /**
      * Subscribe a player to a team or confirm their subscription, if necessary.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function subscribePlayer(Request $request)
+    public function subscribePlayer(Request $request) 
     {
         $result = null;
         $error = null;
@@ -501,13 +507,10 @@ class TeamController extends Controller
             $result = $player->save();
         }
 
-        // Get all players that are not already associated with the team.
-        $players = Player::all()->where("team_id", "!=", $team->id);
-
-        // Render the subscription view with any result, error, team, player, and players as data.
-        return view(
-            "teams.subscribe",
-            compact("result", "error", "team", "player", "players")
+        return redirect()->action(
+            [TeamController::class, "subscribePlayerTable"],
+            ["result" => $result, "error" => $error, "team_id" => $team->id]
         );
+
     }
 }
