@@ -28,12 +28,12 @@ class TeamController extends Controller
     }
 
     /**
-    * Populates a Team object with values from a Request object.
-    *
-    * @param Team $obj The Team object to populate with values.
-    * @param Request $request The Request object containing the values to populate.
-    * @return Team The populated Team object.
-    **/
+     * Populates a Team object with values from a Request object.
+     *
+     * @param Team $obj The Team object to populate with values.
+     * @param Request $request The Request object containing the values to populate.
+     * @return Team The populated Team object.
+     **/
     private function requestValuesToTeam(Team $obj, Request $request): Team
     {
         foreach ($request->all() as $key => $value) {
@@ -45,11 +45,11 @@ class TeamController extends Controller
     }
 
     /**
-    * Saves a Team object to the database and returns the result and error code, if any.
-    *
-    * @param Team $team The Team object to save to the database.
-    * @return array An array containing the result (true for success, false for failure) and error code (null if no error occurred).
-    */
+     * Saves a Team object to the database and returns the result and error code, if any.
+     *
+     * @param Team $team The Team object to save to the database.
+     * @return array An array containing the result (true for success, false for failure) and error code (null if no error occurred).
+     */
     private function saveTeamToDB(Team $team)
     {
         $result = null;
@@ -80,17 +80,19 @@ class TeamController extends Controller
     }
 
     /**
-    * Retrieves a specific error message based on the error code.
-    *
-    * @param int $errorCode The error code to retrieve the message for.
-    * @return string The error message associated with the specified error code.
-    * */
+     * Retrieves a specific error message based on the error code.
+     *
+     * @param int $errorCode The error code to retrieve the message for.
+     * @return string The error message associated with the specified error code.
+     * */
     private function messageForErrorCode(int $errorCode): string
     {
         return match ($errorCode) {
             1062 => "Entity with the following name already exists!",
-            2022 => "Temporare issue with our database server. Please, try again later.",
-            default => 'An internal error has occured. Please, try again later.'
+            2022
+                => "Temporare issue with our database server. Please, try again later.",
+            default
+                => "An internal error has occured. Please, try again later.",
         };
     }
 
@@ -159,7 +161,6 @@ class TeamController extends Controller
      */
     public function addTeam(Request $request)
     {
-
         // Validate the received fields from the post request.
         $this->validateTeamFormFields($request);
 
@@ -169,14 +170,18 @@ class TeamController extends Controller
         // If there's a query exception, handle it and return error message.
 
         $transaction = $this->saveTeamToDB($team);
-        if ($transaction['error']) {
+        if ($transaction["error"]) {
             // If error occured, id is not assigned to Team object,
             // so we assign the request one for the incorrect data to be displayed in the form.
             $team->id = $request->team_id;
         }
         return redirect()->action(
             [TeamController::class, "addTeamForm"],
-            ["team_id" => $team->id, "error" => $transaction['error'], "result" => $transaction['result']]
+            [
+                "team_id" => $team->id,
+                "error" => $transaction["error"],
+                "result" => $transaction["result"],
+            ]
         );
     }
 
@@ -228,7 +233,6 @@ class TeamController extends Controller
      */
     public function editTeam(Request $request)
     {
-
         $this->validateTeamFormFields($request);
 
         try {
@@ -236,7 +240,7 @@ class TeamController extends Controller
             // Re-assign field values to the found team entity.
             $foundTeam = Team::findOrFail($request->team_id);
             $team = $this->requestValuesToTeam($foundTeam, $request);
-       } catch (\Illuminate\Database\QueryException $e) {
+        } catch (\Illuminate\Database\QueryException $e) {
             // If fails here, is probably because of the DB connection.
             // Forward the empty / null variables.
             $team = new Team();
@@ -249,7 +253,11 @@ class TeamController extends Controller
 
         return redirect()->action(
             [TeamController::class, "editTeamForm"],
-            ["team_id" => $team->id, "error" => $transaction['error'], "result" => $transaction['result']]
+            [
+                "team_id" => $team->id,
+                "error" => $transaction["error"],
+                "result" => $transaction["result"],
+            ]
         );
     }
 
@@ -275,7 +283,6 @@ class TeamController extends Controller
                 $applyAll = $request->apply_all;
             }
         } catch (\PDOException $e) {
-
             return redirect()->action(
                 [TeamController::class, "editTeamForm"],
                 ["team_id" => $team->id, "error" => 2022, "result" => false]
@@ -372,7 +379,9 @@ class TeamController extends Controller
                 $res = $player->save();
 
                 if (!$res) {
-                    throw new \Exception("Unexpected error has occured in the database. Please contact one of our admins.");
+                    throw new \Exception(
+                        "Unexpected error has occured in the database. Please contact one of our admins."
+                    );
                 }
 
                 // Remove player from collection.

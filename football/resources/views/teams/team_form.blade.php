@@ -29,8 +29,8 @@
                 @endif
                 @if ($mode === 'add')
                     <form action="/team/add" method="post">
-                @elseif($mode === 'edit')
-                    <form action="/team/edit" method="post">
+                    @elseif($mode === 'edit')
+                        <form action="/team/edit" method="post">
                 @endif
                 @csrf
                 <div class="mb-3">

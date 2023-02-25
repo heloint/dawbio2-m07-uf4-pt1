@@ -5,8 +5,9 @@
     <div class="container my-5">
         <h3 class="my-5">Subscribe players to team "{{ $team->name }}"</h3>
         <div class="row">
-            <div class="my-3" >
-                <button class="btn btn-md btn-primary"><a class="no-style text-white" href="{{ route('team.edit', ['team_id' => $team->id]) }}">Back to team</a></button>
+            <div class="my-3">
+                <button class="btn btn-md btn-primary"><a class="no-style text-white"
+                        href="{{ route('team.edit', ['team_id' => $team->id]) }}">Back to team</a></button>
             </div>
             @if (empty($players))
                 <h6 class="text-danger my-5">There are no players to display!</h6>

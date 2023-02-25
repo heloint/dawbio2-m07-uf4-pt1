@@ -37,8 +37,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name</label>
-                    <input type="text" name="first_name" id="first_name" value="{{ old('first_name', $player->first_name) }}"
-                        class="form-control" required>
+                    <input type="text" name="first_name" id="first_name"
+                        value="{{ old('first_name', $player->first_name) }}" class="form-control" required>
                     @if ($errors->has('first_name'))
                         <p class="text-danger">{{ $errors->first('first_name') }}</p>
                     @endif
@@ -53,16 +53,16 @@
                 </div>
                 <div class="mb-3">
                     <label for="dob" class="form-label">Year of birth</label>
-                        <input type="number" id="birth_year" name="birth_year" value="{{ old('birth_year', $player->birth_year) }}"
-                            class="form-control" required>
+                    <input type="number" id="birth_year" name="birth_year"
+                        value="{{ old('birth_year', $player->birth_year) }}" class="form-control" required>
                     @if ($errors->has('birth_year'))
                         <p class="text-danger">{{ $errors->first('birth_year') }}</p>
                     @endif
                 </div>
                 <div class="mb-3">
                     <label for="salary" class="form-label">Salary</label>
-                    <input type="number" id="salary" name="salary" step="0.01" value="{{ old('salary', $player->salary) }}"
-                        class="form-control" required>
+                    <input type="number" id="salary" name="salary" step="0.01"
+                        value="{{ old('salary', $player->salary) }}" class="form-control" required>
                     @if ($errors->has('salary'))
                         <p class="text-danger">{{ $errors->first('salary') }}</p>
                     @endif
