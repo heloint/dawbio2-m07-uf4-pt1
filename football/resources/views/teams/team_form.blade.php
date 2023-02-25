@@ -15,9 +15,8 @@
                 @if (!empty($error))
                     <p class="text-danger text-lg">{{ $error }}</p>
                 @endif
-
-                @if (!empty($result))
-                    @if ($result === true)
+                @if (!empty($result) && empty($errors->messages()))
+                    @if ((bool)$result)
                         @if ($mode === 'add')
                             <p class="text-success text-lg">Succesfully added new team!</p>
                         @elseif($mode === 'edit')
@@ -30,8 +29,8 @@
                 @endif
                 @if ($mode === 'add')
                     <form action="/team/add" method="post">
-                    @elseif($mode === 'edit')
-                        <form action="/team/modify" method="post">
+                @elseif($mode === 'edit')
+                    <form action="/team/edit" method="post">
                 @endif
                 @csrf
                 <div class="mb-3">

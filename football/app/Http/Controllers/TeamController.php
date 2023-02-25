@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use App\Models\Player;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
@@ -22,8 +23,31 @@ class TeamController extends Controller
             "name" => "required|min:2|regex:/^[\pL'\s]+$/",
             "coach" => "required|min:2|regex:/^[\pL'\s]+$/",
             "category" => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
-            "budget" => "numeric",
+            "budget" => "numeric|min:0",
         ]);
+    }
+
+    /**
+     * Create a new Team object from the request data.
+     *
+     * @param \Illuminate\Http\Request $request The request object.
+     * @return \App\Models\Team The newly created Team object.
+     */
+    private function requestValuesToTeam(Team $obj, Request $request): Team
+    {
+        foreach ($request->all() as $key => $value) {
+            if ($key !== "_token" && $key !== "team_id") {
+                $obj->$key = $value;
+            }
+        }
+        return $obj;
+    }
+
+    private function messageForErrorCode(int $errorCode): string
+    {
+        return match ($errorCode) {
+            1062 => "Entity with the following name already exists!",
+        };
     }
 
     /**
@@ -38,50 +62,51 @@ class TeamController extends Controller
     }
 
     /**
-     * Show the form for creating a new team.
+     * Renders the form to add a new team.
+     * If the request method is post, call the "addTeam" method.
      *
-     * @return \Illuminate\View\View
+     * @param Request $request The HTTP request object.
+     * @return Illuminate\View\View
      */
-    public function newTeam()
+    public function addTeamForm(Request $request)
     {
-        // The mode of the operation.
-        $mode = "add";
+        if ($request->isMethod("get")) {
+            // The mode of the operation.
+            $mode = "add";
+            $team = null;
 
-        $nextFreeID = Team::max("id") + 1;
-        $team = new Team();
-        $team->id = $nextFreeID;
+            // Check for errors. If got error code, then get the custom message for it.
+            $errorCode = $request->error;
+            $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
 
-        return view("teams.team_form", compact("team", "mode"));
-    }
+            $result = (bool) $request->result;
 
-    /**
-     * Create a new Team object from the request data.
-     *
-     * @param \Illuminate\Http\Request $request The request object.
-     * @return \App\Models\Team The newly created Team object.
-     */
-    private function createTeamFromRequest($request): Team
-    {
-        $team = new Team();
-        foreach ($request->all() as $key => $value) {
-            if ($key !== "_token" && $key !== "team_id") {
-                $team->$key = $value;
+            // If result is empty, that means the add form is fresh.
+            // Get the next empty ID.
+            if (!empty($request->team_id)) {
+                $team = Team::findOrFail($request->team_id);
+            } else {
+                $team = new Team();
+                $team->id = Team::max("id") + 1;
             }
+
+            return view(
+                "teams.team_form",
+                compact("team", "mode", "result", "error")
+            );
+        } elseif ($request->isMethod("post")) {
+            return $this->addTeam($request);
         }
-        return $team;
     }
 
     /**
-     * Store a new team in the database.
+     * Adds a new team to the database based on the received form data.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\View\View
+     * @param Request $request The HTTP request object.
+     * @return Illuminate\Routing\Redirector
      */
-    public function addNewTeam(Request $request)
+    public function addTeam(Request $request)
     {
-        // The mode of the operation.
-        $mode = "add";
-
         // Initialize the empty variables of the outcomes.
         $result = null;
         $error = null;
@@ -89,61 +114,73 @@ class TeamController extends Controller
         // Validate the received fields from the post request.
         $this->validateTeamFormFields($request);
 
-        $team = $this->createTeamFromRequest($request);
+        $team = $this->requestValuesToTeam(new Team(), $request);
 
         // Try to insert the new Team object into the database.
         // If there's a query exception, handle it and return error message.
+        $connection = $team->getConnection();
+        $connection->beginTransaction();
         try {
+            // Save the modifications.
             $result = $team->save();
-        } catch (\Illuminate\Database\QueryException $e) {
-            // Assign the "team_id" obtained from the form,
-            // to display all the data of the failed form.
+            $connection->commit();
+        } catch (\PDOException $e) {
+            $connection->rollBack();
+
+            // If error occured, id is not assigned to Team object,
+            // so we assign the request one for the incorrect data to be displayed in the form.
             $team->id = $request->team_id;
-            $error =
-                "Unexpected error has occured in the database. Please contact with one of our admin.";
-            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
-                $error = "Team with this name already exists!";
-            }
+
+            // Get the error SQL code from the exception.
+            $error = $e->errorInfo[1];
         }
 
-        return view(
-            "teams.team_form",
-            compact("result", "error", "team", "mode")
+        return redirect()->action(
+            [TeamController::class, "addTeamForm"],
+            ["team_id" => $team->id, "error" => $error, "result" => $result]
         );
     }
 
     /**
-     * Display the form for editing a team.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\View\View
+     * Display the form to edit an existing team in the database or
+     * handle the submission of the form to modify the team.
+     * @param Request $request The HTTP request object containing the form data (if submitted).
+     * @return View|RedirectResponse A view to display the form or
+     *                               a redirect to the "editTeamForm" page with parameters.
      */
     public function editTeamForm(Request $request)
     {
-        /* if ($request->isMethod('get')) {
+        if ($request->isMethod("get")) {
+            // Determine the mode of the operation.
+            $mode = "edit";
 
-        } */
-        // Determine the mode of the operation.
-        $mode = "edit";
+            // Check for errors. If got error code, then get the custom message for it.
+            $errorCode = $request->error;
+            $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
 
-        // Retrieve the team and its players.
-        $team = Team::findOrFail($request->team_id);
-        $players = $team->players;
+            $result = (bool) $request->result;
 
-        return view("teams.team_form", compact("team", "players", "mode"));
+            // Retrieve the team and its players.
+            $team = Team::findOrFail($request->team_id);
+            $players = $team->players;
+
+            return view(
+                "teams.team_form",
+                compact("team", "players", "mode", "error", "result")
+            );
+        } elseif ($request->isMethod("post")) {
+            return $this->modifyTeam($request);
+        }
     }
 
     /**
-     * Modify a team in the database based on the received form fields.
-     *
-     * @param  \Illuminate\Http\Request  $request The request object containing the form fields.
-     * @return \Illuminate\View\View A view that displays the outcome of the modification.
+     * Modify an existing team in the database based on the data submitted via a HTTP POST request.
+     * @param Request $request The HTTP request object containing the form data.
+     * @return RedirectResponse A redirect to the "editTeamForm" page with parameters.
+     * @throws ValidationException If the form data fails to pass validation.
      */
     public function modifyTeam(Request $request)
     {
-        // The mode of the operation.
-        $mode = "edit";
-
         // Initialize the empty variables of the outcomes.
         $error = null;
         $result = null;
@@ -151,38 +188,27 @@ class TeamController extends Controller
         $this->validateTeamFormFields($request);
 
         // Retrieve the team and its players.
-        $team = Team::findOrFail($request->team_id);
-        $players = $team->players;
-
         // Re-assign field values to the found team entity.
-        foreach ($request->all() as $key => $value) {
-            if ($key !== "_token" && $key !== "team_id") {
-                $team->$key = $value;
-            }
-        }
+        $foundTeam = Team::findOrFail($request->team_id);
+        $team = $this->requestValuesToTeam($foundTeam, $request);
 
         // Try to update the modified team object in the DB.
         // If there's a query exception, handle it and return error message.
+        $connection = $team->getConnection();
+        $connection->beginTransaction();
         try {
             // Save the modifications.
             $result = $team->save();
-
-            // Get updated data about this team.
-            $team = Team::findOrFail($request->team_id);
-        } catch (\Illuminate\Database\QueryException $e) {
-            $error = $e->getMessage();
-            /* "Unexpected error has occured in the database. Please contact with one of our admin."; */
-            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
-                $error = "Team with this name already exists!";
-            }
+            $connection->commit();
+        } catch (\PDOException $e) {
+            $connection->commit();
+            // Get the error SQL code from the exception.
+            $error = $e->errorInfo[1];
         }
 
-        redirect("/player/edit-form")->with(
-            compact("result", "error", "team", "players", "mode")
-        );
-        return view(
-            "teams.team_form",
-            compact("result", "error", "team", "players", "mode")
+        return redirect()->action(
+            [TeamController::class, "editTeamForm"],
+            ["team_id" => $team->id, "error" => $error, "result" => $result]
         );
     }
 
@@ -261,10 +287,10 @@ class TeamController extends Controller
     }
 
     /**
-    * Unsubscribe all players from the given team.
-    * @param \Illuminate\Http\Request $request The request object containing the team ID
-    * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View The view for team form
-    */
+     * Unsubscribe all players from the given team.
+     * @param \Illuminate\Http\Request $request The request object containing the team ID
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View The view for team form
+     */
     public function unsubscribeAll(Request $request)
     {
         // Determine the mode of the operation.
@@ -274,7 +300,7 @@ class TeamController extends Controller
         $team = Team::findOrFail($request->team_id);
         $players = $team->players;
 
-        foreach($team->players as $key => $player) {
+        foreach ($team->players as $key => $player) {
             $player->team_id = null;
             $res = $player->save();
             if (!$res) {
@@ -293,7 +319,6 @@ class TeamController extends Controller
             compact("unsubAllResult", "error", "team", "players", "mode")
         );
     }
-
 
     /**
      * Display the confirmation page for deleting a team.
@@ -382,7 +407,7 @@ class TeamController extends Controller
         $player = Player::findOrFail($request->player_id);
 
         // If the player is already on the team, set an error message.
-        if ($player->team_id === $team->team_id) {
+        if ($player->team_id === $team->id) {
             $error = sprintf(
                 "Player \"%s %s\" already subscribed to team \"%s\"! ",
                 $player->first_name,
@@ -401,6 +426,9 @@ class TeamController extends Controller
                 "teams.subscription_confirm",
                 compact("team", "player")
             );
+        } else {
+            $player->team_id = $team->id;
+            $result = $player->save();
         }
 
         // Get all players that are not already associated with the team.
