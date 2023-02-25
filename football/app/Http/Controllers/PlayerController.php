@@ -55,10 +55,19 @@ class PlayerController extends Controller
         try {
             $connection = $player->getConnection();
             $connection->beginTransaction();
+        } catch (\PDOException $e) {
+            // Get the error SQL code from the exception.
+            $result = false;
+            $error = $e->errorInfo[1];
+            return compact("result", "error");
+        }
+
+        try {
             $result = $player->save();
             $connection->commit();
             $result = true;
         } catch (\PDOException $e) {
+            $connection->rollBack();
             // Get the error SQL code from the exception.
             $result = false;
             $error = $e->errorInfo[1];

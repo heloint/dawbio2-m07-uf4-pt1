@@ -58,10 +58,19 @@ class TeamController extends Controller
         try {
             $connection = $team->getConnection();
             $connection->beginTransaction();
+        } catch (\PDOException $e) {
+            // Get the error SQL code from the exception.
+            $result = false;
+            $error = $e->errorInfo[1];
+            return compact("result", "error");
+        }
+
+        try {
             $result = $team->save();
             $connection->commit();
             $result = true;
         } catch (\PDOException $e) {
+            $connection->rollBack();
             // Get the error SQL code from the exception.
             $result = false;
             $error = $e->errorInfo[1];
@@ -150,9 +159,6 @@ class TeamController extends Controller
      */
     public function addTeam(Request $request)
     {
-        // Initialize the empty variables of the outcomes.
-        $result = null;
-        $error = null;
 
         // Validate the received fields from the post request.
         $this->validateTeamFormFields($request);
@@ -187,22 +193,30 @@ class TeamController extends Controller
             // Determine the mode of the operation.
             $mode = "edit";
 
+            $team = null;
+            $players = null;
+
             // Check for errors. If got error code, then get the custom message for it.
             $errorCode = $request->error;
             $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
 
             $result = (bool) $request->result;
 
-            // Retrieve the team and its players.
-            $team = Team::findOrFail($request->team_id);
-            $players = $team->players;
+            try {
+                // Retrieve the team and its players.
+                $team = Team::findOrFail($request->team_id);
+                $players = $team->players;
+            } catch (\Illuminate\Database\QueryException $e) {
+                // Ignore. Return back the error message and the null / empty variables.
+                $team = new Team();
+            }
 
             return view(
                 "teams.team_form",
                 compact("team", "players", "mode", "error", "result")
             );
         } elseif ($request->isMethod("post")) {
-            return $this->modifyTeam($request);
+            return $this->editTeam($request);
         }
     }
 
@@ -212,36 +226,30 @@ class TeamController extends Controller
      * @return RedirectResponse A redirect to the "editTeamForm" page with parameters.
      * @throws ValidationException If the form data fails to pass validation.
      */
-    public function modifyTeam(Request $request)
+    public function editTeam(Request $request)
     {
-        // Initialize the empty variables of the outcomes.
-        $error = null;
-        $result = null;
 
         $this->validateTeamFormFields($request);
 
-        // Retrieve the team and its players.
-        // Re-assign field values to the found team entity.
-        $foundTeam = Team::findOrFail($request->team_id);
-        $team = $this->requestValuesToTeam($foundTeam, $request);
+        try {
+            // Retrieve the team and its players.
+            // Re-assign field values to the found team entity.
+            $foundTeam = Team::findOrFail($request->team_id);
+            $team = $this->requestValuesToTeam($foundTeam, $request);
+       } catch (\Illuminate\Database\QueryException $e) {
+            // If fails here, is probably because of the DB connection.
+            // Forward the empty / null variables.
+            $team = new Team();
+            $team->id = $request->team_id;
+        }
 
         // Try to update the modified team object in the DB.
         // If there's a query exception, handle it and return error message.
-        $connection = $team->getConnection();
-        $connection->beginTransaction();
-        try {
-            // Save the modifications.
-            $result = $team->save();
-            $connection->commit();
-        } catch (\PDOException $e) {
-            $connection->rollBack();
-            // Get the error SQL code from the exception.
-            $error = $e->errorInfo[1];
-        }
+        $transaction = $this->saveTeamToDB($team);
 
         return redirect()->action(
             [TeamController::class, "editTeamForm"],
-            ["team_id" => $team->id, "error" => $error, "result" => $result]
+            ["team_id" => $team->id, "error" => $transaction['error'], "result" => $transaction['result']]
         );
     }
 
@@ -254,15 +262,24 @@ class TeamController extends Controller
     public function confirmUnsubscription(Request $request)
     {
         $applyAll = null;
-        $player = null;
+        $player = new Player();
+        $team = new Team();
 
-        // Retrieve the team and player to be unsubscribed.
-        $team = Team::findOrFail($request->team_id);
+        try {
+            // Retrieve the team and player to be unsubscribed.
+            $team = Team::findOrFail($request->team_id);
 
-        if (!(bool) $request->apply_all) {
-            $player = Player::findOrFail($request->player_id);
-        } else {
-            $applyAll = $request->apply_all;
+            if (!(bool) $request->apply_all) {
+                $player = Player::findOrFail($request->player_id);
+            } else {
+                $applyAll = $request->apply_all;
+            }
+        } catch (\PDOException $e) {
+
+            return redirect()->action(
+                [TeamController::class, "editTeamForm"],
+                ["team_id" => $team->id, "error" => 2022, "result" => false]
+            );
         }
 
         return view(
@@ -302,8 +319,8 @@ class TeamController extends Controller
             // Get updated array of players of this team.
             $players = $team->players;
             // Handle any database exceptions that occur during the operation.
-            $error =
-                "Unexpected error has occured in the database. Please contact one of our admins.";
+            $errorCode = $e->errorInfo[1];
+            $error = $this->messageForErrorCode($errorCode);
         }
 
         return view(
@@ -330,23 +347,50 @@ class TeamController extends Controller
         $mode = "edit";
         $error = null;
         $unsubAllResult = true;
-        $team = Team::findOrFail($request->team_id);
-        $players = $team->players;
+        $team = new Team();
+        $players = [];
 
-        foreach ($team->players as $key => $player) {
-            $player->team_id = null;
-            $res = $player->save();
-            if (!$res) {
-                $unsubAllResult = false;
-                $error =
-                    "Unexpected error has occured in the database. Please contact one of our admins.";
-                break;
-            }
-            // Remove player from collection.
-            $players->forget($key);
+        try {
+            DB::beginTransaction();
+        } catch (\PDOException $e) {
+            $errorCode = $e->errorInfo[1];
+            $error = $this->messageForErrorCode($errorCode);
+            $unsubAllResult = false;
+
+            return view(
+                "teams.team_form",
+                compact("unsubAllResult", "error", "team", "players", "mode")
+            );
         }
 
-        /* return $players; */
+        try {
+            $team = Team::findOrFail($request->team_id);
+            $players = $team->players;
+
+            foreach ($team->players as $key => $player) {
+                $player->team_id = null;
+                $res = $player->save();
+
+                if (!$res) {
+                    throw new \Exception("Unexpected error has occured in the database. Please contact one of our admins.");
+                }
+
+                // Remove player from collection.
+                $players->forget($key);
+            }
+            DB::commit();
+        } catch (\PDOException $e) {
+            DB::rollBack();
+            // Get the error SQL code from the exception.
+            $errorCode = $e->errorInfo[1];
+            $error = $this->messageForErrorCode($errorCode);
+            $unsubAllResult = false;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $error = $e->getMessage();
+            $unsubAllResult = false;
+        }
+
         return view(
             "teams.team_form",
             compact("unsubAllResult", "error", "team", "players", "mode")
