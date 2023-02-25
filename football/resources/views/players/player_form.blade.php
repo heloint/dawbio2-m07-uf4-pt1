@@ -72,7 +72,7 @@
                 @elseif($mode === 'edit')
                     <button type="submit" class="btn btn-primary">Edit Player</button>
                 @endif
-                <button class="btn btn-secondary"><a class="no-style text-white" href="/manage-players">Cancel</a></button>
+                <button class="btn btn-secondary"><a class="no-style text-white" href="/players/manage">Cancel</a></button>
                 </form>
             </div>
         </div>

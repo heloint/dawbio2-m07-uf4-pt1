@@ -24,7 +24,7 @@ Route::get('/', function () {
 // TEAM RELATED ROUTES
 // #########################
 // Route to display the team management dashboard.
-Route::get('/manage-teams', [TeamController::class, 'index']);
+Route::get('/teams/manage', [TeamController::class, 'index'])->name('team.manage');
 
 // ADD AND EDIT
 // ============
@@ -65,7 +65,7 @@ Route::post('/team/delete', [TeamController::class, 'deleteTeam']);
 // ######################
 
 // Route to display the player management dashboard.
-Route::get('/manage-players', [PlayerController::class, 'index']);
+Route::get('/players/manage', [PlayerController::class, 'index'])->name('player.manage');
 
 // ADD AND EDIT
 // ============
@@ -75,7 +75,7 @@ Route::match(['get', 'post'], '/player/add', [PlayerController::class, 'addPlaye
 
 // Route to bring up the edition form for the requested player register,
 // and to handle modify/edit operation on existing player entities.
-Route::match(['get', 'post'], '/player/edit-form', [PlayerController::class, 'editPlayerForm']);
+Route::match(['get', 'post'], '/player/edit', [PlayerController::class, 'editPlayerForm'])->name('player.edit');
 
 // PLAYER DELETION
 // Route to handle deletion confirmation on an existing player entity.

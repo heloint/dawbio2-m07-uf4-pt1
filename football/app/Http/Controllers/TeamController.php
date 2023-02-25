@@ -89,10 +89,9 @@ class TeamController extends Controller
     {
         return match ($errorCode) {
             1062 => "Entity with the following name already exists!",
-            2022
-                => "Temporare issue with our database server. Please, try again later.",
-            default
-                => "An internal error has occured. Please, try again later.",
+            2022 => "Temporare issue with our database server. Please, try again later.",
+            1451 => "Team has players subscribed to it.  First you need to delete all players from it, before eliminating the team!",
+            default => "An internal error has occured. Please, try again later.",
         };
     }
 
@@ -101,14 +100,18 @@ class TeamController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        // Check for errors. If got error code, then get the custom message for it.
+        $errorCode = $request->error;
+        $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
+        $deletionResult = $request->deletionResult ?? null;
         try {
             $teams = Team::all();
         } catch (\Illuminate\Database\QueryException $e) {
             $teams = null;
         }
-        return view("teams.index", compact("teams"));
+        return view("teams.index", compact("teams", "error", "deletionResult"));
     }
 
     /**
@@ -206,6 +209,7 @@ class TeamController extends Controller
             $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
 
             $result = (bool) $request->result;
+            $unsubscriptionResult = (bool) $request->unsubscriptionResult;
 
             try {
                 // Retrieve the team and its players.
@@ -218,7 +222,7 @@ class TeamController extends Controller
 
             return view(
                 "teams.team_form",
-                compact("team", "players", "mode", "error", "result")
+                compact("team", "players", "mode", "error", "result", "unsubscriptionResult")
             );
         } elseif ($request->isMethod("post")) {
             return $this->editTeam($request);
@@ -326,20 +330,12 @@ class TeamController extends Controller
             // Get updated array of players of this team.
             $players = $team->players;
             // Handle any database exceptions that occur during the operation.
-            $errorCode = $e->errorInfo[1];
-            $error = $this->messageForErrorCode($errorCode);
+            $error = $e->errorInfo[1];
         }
 
-        return view(
-            "teams.team_form",
-            compact(
-                "error",
-                "team",
-                "unsubscribedPlayer",
-                "players",
-                "mode",
-                "unsubscriptionResult"
-            )
+        return redirect()->action(
+            [TeamController::class, "editTeamForm"],
+            ["team_id" => $team->id, "error" => $error, "unsubscriptionResult" => $unsubscriptionResult]
         );
     }
 
@@ -428,34 +424,22 @@ class TeamController extends Controller
      */
     public function deleteTeam(Request $request)
     {
-        $teamToDelete = Team::findOrFail($request->team_id);
         $error = null;
         $deletionResult = null;
-        $teams = Team::all();
 
         try {
             // Delete entity from DB.
+            $teamToDelete = Team::findOrFail($request->team_id);
             $deletionResult = $teamToDelete->delete();
-            // Get update about table.
-            $teams = Team::all();
-        } catch (\Illuminate\Database\QueryException $e) {
-            $deletionResult = false;
-            $error =
-                "Unexpected error has occured in the database. Please contact with one of our admin.";
 
-            if (strpos($e->getMessage(), "foreign key constraint") !== false) {
-                $error =
-                    'Team "' .
-                    $teamToDelete->name .
-                    '" has players subscribed to it.';
-                $error .=
-                    " First you need to delete all players from it, before eliminating the team!";
-            }
+        } catch (\PDOException $e) {
+            $deletionResult = false;
+            $error = $e->errorInfo[1];
         }
 
-        return view(
-            "teams.index",
-            compact("error", "deletionResult", "teamToDelete", "teams")
+        return redirect()->action(
+            [TeamController::class, "index"],
+            compact("error", "deletionResult")
         );
     }
 

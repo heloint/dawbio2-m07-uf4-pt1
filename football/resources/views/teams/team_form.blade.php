@@ -76,7 +76,7 @@
                 @elseif($mode === 'edit')
                     <button type="submit" class="btn btn-primary">Edit Team</button>
                 @endif
-                <button class="btn btn-secondary"><a class="no-style text-white" href="/manage-teams">Cancel</a></button>
+                <button class="btn btn-secondary"><a class="no-style text-white" href="/teams/manage">Cancel</a></button>
                 </form>
             </div>
         </div>
@@ -110,9 +110,8 @@
                     <p class="text-danger">There are no players to display!</p>
                 @else
                     @if (!empty($unsubscriptionResult))
-                        @if ($unsubscriptionResult === true)
-                            <h6 class="text-success my-5">Successfully unsubscribed player
-                                "{{ $unsubscribedPlayer->first_name . ' ' . $unsubscribedPlayer->last_name }}"!</h6>
+                        @if ($unsubscriptionResult)
+                            <h6 class="text-success my-5">Successfully unsubscribed player!</h6>
                         @else
                             <h6 class="text-danger my-5">{{ $error }}</h6>
                         @endif

@@ -13,7 +13,7 @@
             </form>
             <div>
                 <button class="btn btn-lg btn-danger"><a class="no-style text-white"
-                        href="{{ url()->previous() }}">No</a></button>
+                        href="{{ route('team.manage') }}">No</a></button>
             </div>
         </div>
     </div>

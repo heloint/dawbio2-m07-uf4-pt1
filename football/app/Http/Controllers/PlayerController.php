@@ -104,14 +104,19 @@ class PlayerController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        // Check for errors. If got error code, then get the custom message for it.
+        $errorCode = $request->error;
+        $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
+        $deletionResult = $request->deletionResult ?? null;
+
         try {
             $players = Player::all();
         } catch (\Illuminate\Database\QueryException $e) {
             $players = null;
         }
-        return view("players.index", compact("players"));
+        return view("players.index", compact("players", "error", "deletionResult"));
     }
 
     /**
@@ -211,10 +216,10 @@ class PlayerController extends Controller
      */
     public function deletePlayer(Request $request)
     {
-        $playerToDelete = Player::findOrFail($request->player_id);
         $error = null;
         $deletionResult = null;
-        $players = Player::all();
+
+        $playerToDelete = Player::findOrFail($request->player_id);
 
         $connection = $playerToDelete->getConnection();
         $connection->beginTransaction();
@@ -222,19 +227,17 @@ class PlayerController extends Controller
             // Delete entity from DB.
             $deletionResult = $playerToDelete->delete();
             $connection->commit();
-            // Get update about table.
-            $players = Player::all();
         } catch (\Illuminate\Database\QueryException $e) {
             $connection->rollBack();
             $deletionResult = false;
-            $error =
-                "Unexpected error has occurred in the database. Please contact one of our admins.";
+            $error = $e->errorInfo[1];
         }
 
-        return view(
-            "players.index",
-            compact("error", "deletionResult", "playerToDelete", "players")
+        return redirect()->action(
+            [PlayerController::class, "index"],
+            compact("error", "deletionResult")
         );
+
     }
 
     /**

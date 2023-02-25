@@ -22,13 +22,13 @@
 
                             <!-- MANAGE TEAMS -->
                             <li class="nav-item">
-                                <a class="nav-link" href="/manage-teams">Manage Teams</a>
+                                <a class="nav-link" href="/teams/manage">Manage Teams</a>
                             </li>
                             <!-- END: MANAGE TEAMS -->
 
                             <!-- MANAGE players -->
                             <li class="nav-item">
-                                <a class="nav-link" href="/manage-players">Manage players</a>
+                                <a class="nav-link" href="/players/manage">Manage players</a>
                             </li>
                             <!-- END: MANAGE players -->
                         </ul>
