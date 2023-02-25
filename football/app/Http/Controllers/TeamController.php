@@ -28,11 +28,12 @@ class TeamController extends Controller
     }
 
     /**
-     * Create a new Team object from the request data.
-     *
-     * @param \Illuminate\Http\Request $request The request object.
-     * @return \App\Models\Team The newly created Team object.
-     */
+    * Populates a Team object with values from a Request object.
+    *
+    * @param Team $obj The Team object to populate with values.
+    * @param Request $request The Request object containing the values to populate.
+    * @return Team The populated Team object.
+    **/
     private function requestValuesToTeam(Team $obj, Request $request): Team
     {
         foreach ($request->all() as $key => $value) {
@@ -43,10 +44,44 @@ class TeamController extends Controller
         return $obj;
     }
 
+    /**
+    * Saves a Team object to the database and returns the result and error code, if any.
+    *
+    * @param Team $team The Team object to save to the database.
+    * @return array An array containing the result (true for success, false for failure) and error code (null if no error occurred).
+    */
+    private function saveTeamToDB(Team $team)
+    {
+        $result = null;
+        $error = null;
+
+        try {
+            $connection = $team->getConnection();
+            $connection->beginTransaction();
+            $result = $team->save();
+            $connection->commit();
+            $result = true;
+        } catch (\PDOException $e) {
+            // Get the error SQL code from the exception.
+            $result = false;
+            $error = $e->errorInfo[1];
+        }
+
+        return compact("result", "error");
+    }
+
+    /**
+    * Retrieves a specific error message based on the error code.
+    *
+    * @param int $errorCode The error code to retrieve the message for.
+    * @return string The error message associated with the specified error code.
+    * */
     private function messageForErrorCode(int $errorCode): string
     {
         return match ($errorCode) {
             1062 => "Entity with the following name already exists!",
+            2022 => "Temporare issue with our database server. Please, try again later.",
+            default => 'An internal error has occured. Please, try again later.'
         };
     }
 
@@ -57,7 +92,11 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::all();
+        try {
+            $teams = Team::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            $teams = null;
+        }
         return view("teams.index", compact("teams"));
     }
 
@@ -80,14 +119,18 @@ class TeamController extends Controller
             $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
 
             $result = (bool) $request->result;
-
-            // If result is empty, that means the add form is fresh.
-            // Get the next empty ID.
-            if (!empty($request->team_id)) {
-                $team = Team::findOrFail($request->team_id);
-            } else {
+            try {
+                // If result is empty, that means the add form is fresh.
+                // Get the next empty ID.
+                if (!empty($request->team_id)) {
+                    $team = Team::findOrFail($request->team_id);
+                } else {
+                    $team = new Team();
+                    $team->id = Team::max("id") + 1;
+                }
+            } catch (\Illuminate\Database\QueryException $e) {
+                // Ignore. Return back the error message and the null variables.
                 $team = new Team();
-                $team->id = Team::max("id") + 1;
             }
 
             return view(
@@ -118,26 +161,16 @@ class TeamController extends Controller
 
         // Try to insert the new Team object into the database.
         // If there's a query exception, handle it and return error message.
-        $connection = $team->getConnection();
-        $connection->beginTransaction();
-        try {
-            // Save the modifications.
-            $result = $team->save();
-            $connection->commit();
-        } catch (\PDOException $e) {
-            $connection->rollBack();
 
+        $transaction = $this->saveTeamToDB($team);
+        if ($transaction['error']) {
             // If error occured, id is not assigned to Team object,
             // so we assign the request one for the incorrect data to be displayed in the form.
             $team->id = $request->team_id;
-
-            // Get the error SQL code from the exception.
-            $error = $e->errorInfo[1];
         }
-
         return redirect()->action(
             [TeamController::class, "addTeamForm"],
-            ["team_id" => $team->id, "error" => $error, "result" => $result]
+            ["team_id" => $team->id, "error" => $transaction['error'], "result" => $transaction['result']]
         );
     }
 
@@ -201,7 +234,7 @@ class TeamController extends Controller
             $result = $team->save();
             $connection->commit();
         } catch (\PDOException $e) {
-            $connection->commit();
+            $connection->rollBack();
             // Get the error SQL code from the exception.
             $error = $e->errorInfo[1];
         }

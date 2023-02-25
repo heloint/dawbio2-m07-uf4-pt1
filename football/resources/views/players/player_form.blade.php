@@ -10,17 +10,24 @@
                 @elseif($mode === 'edit')
                     <h3 class="mb-5">Edit player</h3>
                 @endif
-                @if (!empty($result))
-                    @if ($result === true)
-                        <p class="text-success text-lg">Succesfully modified player!</p>
+                @if (!empty($error))
+                    <p class="text-danger text-lg">{{ $error }}</p>
+                @endif
+                @if (!empty($result) && empty($errors->messages()))
+                    @if ($result)
+                        @if ($mode === 'add')
+                            <p class="text-success text-lg">Succesfully added new player!</p>
+                        @elseif($mode === 'edit')
+                            <p class="text-success text-lg">Succesfully modified player!</p>
+                        @endif
                     @else
-                        <p class="text-danger text-lg">Internal error has occured, please retry later.</p>
+                        <p class="text-danger text-lg">Couldn't get your request done. Contact with one of our admin.</p>
                     @endif
                 @endif
                 @if ($mode === 'add')
                     <form action="/player/add" method="post">
                     @elseif($mode === 'edit')
-                        <form action="/player/modify" method="post">
+                        <form action="/player/add" method="post">
                 @endif
                 @csrf
                 <div class="mb-3">

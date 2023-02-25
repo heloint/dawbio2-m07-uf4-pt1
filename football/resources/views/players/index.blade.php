@@ -6,10 +6,10 @@
         <h3>Manage Players</h3>
         <div class="row">
             <div class="my-3">
-                <button class="btn btn-primary"><a class="no-style text-white" href="/player/new">Add player</a></button>
+                <button class="btn btn-primary"><a class="no-style text-white" href="/player/add">Add player</a></button>
             </div>
             @if (empty($players))
-                <p>There are no players to display!</p>
+                <h6 class="text-danger my-5">There are no players to display!</h6>
             @else
                 @if (!empty($error))
                     <h6 class="text-danger my-5">{{ $error }}</h6>

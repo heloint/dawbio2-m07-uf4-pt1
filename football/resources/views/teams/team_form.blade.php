@@ -16,7 +16,7 @@
                     <p class="text-danger text-lg">{{ $error }}</p>
                 @endif
                 @if (!empty($result) && empty($errors->messages()))
-                    @if ((bool)$result)
+                    @if ($result)
                         @if ($mode === 'add')
                             <p class="text-success text-lg">Succesfully added new team!</p>
                         @elseif($mode === 'edit')

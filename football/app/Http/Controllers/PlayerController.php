@@ -14,7 +14,7 @@ class PlayerController extends Controller
      * @return void
      * @throws \Illuminate\Validation\ValidationException
      */
-    private function validatePlayerForm(Request $request)
+    private function validatePlayerFormFields(Request $request)
     {
         // Validate the received fields from the post request.
         $this->validate($request, [
@@ -26,21 +26,60 @@ class PlayerController extends Controller
     }
 
     /**
-     * Create a new Player object from the request data.
+     * Create a new Team object from the request data.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \App\Models\Player
+     * @param \Illuminate\Http\Request $request The request object.
+     * @return \App\Models\Player The newly created Team object.
      */
-    private function createPlayerFromRequest(Request $request): Player
+    private function requestValuesToPlayer(Player $obj, Request $request): Player
     {
-        $player = new Player();
-        // Assign field values to the empty Player object.
         foreach ($request->all() as $key => $value) {
-            if ($key !== "_token" && $key !== "id") {
-                $player->$key = $value;
+            if ($key !== "_token" && $key !== "player_id") {
+                $obj->$key = $value;
             }
         }
-        return $player;
+        return $obj;
+    }
+
+    /**
+    * Saves a Player object to the database and returns the result and error code, if any.
+    *
+    * @param Player $player The Player object to save to the database.
+    * @return array An array containing the result (true for success, false for failure) and error code (null if no error occurred).
+    */
+    private function savePlayerToDB(Player $player)
+    {
+        $result = null;
+        $error = null;
+
+        try {
+            $connection = $player->getConnection();
+            $connection->beginTransaction();
+            $result = $player->save();
+            $connection->commit();
+            $result = true;
+        } catch (\PDOException $e) {
+            // Get the error SQL code from the exception.
+            $result = false;
+            $error = $e->errorInfo[1];
+        }
+
+        return compact("result", "error");
+    }
+
+    /**
+    * Retrieves a specific error message based on the error code.
+    *
+    * @param int $errorCode The error code to retrieve the message for.
+    * @return string The error message associated with the specified error code.
+    * */
+    private function messageForErrorCode(int $errorCode): string
+    {
+        return match ($errorCode) {
+            1062 => "Entity with the following name already exists!",
+            2022 => "Temporare issue with our database server. Please, try again later.",
+            default => 'An internal error has occured. Please, try again later.'
+        };
     }
 
     /**
@@ -50,7 +89,11 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        $players = Player::all();
+        try {
+            $players = Player::all();
+        } catch (\Illuminate\Database\QueryException $e) {
+            $players = null;
+        }
         return view("players.index", compact("players"));
     }
 
@@ -59,14 +102,36 @@ class PlayerController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function newPlayer()
+    public function addPlayerForm(Request $request)
     {
-        $mode = "add";
-        $nextFreeID = Player::max("id") + 1;
-        $player = new Player();
-        $player->id = $nextFreeID;
+        if ($request->isMethod('get')) {
+            $mode = "add";
+            $player = null;
 
-        return view("players.player_form", compact("player", "mode"));
+            // Check for errors. If got error code, then get the custom message for it.
+            $errorCode = $request->error;
+            $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
+
+            $result = (bool) $request->result;
+
+            try {
+                // If result is empty, that means the add form is fresh.
+                // Get the next empty ID.
+                if (!empty($request->player_id)) {
+                    $player = Player::findOrFail($request->player_id);
+                } else {
+                    $player = new Player();
+                    $player ->id = Player::max("id") + 1;
+                }
+            } catch (\Illuminate\Database\QueryException $e) {
+                // Ignore. Return back the error message and the null variables.
+                $player = new Player();
+            }
+
+            return view("players.player_form", compact("player", "mode", "result", "error"));
+        } elseif ($request->isMethod('post')) {
+            return $this->addPlayer($request);
+        }
     }
 
     /**
@@ -75,33 +140,28 @@ class PlayerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function addNewPlayer(Request $request)
+    private function addPlayer(Request $request)
     {
-        $mode = "add";
-        // Initialize empty variables.
         $error = null;
         $result = null;
 
         // Validate form field values.
-        $this->validatePlayerForm($request);
+        $this->validatePlayerFormFields($request);
 
-        $player = $this->createPlayerFromRequest($request);
+        $player = $this->requestValuesToPlayer(new Player(), $request);
 
         // Try to insert the new Player object into the database.
         // If there's a query exception, handle it and return error message.
-        try {
-            $result = $player->save();
-        } catch (\Illuminate\Database\QueryException $e) {
-            $error =
-                "Unexpected error has occured in the database. Please contact with one of our admin.";
-            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
-                $error = "Player already exists!";
-            }
+        $transaction = $this->savePlayerToDB($player);
+        if ($transaction['error']) {
+            // If error occured, id is not assigned to Team object,
+            // so we assign the request one for the incorrect data to be displayed in the form.
+            $player->id = $request->player_id;
         }
 
-        return view(
-            "players.player_form",
-            compact("result", "error", "player", "mode")
+        return redirect()->action(
+            [PlayerController::class, "addPlayerForm"],
+            ["player_id" => $player->id, "error" => $transaction['error'], "result" => $transaction['result']]
         );
     }
 
@@ -132,12 +192,16 @@ class PlayerController extends Controller
         $deletionResult = null;
         $players = Player::all();
 
+        $connection = $playerToDelete->getConnection();
+        $connection->beginTransaction();
         try {
             // Delete entity from DB.
             $deletionResult = $playerToDelete->delete();
+            $connection->commit();
             // Get update about table.
             $players = Player::all();
         } catch (\Illuminate\Database\QueryException $e) {
+            $connection->rollBack();
             $deletionResult = false;
             $error =
                 "Unexpected error has occurred in the database. Please contact one of our admins.";
@@ -157,6 +221,7 @@ class PlayerController extends Controller
      */
     public function editPlayerForm(Request $request)
     {
+        if ($request->isMethod('get')) {
         // Determine the mode of the operation.
         $mode = "edit";
 
@@ -164,7 +229,12 @@ class PlayerController extends Controller
         $player = Player::findOrFail($request->player_id);
 
         return view("players.player_form", compact("player", "mode"));
+
+        } elseif ($request->isMethod('post')) {
+            return $this->editPlayer($request);
+        }
     }
+
 
     /**
      * Modify a player in the database based on the received form fields.
@@ -172,7 +242,7 @@ class PlayerController extends Controller
      * @param  \Illuminate\Http\Request  $request The request object containing the form fields.
      * @return \Illuminate\View\View A view that displays the outcome of the modification.
      */
-    public function modifyPlayer(Request $request)
+    private function editPlayer(Request $request)
     {
         // The mode of the operation.
         $mode = "edit";
@@ -184,33 +254,32 @@ class PlayerController extends Controller
         $this->validatePlayerForm($request);
 
         // Retrieve the team and its players.
-        $player = Player::findOrFail($request->player_id);
+        $foundPlayer = Player::findOrFail($request->player_id);
+
         // Re-assign field values to the found team entity.
-        foreach ($request->all() as $key => $value) {
-            if ($key !== "_token" && $key !== "player_id") {
-                $player->$key = $value;
-            }
-        }
+        $player = $this->requestValuesToPlayer($foundPlayer, $request);
 
         // Try to update the modified team object in the DB.
         // If there's a query exception, handle it and return error message.
+        $connection = $player->getConnection();
+        $connection->beginTransaction();
         try {
             // Save the modifications.
             $result = $player->save();
+            $connection->commit();
             // Get updated data about this team.
             $player = Player::findOrFail($request->player_id);
-        } catch (\Illuminate\Database\QueryException $e) {
+        } catch (\PDOException $e) {
+            $connection->rollBack();
             $result = false;
-            $error = $e->getMessage();
-            /* "Unexpected error has occured in the database. Please contact with one of our admin."; */
-            if (strpos($e->getMessage(), "Duplicate entry") !== false) {
-                $error = "Player already exists!";
-            }
+
+            // Get the error SQL code from the exception.
+            $error = $e->errorInfo[1];
         }
 
-        return view(
-            "players.player_form",
-            compact("result", "error", "player", "mode")
+        return redirect()->action(
+            [PlayerController::class, "editPlayerForm"],
+            ["player_id" => $player->id, "error" => $error, "result" => $result]
         );
     }
 

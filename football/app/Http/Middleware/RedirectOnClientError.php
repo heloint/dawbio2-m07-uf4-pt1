@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RedirectOnMethodError
+class RedirectOnClientError
 {
     /**
      * Handle an incoming request and throw the user back to root, if
