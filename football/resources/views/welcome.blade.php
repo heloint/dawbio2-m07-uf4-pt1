@@ -51,6 +51,9 @@
                 </div>
             </section>
 
+            <div class="d-flex justify-content-center">
+                <img style="max-width: 25rem;" src="{{ asset('images/football-drawing.webp') }}">
+            </div>
 
         </div>
     </div>
