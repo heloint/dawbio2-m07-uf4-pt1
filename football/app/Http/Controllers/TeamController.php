@@ -1,12 +1,25 @@
 <?php
-
 namespace App\Http\Controllers;
+/**
+ * This file contains the TeamController class, which is responsible for handling requests
+ * related to Teams, such as creating new Teams, updating existing ones, deleting them, and more.
+ *
+ * @author Dániel Májer
+ * @category Controllers
+ * @package  App\Http\Controllers
+ */
 
 use App\Models\Team;
 use App\Models\Player;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * The TeamController class is responsible for handling operations related to Teams.
+ *
+ * @category Controllers
+ * @package  App\Http\Controllers
+ */
 class TeamController extends Controller
 {
     /**
@@ -105,7 +118,7 @@ class TeamController extends Controller
         // Check for errors. If got error code, then get the custom message for it.
         $errorCode = $request->error;
         $error = $errorCode ? $this->messageForErrorCode($errorCode) : null;
-        $deletionResult = $request->deletionResult ?? null;
+        $deletionResult = $request->deletionResult ? (bool) $request->deletionResult : null;
         try {
             $teams = Team::all();
         } catch (\Illuminate\Database\QueryException $e) {

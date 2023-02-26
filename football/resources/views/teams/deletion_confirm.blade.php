@@ -1,4 +1,8 @@
 @extends('layout')
+{{-- 
+  This Blade file displays a confirmation message to delete a football team.
+  @author Dániel Májer
+--}}
 
 @section('content')
     <div class="row" style="height: 35rem;">

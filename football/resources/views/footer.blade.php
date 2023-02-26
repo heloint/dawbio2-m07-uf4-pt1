@@ -1,3 +1,9 @@
+{{-- 
+  This Blade file displays the footer of the web page.
+
+  Author: Dániel Májer
+--}}
+
 <footer class="bg-dark text-white py-3">
     <div class="container">
         <div class="row">

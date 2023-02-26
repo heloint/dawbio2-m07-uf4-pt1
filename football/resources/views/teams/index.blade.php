@@ -1,3 +1,9 @@
+{{-- 
+  This Blade file displays a table with all the football teams.
+
+  @author Dániel Májer
+--}}
+
 @extends('layout')
 
 @section('content')

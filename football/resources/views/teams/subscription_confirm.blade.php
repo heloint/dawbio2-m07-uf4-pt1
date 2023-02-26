@@ -1,5 +1,10 @@
 @extends('layout')
 
+{{-- 
+  This Blade file contains the confirmation message for subscribing a football player.
+  @author Dániel Májer
+--}}
+
 @section('content')
     <div class="row" style="height: 35rem;">
         <div class="d-flex justify-content-center align-items-center mt-5">
@@ -18,7 +23,7 @@
             </form>
             <div>
                 <button class="btn btn-lg btn-danger"><a class="no-style text-white"
-                        href="{{ url()->previous() }}">No</a></button>
+                        href="{{ route('team.subscribePlayerTable', ['team_id' => $team->id]) }}">No</a></button>
             </div>
         </div>
     </div>

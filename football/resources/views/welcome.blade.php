@@ -1,4 +1,9 @@
 @extends('layout')
+{{-- 
+  This Blade file displays the home page of the web application.
+
+  Author: Dániel Májer
+--}}
 
 @section('content')
     <div class="container my-5">

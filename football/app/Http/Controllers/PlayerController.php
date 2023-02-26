@@ -1,10 +1,24 @@
 <?php
-
 namespace App\Http\Controllers;
+
+/**
+ * This file contains the PlayerController class, which is responsible for handling requests
+ * related to Players, such as creating new Players, updating existing ones, deleting them, and more.
+ * @author Dániel Májer
+ * @category Controllers
+ * @package  App\Http\Controllers
+ */
+
 
 use App\Models\Player;
 use Illuminate\Http\Request;
 
+/**
+ * The PlayerController class is responsible for handling operations related to Players.
+ *
+ * @category Controllers
+ * @package  App\Http\Controllers
+ */
 class PlayerController extends Controller
 {
     /**

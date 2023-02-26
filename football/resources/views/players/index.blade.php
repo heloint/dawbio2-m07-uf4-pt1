@@ -1,5 +1,10 @@
 @extends('layout')
 
+{{-- 
+  This Blade file displays a table with all the football players.
+  @author Dániel Májer
+--}}
+
 @section('content')
 
     <div class="container my-5">

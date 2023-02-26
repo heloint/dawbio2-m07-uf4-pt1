@@ -1,5 +1,10 @@
 @extends('layout')
 
+{{-- 
+  This Blade file contains the form for adding and updating a football player.
+  @author Dániel Májer
+--}}
+
 @section('content')
 
     <div class="container my-5">
@@ -61,7 +66,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="salary" class="form-label">Salary</label>
-                    <input type="number" id="salary" name="salary" step="0.01"
+                    <input type="number" id="salary" name="salary" step="0.001"
                         value="{{ old('salary', $player->salary) }}" class="form-control" required>
                     @if ($errors->has('salary'))
                         <p class="text-danger">{{ $errors->first('salary') }}</p>

@@ -1,5 +1,10 @@
 @extends('layout')
 
+{{-- 
+  This Blade file contains the confirmation message for deleting a football player.
+  @author Dániel Májer
+--}}
+
 @section('content')
     <div class="row" style="height: 35rem;">
         <div class="d-flex justify-content-center align-items-center">

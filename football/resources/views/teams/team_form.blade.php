@@ -64,7 +64,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="budget" class="form-label">Budget</label>
-                    <input type="number" id="budget" name="budget" class="form-control"
+                    <input type="number" step="0.001" id="budget" name="budget" class="form-control"
                         value="{{ old('budget', $team->budget) }}"required>
                     @if ($errors->has('budget'))
                         <p class="text-danger">{{ $errors->first('budget') }}</p>

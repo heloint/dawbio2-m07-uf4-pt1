@@ -1,3 +1,9 @@
+{{-- 
+  This Blade file displays the header of the web page.
+
+  Author: Dániel Májer
+--}}
+
 <div class="sticky-top bg-dark">
     <div class="container">
         <div class="row">

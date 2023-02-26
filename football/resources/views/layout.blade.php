@@ -1,3 +1,9 @@
+{{-- 
+  This Blade file defines the layout of the web page.
+
+  Author: Dániel Májer
+--}}
+
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 
