@@ -33,9 +33,9 @@ class TeamController extends Controller
     {
         // Validate the received fields from the post request.
         $this->validate($request, [
-            "name" => "required|min:2|regex:/^[\pL'\s]+$/",
-            "coach" => "required|min:2|regex:/^[\pL'\s]+$/",
-            "category" => 'required|min:2|regex:/^[a-zA-Z0-9\s]+$/',
+            "name" => "required|min:2|regex:/^[\pL'\s.]+$/",
+            "coach" => "required|min:2|regex:/^[\pL'\s.]+$/",
+            "category" => 'required|min:2|regex:/^[\pL0-9\s.]+$/',
             "budget" => "numeric|min:0",
         ]);
     }

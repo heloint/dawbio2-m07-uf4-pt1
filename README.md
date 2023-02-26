@@ -16,6 +16,12 @@ mariadb -u <your_user> -p < ./init-app-db.sql
 ### 2. From the ./football directory.
 
 ```bash
+composer install
+```
+
+* Install packages of Laravel.
+
+```bash
 php artisan migrate
 ```
 
