@@ -1,6 +1,10 @@
 # Provençana - DAWBIO-2 Module 7 (backend programming) UF4-PT1 (PHP/Laravel)
 ## (Project of UF4: Football team and player manager web app)
 
+## Author: Daniel Majer
+## [Github repository](https://github.com/heloint/dawbio2-m07-uf4-pt1)
+
+
 # INITIAL SETUP
 
 ### 1. Init the DB.
